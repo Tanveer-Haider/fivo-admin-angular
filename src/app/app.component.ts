@@ -62,6 +62,7 @@ export class AppComponent implements OnInit {
     }
     sessonTime : any
     getSessonTime() {
+      return
       let url = `admin/sessionView`
     
       this.commonService.showSpinner()
@@ -81,6 +82,7 @@ export class AppComponent implements OnInit {
     }
 
     getCurrencySymbol(){
+      return
       let url = `admin/viewCurrency`
       this.commonService.showSpinner()
       this.apiService.postApi(url,{},0).subscribe((res)=>{

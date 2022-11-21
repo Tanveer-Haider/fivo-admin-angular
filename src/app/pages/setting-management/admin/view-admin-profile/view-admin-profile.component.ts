@@ -9,9 +9,9 @@ import { CommonService } from 'src/app/Services/common.service';
 })
 export class ViewAdminProfileComponent implements OnInit {
   userDetail: any;
-  ProfileData: any;
+  ProfileData: any = {userName : 'Admin',email : 'admin@gmail.com',countryCode : '+91', mobileNumber : '9999999999',address : 'Los Angeles'};
   permissions:any
-  imgSrc: any;
+  imgSrc: any = 'assets/images/avatar-1.jpg';
   constructor(private apiService:ApiFunctionalityService, public commonService:CommonService) { }
 
   ngOnInit(): void {
@@ -19,6 +19,7 @@ export class ViewAdminProfileComponent implements OnInit {
   }
 
   getProfile(){
+    return
     let url = `admin/getProfile`
     this.commonService.showSpinner()
     this.apiService.getApi(url,1).subscribe(res=>{

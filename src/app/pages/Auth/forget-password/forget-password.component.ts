@@ -27,6 +27,9 @@ export class ForgetPasswordComponent implements OnInit {
   let apiReqData={
     'email':this.forgetform.value.email
   }
+  localStorage.setItem('email',this.forgetform.value.email)
+      this.router.navigate(["otp-verification"]);
+      return
   var apiReqUrl="admin/forgotPassword"
   this.commonService.showSpinner()
   this.service.postApi(apiReqUrl,apiReqData,0).subscribe((res:any)=>{

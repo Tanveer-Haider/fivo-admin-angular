@@ -26,7 +26,7 @@ export class EditSliderImageComponent implements OnInit {
     this.bannerForm=new FormGroup({
       'sliderTitle':new FormControl('', Validators.required)
     })
-    this.getSliderImage()
+    // this.getSliderImage()
   }
 
 

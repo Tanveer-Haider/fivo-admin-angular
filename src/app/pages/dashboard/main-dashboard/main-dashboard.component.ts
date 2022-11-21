@@ -22,7 +22,7 @@ export class MainDashboardComponent implements OnInit {
   total: any;
   total_material: any
   currentPage = 0;
-  listArray: any = [];
+  listArray: any = {allUser : 100,activeUser : 80,blockedUser : 20,totalKYC : 67,pendingKyc : 50,acceptedKYC : 13};
   pending_job_listArray = []
   pending_material_listArray = []
   useCurrency: any = localStorage.getItem("useCurrency")
@@ -60,11 +60,11 @@ export class MainDashboardComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getDashboard()
-    this.getMaterialJobList()
-    this.getpendingJobList()
-    this.getChartPoints()
-
+    // this.getDashboard()
+    // this.getMaterialJobList()
+    // this.getpendingJobList()
+    // this.getChartPoints()
+    this.chart()
   }
 
 
@@ -141,8 +141,8 @@ export class MainDashboardComponent implements OnInit {
     }
 
   }
-  serviceEarning : any = []
-  materialEarning : any = []
+  serviceEarning : any = [0,5,10,11,16,18,12,19,25,36,40,39]
+  materialEarning : any = [1,9,12,15,19,28,32,39,35,46,50,29]
   async getChartPoints() {
     let url = `admin/earningGraph?year=${this.currentYear}`
     this.commonService.showSpinner()
@@ -194,7 +194,7 @@ export class MainDashboardComponent implements OnInit {
         ],
         datasets: [
           {
-            label: 'Service',
+            label: 'Android',
             data: this.serviceEarning,
             backgroundColor: "transparent",
             borderColor: "blue",
@@ -202,7 +202,7 @@ export class MainDashboardComponent implements OnInit {
             
           },
           {
-            label: 'Materials',
+            label: 'IOS',
             data: this.materialEarning,
             backgroundColor: "transparent",
             borderColor: "green",
@@ -221,7 +221,7 @@ export class MainDashboardComponent implements OnInit {
           yAxes: [
             {
               scaleLabel: {
-                labelString: "Earning in " + this.useCurrency,
+                labelString: "Registerd User in Number",
                 display: true,
               },
               valueFormatString: "",

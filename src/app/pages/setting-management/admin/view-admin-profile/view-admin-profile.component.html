@@ -125,9 +125,10 @@
                                 
                             </div>
                         </div> -->
+                        <!-- *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" -->
                         <div class="text-center mt-5 mb40">
                             <button
-                                *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')"
+                             
                                 class="btn btn-large  max-WT-150 ml-1 btn-secondary"
                                 routerLink="/setting/edit-admin-profile">Edit Profile</button>
 

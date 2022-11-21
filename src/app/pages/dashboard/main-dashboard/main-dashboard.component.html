@@ -21,10 +21,10 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalClient || '0'}}</p>
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.allUser || '0'}}</p>
                                     </div>
                                     <div class="col-12">
-                                        <p class="header-font  w-space-nowrap">Clients</p>
+                                        <p class="header-font  w-space-nowrap">All User</p>
                                     </div>
                                 </div>
                             </div>
@@ -42,10 +42,10 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="header-font dashboard-icon-mar">{{listArray?.pendingJob || '0'}}</p>
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.activeUser || '0'}}</p>
                                     </div>
                                     <div class="col-12">
-                                        <p class="header-font w-space-nowrap ">Service Orders</p>
+                                        <p class="header-font w-space-nowrap ">Active User</p>
                                     </div>
                                 </div>
                             </div>
@@ -63,10 +63,10 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="header-font dashboard-icon-mar">{{listArray?.pendingMaterial || '0'}}</p>
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.blockedUser || '0'}}</p>
                                     </div>
                                     <div class="col-12">
-                                        <p class="header-font  w-space-nowrap">Material Orders</p>
+                                        <p class="header-font  w-space-nowrap">Blocked User</p>
                                     </div>
                                 </div>
                             </div>
@@ -85,10 +85,10 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalEarns || '0'}}</p>
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalKYC || '0'}}</p>
                                     </div>
                                     <div class="col-12">
-                                        <p class="header-font  w-space-nowrap">Earnings</p>
+                                        <p class="header-font  w-space-nowrap">Total KYC</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,10 +106,10 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalExperts || '0'}}</p>
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.pendingKyc || '0'}}</p>
                                     </div>
                                     <div class="col-12">
-                                        <p class="header-font  w-space-nowrap">Experts</p>
+                                        <p class="header-font  w-space-nowrap">Pending KYC</p>
                                     </div>
                                 </div>
                             </div>
@@ -128,10 +128,10 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalAgent || '0'}}</p>
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.acceptedKYC || '0'}}</p>
                                     </div>
                                     <div class="col-12">
-                                        <p class="header-font  w-space-nowrap">Delivery Agents</p>
+                                        <p class="header-font  w-space-nowrap">Accepted KYC</p>
                                     </div>
                                 </div>
                             </div>
@@ -146,14 +146,14 @@
 
                 <div class="card">
                     <div class="card-header chart-header">
-                        <p>Earning chart</p>
+                        <p>User Register chart</p>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 text-right">
                                 <div class="chart-title">
-                                    <span> <i class="fa fa-minus mr-1" style="color: green;" aria-hidden="true"></i>Materials</span><br>
-                                    <span> <i class="fa fa-minus mr-1" style="color: blue;" aria-hidden="true"></i>Service</span>
+                                    <span> <i class="fa fa-minus mr-1" style="color: green;" aria-hidden="true"></i>Android</span><br>
+                                    <span> <i class="fa fa-minus mr-1" style="color: blue;" aria-hidden="true"></i>IOS</span>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <div class="content-section">
+        <!-- <div class="content-section">
             <div class="outer-box">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
@@ -296,6 +296,6 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

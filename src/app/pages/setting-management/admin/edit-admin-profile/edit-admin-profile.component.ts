@@ -16,9 +16,12 @@ export class EditAdminProfileComponent implements OnInit {
   editForm:FormGroup
   editImage:any
   birthDate:boolean = true
-  imgSrc:any
+
   profileData: any;
-  ProfileData: any;
+
+  ProfileData: any = {userName : 'Admin',email : 'admin@gmail.com',countryCode : '+91', mobileNumber : '9999999999',address : 'Los Angeles'};
+
+  imgSrc: any = 'assets/images/avatar-1.jpg';
   permissions:any
   countryList = []
   filteredOptions: Observable<CountryCode[]>;
@@ -59,6 +62,7 @@ export class EditAdminProfileComponent implements OnInit {
   }
 
   getProfile(){
+    return
     let url = `admin/getProfile`
     this.commonService.showSpinner()
     this.apiService.getApi(url,1).subscribe(res=>{
@@ -104,6 +108,7 @@ export class EditAdminProfileComponent implements OnInit {
   }
 
   updateProfile(){
+    return
     let url = `admin/editProfile`
     let data = {
       "userName": this.editForm.value.userName,

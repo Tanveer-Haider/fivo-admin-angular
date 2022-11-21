@@ -10,7 +10,7 @@ import { CommonService } from 'src/app/Services/common.service';
 })
 export class ViewFaqComponent implements OnInit {
   faqId: any; 
-  faqView : any   
+  faqView : any = {question : 'What is FAQs',answer :'Frequently asked question'}  
   constructor(private router : Router,public commonService: CommonService,private activatedroute : ActivatedRoute , public service:ApiFunctionalityService) { 
     this.activatedroute.queryParams.subscribe((res) => {
       this.faqId = res.id;
@@ -18,7 +18,7 @@ export class ViewFaqComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFaq()
+    // this.getFaq()
   }
 
   //----- get individual faq data ----//

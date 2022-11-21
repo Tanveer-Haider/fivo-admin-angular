@@ -11,7 +11,7 @@ import { CommonService } from 'src/app/Services/common.service';
 export class HeaderComponent implements OnInit {
   showLogo: boolean = false;
   showModal : boolean = false
-  profileData:any;
+  profileData:any = {userName : 'Admin'};
 
   constructor(private apiService:ApiFunctionalityService,private commonService:CommonService,private router:Router) { }
 
@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   // get admin profile
   getProfile(){
+    return
     let url = `admin/getProfile`
     // this.commonService.showSpinner()
     this.apiService.getApi(url,1).subscribe((res:any)=>{

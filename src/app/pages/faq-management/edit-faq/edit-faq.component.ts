@@ -25,7 +25,7 @@ export class EditFaqComponent implements OnInit {
       "question" : new FormControl('' , Validators.required) ,
       "answer" : new FormControl('', Validators.required) ,
     });
-   this.getFaq()
+  //  this.getFaq()
   }
 
   //------ get individual faq data ------//

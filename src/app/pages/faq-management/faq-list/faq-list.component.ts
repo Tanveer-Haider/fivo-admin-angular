@@ -12,8 +12,8 @@ declare var $;
   styleUrls: ['./faq-list.component.css']
 })
 export class FaqListComponent implements OnInit {
-  faqList:any=[]
-  faqResult: any;
+  faqList:any
+  faqResult: any=[{question : 'What is FAQs',answer :'Frequently asked question'}];
   id: any;
   total:any
   itemsPerPage: number = 10;
@@ -24,7 +24,7 @@ export class FaqListComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.getFaqData()
+    // this.getFaqData()
   }
 
   //----- get list of faq -----//

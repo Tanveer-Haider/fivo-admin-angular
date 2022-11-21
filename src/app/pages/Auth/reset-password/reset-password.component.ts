@@ -33,6 +33,12 @@ export class ResetPasswordComponent implements OnInit {
       "email": this.email,
       "newPassword": this.resetPassword.value.confirmPassword,
     }
+    localStorage.removeItem('email')
+    this.router.navigate(['/login'])
+    localStorage.removeItem("verifyOtpToken")
+    this.commonService.successToast('Password updated successfully')
+
+    return
     this.commonService.showSpinner()
     this.service.putApi('admin/resetPassword/' + token ,apiReqData,0).subscribe((res:any)=>{
       if(res.responseCode == 200){

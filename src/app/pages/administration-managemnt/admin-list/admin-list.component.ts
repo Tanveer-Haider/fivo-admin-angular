@@ -13,7 +13,7 @@ export class AdminListComponent implements OnInit {
   pageSize : any = 5
   total : any
   currentPage = 1
- adminList : any  = []
+ adminList : any  = [{userName : 'Mr. Sub Admin',email : 'subadmin@finvo.com',updatedAt : new Date()}]
  selectAll : any
   constructor(private apiService : ApiFunctionalityService,private router : Router,public commonService : CommonService) {
   
@@ -35,6 +35,7 @@ export class AdminListComponent implements OnInit {
   }
   search :any
   getAllAdminList(){
+    return
     let url = `admin/subAdminList?page=${this.currentPage}&limit=${this.pageSize}${this.search ? "&search="+this.search : ''}`
     this.commonService.showSpinner()
     this.apiService.getApi(url,1).subscribe((res)=>{

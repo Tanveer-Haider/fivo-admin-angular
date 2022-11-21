@@ -57,7 +57,8 @@
 
                             </div>
                             <div class="col-4">
-                                <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Delete')" class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
+                                <!-- *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Delete')" -->
+                                <button  class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
                             </div>
 
 
@@ -66,8 +67,8 @@
 
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
-
-                        <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Add')" class="btn btn-primary btn-export" routerLink="/setting/add-slider"> Add Image</button>
+                        <!-- *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Add')" -->
+                        <button  class="btn btn-primary btn-export" routerLink="/setting/add-slider"> Add Image</button>
 
                     </div>
                     <!-- <div class="pl-1 d-flex"> -->
@@ -124,10 +125,12 @@
                                             <button class="btn btn-danger ml-2" title="Block" (click)="activeBlock(item?._id)" *ngIf="item?.status=='ACTIVE'">
                                                  Block
                                               </button>
-                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" class="btn btn-secondary ml-2" title="Edit" (click)="editBanner(item?._id)">
+                                              <!-- *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" -->
+                                            <button  class="btn btn-secondary ml-2" title="Edit" (click)="editBanner(item?._id)">
                                                 Edit
                                             </button>
-                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Delete')" class="btn btn-danger ml-2" title="Delete" (click)="openDeleteModal(item?._id)">
+                                            <!-- *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Delete')" -->
+                                            <button  class="btn btn-danger ml-2" title="Delete" (click)="openDeleteModal(item?._id)">
                                                 Delete
                                             </button>
                                         </td>

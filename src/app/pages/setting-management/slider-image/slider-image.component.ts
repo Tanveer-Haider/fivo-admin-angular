@@ -17,7 +17,7 @@ export class SliderImageComponent implements OnInit {
   currentPage = 1
   action : any = 0
   deleteServiceId : any = []
-  listArray : any = []
+  listArray : any = [{bannerName : 'First Iamge', status : 'ACTIVE',bannerImage : 'assets/images/avatar-3.jpg' }]
   bannerId:any
   AgentHeader:any = [
     {"id":1,"name":"All","backgroundColor":"bg-green","icon":"fa fa-bars"},
@@ -28,7 +28,7 @@ export class SliderImageComponent implements OnInit {
     
    }
   ngOnInit(): void {
-    this.getBannerList()
+    // this.getBannerList()
   }
 
 

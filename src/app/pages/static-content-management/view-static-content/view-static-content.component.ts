@@ -45,6 +45,7 @@ title:any
 
 
   editStaticContent(){
+    return
     let url = `static/editStaticContent`
     let data = {
       "_id": this.id,

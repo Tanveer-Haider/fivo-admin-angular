@@ -19,40 +19,16 @@ countryList = []
 
   permissionArr: any = [
 
-    "clientsManagement",
-    "expertsManagement",
-    "deliveryManagement",
-    "inventoryManagement",
-    "serviceManagement",
-    "advertManagement",
-    "jobManagement",
-    "materialOrderManagement",
-    "earnings",
-    "categoryManagement",
-    "couponManagement",
-    "pushNotification",
-    "autoNotifications",
-    'reviews',
-    "inbox",
-    "settings"
+    "userManagement",
+    "sliderManagement",
+    "staticManagement",
+    
   ];
   innerPermisstionArr : any = [
-    {"clientsManagement" : ['View','Add','Edit','Delete']} ,
-    {"expertsManagement" : ['View','Add','Edit','Delete']},
-    {"deliveryManagement" : ['View','Add','Edit','Delete']},
-    {"inventoryManagement": ['View','Add','Edit','Delete']},
-    {"serviceManagement": ['View','Add','Edit','Delete']},
-    {"advertManagement": ['View','Add','Edit','Delete']},
-    {"jobManagement": ['View','Edit','Delete']},
-    {"materialOrderManagement": ['View','Delete']},
-    {"earnings": ['View']},
-    {"categoryManagement": ['View','Add','Edit','Delete']},
-    {"couponManagement": ['View','Add','Edit','Delete']},
-    {"pushNotification": ['View','Edit','Delete']},
-    {"autoNotifications" : ['View','Edit']},
-    {"reviews" :['View']},
-    {"inbox":['Delete']},
-    {"settings":['View','Add','Edit','Delete']}
+    {"userManagement" : ['View','Add','Edit','Delete']} ,
+    {"sliderManagement" : ['View','Add','Edit','Delete']},
+    {"staticManagement" : ['View','Add','Edit','Delete']},
+   
   ]
   name: any = []
   regExName=/^[a-zA-Z ]{3,}$/i;
@@ -97,7 +73,7 @@ countryList = []
 
   }
   addAdmin() {
-    
+    return
     let url = "admin/addSubAdmin"
     const data = {
       "name": this.addAdminFrom.value.name,
