@@ -1,0 +1,7 @@
+.illustration img {
+    max-width: 100%;
+    width: 150px;
+    height: 100px;
+    object-fit: fill;
+    object-position: bottom;
+}

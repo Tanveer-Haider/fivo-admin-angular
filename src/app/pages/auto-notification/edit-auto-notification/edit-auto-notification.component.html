@@ -1,0 +1,148 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+    
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title ">Auto Notification</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/auto-notification">Auto Notification</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="notificationForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Subject</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" formControlName="subject"  >
+                                            <div class="text-danger"
+                                            *ngIf="notificationForm.get('subject').invalid && (notificationForm.get('subject').dirty || notificationForm.get('subject').touched)">
+                                            <span *ngIf="notificationForm.get('subject').hasError('required')">*Please enter subject.</span>
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Notification Type</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                            <ng-multiselect-dropdown [placeholder]="'Select Trade'"
+                                                [settings]="dropdownSettings" [data]="dropdownList"
+                                              (onSelect)="onItemSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)" formControlName="notificationType">
+                                            </ng-multiselect-dropdown>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Recipient</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select" formControlName="receipient"  >
+                                                <option value="ADMIN">Admin</option>
+                                                <option value="CLIENT">Client</option>
+                                                <option value="EXPERT">Expert</option>
+                                                <option value="AGENT">Agent</option>
+                                            </select>    
+                                            <div class="text-danger"
+                                            *ngIf="notificationForm.get('receipient').invalid && (notificationForm.get('receipient').dirty || notificationForm.get('receipient').touched)">
+                                            <span *ngIf="notificationForm.get('receipient').hasError('required')">*Please enter recipient.</span>
+                                </div>
+                                </span>
+                            </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row mt-1">
+                            <label class="col-md-4 text-bold">Email Subject</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                            <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" formControlName="emailSubject" >   
+                                       
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row mt-1">
+                        <label class="col-md-4 text-bold">Status</label>
+                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                        <span class="col-md-5">
+                                            <span class="col-md-5">
+                                                <label class="switch">
+                                                    <input type="checkbox" formControlName="status" >
+                                                    <span class="slider round"></span>
+                                                   
+                        </label>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="row  mt-1">
+                        <label class="col-md-10 text-bold">Message</label>
+                        <span class="col-md-12">
+                                            <ck-editor name="data" skin="moono-lisa" language="en" [fullPage]="true"
+                                            formControlName="message"></ck-editor>
+                                        </span>
+
+                    </div>
+                </div>
+
+
+            </div>
+            </form>
+
+            <div class="text-center mt-5 mb40">
+
+                <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="editNotification()">Update</button>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+</div>

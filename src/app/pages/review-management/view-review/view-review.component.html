@@ -1,0 +1,136 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Review</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/reviews">Review
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/reviews">View
+                                                        List</a>
+                                                </li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View
+                                                        Review</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Job Id</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                        <p>{{reviewData?.orderId?.orderId || '--'}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Reviewed By</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                        <p>{{reviewData?.clientId?.email || '--'}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Review</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                        <p>{{reviewData?.review}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Date</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                        <p>{{reviewData?.updatedAt | date:'medium'}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Rating</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5 ">
+                                        <ul class="list-inline rating-list d-flex"    >
+                                            <li *ngFor="let star of stars; let i= index"  id="{{'starId'+i}}"
+                                                [ngClass]="{'selected': (star <= reviewData?.rating)}"> ★
+                                                <!-- <i class="mdi mdi-star ">★</i> -->
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/reviews">Back</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

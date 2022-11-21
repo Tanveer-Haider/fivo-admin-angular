@@ -1,0 +1,439 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Experts</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/expert">Experts
+                                                        list</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit
+                                                        expert</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="expertForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-5 text-bold">Expert Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="expertType" 
+                                                (change)="restForm(expertForm.get('expertType').value)">
+                                                <option value="">Select Expert Type</option>
+                                                <option value="COMPANY">Company</option>
+                                                <option value="INDIVIDUAL">Individual</option>
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('expertType').invalid && (expertForm.get('expertType').dirty || expertForm.get('expertType').touched)">
+                                                <span *ngIf="expertForm.get('expertType').hasError('required')">*Please
+                                                    enter expert type.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">First Name </label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                autocomplete="false" placeholder="First Name"
+                                                [readonly]="expertForm.get('expertType').value=='COMPANY'"
+                                                formControlName="firstname"  maxlength="32">
+                                            <i *ngIf="expertForm.get('expertType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('firstname').invalid && (expertForm.get('firstname').dirty || expertForm.get('firstname').touched)">
+                                                <!-- <span *ngIf="(expertForm.get('firstname').hasError('required'))">
+                                                    *Firstname is required.
+                                                </span> -->
+                                                <span *ngIf="(expertForm.get('firstname').hasError('pattern'))">
+                                                    *Please enter a valid firstname.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Last Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="32" autocomplete="false" placeholder="Last Name"
+                                                [readonly]="expertForm.get('expertType').value=='COMPANY'"
+                                                formControlName="lastname" >
+                                            <i *ngIf="expertForm.get('expertType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('lastname').invalid && (expertForm.get('lastname').dirty || expertForm.get('lastname').touched)">
+                                                <!-- <span *ngIf="(expertForm.get('lastname').hasError('required'))">
+                                                    *Lastname is required.
+                                                </span> -->
+                                                <span *ngIf="(expertForm.get('lastname').hasError('pattern'))">
+                                                    *Please enter a valid lastname.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">NRC No.</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6 ">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                [readonly]="expertForm.get('expertType').value=='COMPANY'" maxlength="32" 
+                                                placeholder="NRC No." formControlName="NRC_Number">
+                                            <i *ngIf="expertForm.get('expertType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                            <!-- <div class="text-danger"
+                                                *ngIf="expertForm.get('NRC_Number').invalid && (expertForm.get('NRC_Number').dirty || expertForm.get('NRC_Number').touched)">
+                                                <span *ngIf="expertForm.get('NRC_Number').hasError('required')">*Please
+                                                    enter NRC No.</span>
+                                            </div> -->
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Company Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 ">
+                                           
+                                            <input type="text" name="" class="form-control form-control_custom" maxlength="32"  [readonly]="expertForm.get('expertType').value=='INDIVIDUAL'"
+                                                placeholder="Company Name" formControlName="companyName">  
+                                            <i *ngIf="expertForm.get('expertType').value=='INDIVIDUAL'"
+                                                class="fa fa-ban" aria-hidden="true"></i>
+                                            <div *ngIf="expertForm.get('expertType').value!='INDIVIDUAL'">
+                                                <div class="text-danger"
+                                                    *ngIf="expertForm.get('companyName').invalid && (expertForm.get('companyName').dirty || expertForm.get('companyName').touched)">
+                                                    <span
+                                                        *ngIf="expertForm.get('companyName').hasError('required')">*Please
+                                                        enter company name.</span>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" aria-label="Country"
+                                                class="form-control form-control_custom d-inline country col-md-4 col-lg-3 text-center"
+                                                [formControl]="myControl" maxlength="7"
+                                                (keypress)="common.numberOnly($event)" [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between"
+                                                    *ngFor="let option of filteredOptions | async"
+                                                    [value]="option.code">
+                                                    <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <input type="text" name=""
+                                                class="form-control d-inline col-md-8 col-lg-9 number form-control_custom"
+                                                placeholder="Phone Number" autocomplete="false" maxlength="10"
+                                                (keypress)="common.numberOnly($event)" formControlName="mobileNumber"
+                                                >
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('mobileNumber').invalid && (expertForm.get('mobileNumber').dirty || expertForm.get('mobileNumber').touched)">
+                                                <span
+                                                    *ngIf="expertForm.get('mobileNumber').hasError('required')">*Please
+                                                    enter phone number.</span>
+
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Username</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6 ">
+                                            <input type="text" name="" class="form-control form-control_custom" maxlength="32" 
+                                                placeholder="Username" formControlName="username">
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('username').invalid && (expertForm.get('username').dirty || expertForm.get('username').touched)">
+                                                <span *ngIf="(expertForm.get('username').hasError('required'))">
+                                                    *Username is required.
+                                                </span>
+                                                <span *ngIf="(expertForm.get('username').hasError('maxlength'))">
+                                                    *Please enter a valid username.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-5 text-bold">Email</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom" maxlength="64" 
+                                                placeholder="Email" formControlName="email">
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('email').invalid && (expertForm.get('email').dirty || expertForm.get('email').touched)">
+                                                <span *ngIf="expertForm.get('email').hasError('required')">*Please
+                                                    enter email address.</span>
+                                                <span *ngIf="expertForm.get('email').hasError('pattern')">*Please
+                                                    enter valid email address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Company Registration Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom" maxlength="16" 
+                                                  [readonly]="expertForm.get('expertType').value=='INDIVIDUAL'"
+                                                placeholder="Company registration number"
+                                                formControlName="registrationNumber">
+                                            <i *ngIf="expertForm.get('expertType').value=='INDIVIDUAL'"
+                                                class="fa fa-ban" aria-hidden="true"></i>
+                                            <div *ngIf="expertForm.get('expertType').value!='INDIVIDUAL'">
+                                                <div class="text-danger"
+                                                    *ngIf="expertForm.get('registrationNumber').invalid && (expertForm.get('registrationNumber').dirty || expertForm.get('registrationNumber').touched)">
+                                                    <span
+                                                        *ngIf="expertForm.get('registrationNumber').hasError('required')">*Please
+                                                        enter company registration number.</span>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Address</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom" maxlength="64" 
+                                                placeholder="Address" formControlName="address">
+                                            <div class="text-danger"
+                                                *ngIf="expertForm.get('address').invalid && (expertForm.get('address').dirty || expertForm.get('address').touched)">
+                                                <span *ngIf="expertForm.get('address').hasError('required')">*Please
+                                                    enter address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                         
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Trade</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <ng-multiselect-dropdown [placeholder]="'Select Trade'"
+                                                formControlName="trade" readonly [settings]="dropdownSettings"
+                                                [data]="serviceList" (onSelect)="onItemSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)">
+                                            </ng-multiselect-dropdown>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-5 text-bold">Commision</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6" style="display: flex;">
+                                            <label class="switch" style="margin: 7px 8px 5px 0px;">
+                                                <input type="checkbox" formControlName="commision" [checked]="expertForm.get('commissionPercent').value>0">
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <input type="text" style="width: 80%;" name="" maxlength="3"
+                                                (keypress)="common.numberOnly($event)"
+                                                formControlName="commissionPercent" autocomplete="new-password"
+                                                [readonly]="expertForm.get('commision').value==false"
+                                                class="form-control form-control_custom" placeholder="0%" >
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-5 text-bold">Upload Document</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <span style="display: flex;align-items: center;">
+                                            <input type="file" accept=".pdf,.docx,.docs" class="form-control form-control_custom mr-2"  (change)="uploadImg($event)"
+                                                formControlName="document" multiple>
+                                            <i  class="fa fa-question-circle" aria-hidden="true" alt=""
+                                                data-toggle="tooltip"  data-placement="top"
+                                                title="Note : Supported document format should be PDF and DOCS and amximum size of 5 MB."></i>
+                                            </span>
+                                           <div>
+                                                <a [href]="docs" target="_blank" rel="noopener noreferrer" style=" white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis ; display:flex" *ngFor="let docs of imageLinks">
+                                                {{docs}}
+                                            </a>
+                                        </div>
+                                            <!-- <img [src]="croppedImage || documentImage" alt="" class="img-fluid"> -->
+                                            <!-- <div class="text-danger"
+                                                *ngIf="expertForm.get('document').invalid && (expertForm.get('document').dirty || expertForm.get('document').touched)">
+                                                <span *ngIf="expertForm.get('document').hasError('required')">*Please
+                                                    upload the Document.</span>
+                                            </div> -->
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Status</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <select class="form-control form-control_custom"  formControlName="status">
+                                                <option value="ACTIVE">Active</option>
+                                                <option value="BLOCKED">Inactive</option>
+                                            </select>
+                                          
+                                         
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Completed Jobs</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" disabled  class="form-control form-control_custom"
+                                                placeholder="Completed Jobs" [value]="getExpertView?.completedDeliveries || 0" autocomplete="false"
+                                                >
+                                           
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Avg. Rating</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6 ">
+                                         
+                                            <div class="d-flex" *ngIf="getExpertView?.rating > 0">
+                                                <i class="fa fa-star" *ngFor="let item of counter(getExpertView?.rating)"  style="color: rgba(2, 133, 255, 0.815);"></i>
+
+                                            </div>
+                                            <div *ngIf="getExpertView?.rating == 0">
+                                                <i class="fa fa-star" ></i>
+
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-5 mb40">
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary" 
+                                (click)="editExpert()">Update</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+
+<div class="modal fade blur-background" id="resizeImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Resize Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1/1"
+                [resizeToWidth]="200"
+                [cropperMinWidth]="200"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+               
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            </div>
+         
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" >Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal" (click)="reset()" >Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

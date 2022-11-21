@@ -1,0 +1,26 @@
+<aside class="sidebar" style="z-index: 7" id="container">
+    <div class="sidebar-scroller">
+        <nav class="navbar navbar-expand navbar-light">
+            <ul class="navbar-nav flex-column" id="accordion">
+                <li class="nav-item" (click)="onSelect(item.routerLink)" *ngFor="let item of sidemenu;let i = index" [ngClass]="{'active' : item.routerLink == sidebarActive}">
+                    <!-- <li class="nav-item" *ngFor="let item of sidemenu,let i = index"> -->
+
+
+                    <a class="nav-link" [ngClass]="{'arrow':item?.subNameList?.length}" [routerLink]="item.routerLink" (click)="nagivateToComponent(item.routerLink, item.Name)" [attr.id]="'menu-'+i" [attr.data-bs-target]="'#submenu-' + i" aria-expanded="false" data-toggle="collapse"
+                        [attr.data-target]="'#submenu-' + i" [attr.aria-controls]="'#submenu-' + i" style="display: flex;">
+                        <i [class]="'fa'+' '+item?.icon" style=" margin: auto 0;" [ngStyle]="item.routerLink == sidebarActive?{'color': 'white'} : {'color': '#02c4c4'}" aria-hidden="true"></i>
+                        <p class="side_page_name head_color" style="padding: 0 10px;margin:0;" [ngStyle]="item.routerLink == sidebarActive?{'color': 'white'} : {'color': '#71789e'}">{{item.Name}}</p>
+                    </a>
+
+                    <div [attr.id]="'submenu-' + i" class="collapse submenu " [attr.aria-labelledby]="'menu-'+i" data-parent="#accordion" [ngStyle]="item.routerLink != sidebarActive?{'background-color': '#e9e4e4'} : {'background-color': 'none'}">
+                        <ul class="nav flex-column">
+                            <li class="nav-item sub-item"   *ngFor="let sublistitem of item?.subNameList" >
+                                <a class="nav-link" [ngStyle]="item?.routerLink+sublistitem?.routerLink == activeNavigate ?{'color':'#09b258'} : {'text-decoration':'none'}" (click)="nagivateToComponent(item.routerLink+sublistitem.routerLink)">{{sublistitem?.subName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

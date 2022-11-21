@@ -1,0 +1,28 @@
+.chart-header {
+    background: #3c80ba;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.table-header {
+    height: 30px;
+    align-items: center;
+}
+
+th {
+    min-width: 150px;
+}
+
+.earning {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    /* text-align: center; */
+    justify-content: center;
+    height: 40px;
+    font-weight: bold;
+}
+.card_custom{
+    cursor: pointer;
+}

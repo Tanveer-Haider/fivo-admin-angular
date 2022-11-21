@@ -1,0 +1,18 @@
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
+li {
+  font-size: 15px;
+  float: right;
+  /* color: #ddd; */
+  padding: 0px 2px;
+
+}
+
+/* li:hover {
+    color: #28a745;
+} */
+li.selected {
+  color: #28a745;
+}

@@ -1,0 +1,184 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Service management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/services">Service management
+                                                        </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View Service</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Category</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                        <p>{{serviceData?.categoryId?.categoryName}}</p>
+                                    </span>
+                                    <!-- <span class="col-md-5">
+                                        <select name="" class="form-control form-select">
+                                            <option value="">Electrical</option>
+                                            <option value="">Hardware</option>
+
+                                        </select>
+                                    </span> -->
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 col-lg-2 text-bold">Description</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5 col-lg-9">
+                                        <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>    -->
+                                        <p>{{serviceData?.description}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Unit</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="1"> -->
+                                        <p>{{serviceData?.unit}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Price</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5 ">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Price"
+                                           > -->
+                                            <p>{{serviceData?.price}}</p>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Meta Keyword</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <div class="col-md-5">
+                                        <span *ngFor="let item of metakey">
+                                            <!-- <ng-multiselect-dropdown [placeholder]="'Select Trade'"
+                                                [settings]="dropdownSettings" [data]="dropdownList"
+                                              (onSelect)="onItemSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)">
+                                            </ng-multiselect-dropdown> -->
+                                            <p>{{item}}</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row  mt-1">
+                                    <label class="col-md-4 text-bold">Discount</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                 
+                                    <span class="col-md-5">
+
+                                        <p>{{serviceData?.discount}}</p>
+                                    </span>
+                                </div>
+                            </div> -->
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row  mt-1">
+                                    <label class="col-md-4 text-bold">Upload image</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                        <!-- <input type="file" name="" class="form-control" placeholder="image"> -->
+                                        <img [src]="serviceData?.serviceImage" alt="" style="max-width: 150px;">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Status</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                        <!-- <select name="" class="form-control form-select">
+                                            <option value="">Approved</option>
+                                            <option value="">Rejected</option>
+
+                                        </select> -->
+                                        <p>{{(serviceData?.status == "ACTIVE" ? "Active" : "Inactive") | titlecase}}</p>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/services">Back</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

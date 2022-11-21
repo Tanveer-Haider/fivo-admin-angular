@@ -1,0 +1,226 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Discounts</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/discount">Discounts</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/discount">Discount list</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export To Excel</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="col-lg-5 ml-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <select [(ngModel)]="action" class="form-control form-select">
+                                    <option selected value="0">Bulk Action</option>
+                                    <option value="Delete">Delete</option>
+                                    
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <button class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-6  pl-1">
+                        <div class="row justify-content-end">
+                            <div class="col-3">
+                                <input type="text" class="form-control" (keypress)="commonService.preventSpace($event)" [(ngModel)]="search" maxlength="60" (input)="searchText($event)" placeholder="Search" name="" style="margin-left: -10px;">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" *ngIf="listArray.length>0"><input type="checkbox" [(ngModel)]="selectAll" (input)="addMultipleId($event)" name=""></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Discount Type</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">End Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+                                        <td scope="row"><input type="checkbox" (input)="addDeleteId(item?._id,$event)" [(ngModel)]="checkbox[i]" name=""></td>
+                                        <td>{{item.name}}</td>
+                                        <td *ngIf="item?.disCountType=='FLAT' ">{{useCurrency}} {{item.amount}}</td>
+                                        <td *ngIf="item?.disCountType!='FLAT' ">{{item.amount}}%</td>
+                                        <td>{{item?.disCountType | titlecase}}</td>
+                                        <td>{{item.startDate | date : 'medium'}}</td>
+                                        <td>{{item.endDate | date : 'medium'}}</td>
+                                        <td>{{item?.status == 'ACTIVE' ? 'Active' : 'Inactive'}}</td>
+                                        <!-- <td><i class="fa fa-ellipsis-h" aria-hidden="true"></i></td> -->
+                                        <td class="d-flex">
+                                            <button class="btn btn-secondary ml-2" routerLink="/discount/edit-discount" [queryParams]="{id : item?._id}" title="Edit">
+                                            Edit
+                                        </button>
+                                            <button class="btn btn-danger ml-2" title="Delete" (click)="openDeleteModal(item?._id)">
+                                            Delete
+                                        </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="listArray.length==0">
+                                        <td colspan="9" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray.length>0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1" style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- delete modal -->
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Discount</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this discount. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="deleteDiscount()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btnn2" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- delete modal -->
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this admin. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteDiscount()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete in bulk modal -->
+<div class="modal fade blur-background" id="deletebulkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Discount</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete these discount. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="deleteDiscount()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btnn2" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title ">Administrartion</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><em class="fa fa-home"></em></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/admin">Administrartion</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View
+                                                        Admin</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+                    <div class="card-header">
+                        <form [formGroup]="addAdminFrom">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Username</label>
+                                        <span style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" disabled class="form-control form-control_custom"
+                                                formControlName="userName" placeholder="Username">
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('userName').invalid && (addAdminFrom.get('userName').dirty || addAdminFrom.get('userName').touched)">
+                                                <span *ngIf="addAdminFrom.get('userName').hasError('required')">*Please
+                                                    enter username.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Name</label>
+                                        <span style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" disabled class="form-control form-control_custom"
+                                                formControlName="name" placeholder="Name">
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('name').invalid && (addAdminFrom.get('name').dirty || addAdminFrom.get('name').touched)">
+                                                <span *ngIf="addAdminFrom.get('name').hasError('required')">*Please
+                                                    enter name.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" disabled class="form-control form-control_custom"
+                                                formControlName="email" placeholder="Email Address">
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('email').invalid && (addAdminFrom.get('email').dirty || addAdminFrom.get('email').touched)">
+                                                <span *ngIf="addAdminFrom.get('email').hasError('required')">*Please
+                                                    enter email address.</span>
+                                                <span *ngIf="addAdminFrom.get('email').hasError('email')">*Please
+                                                    enter valid email address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="order-view  max-WT-700  setting-page mb-5">
+                            <div class="mb40">
+                                <form>
+                                    <div class="add-store-block input-style mb20 mt20">
+
+                                        <div style="text-align: center;">
+                                            <h1 class="page_title">Permissions</h1>
+                                        </div>
+
+                                        <div class="row " style="margin-top: 3%;">
+
+
+                                            <div class="col-md-4 col-lg-4 col-sm-12 mt-2 pl-1 pr-1"
+                                                *ngFor="let item of permissionArr; let i = index">
+                                                <label class="globalCheckBox" style="text-transform: capitalize;">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p>{{name[i] |lowercase}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <input type="checkbox" [(ngModel)]="permArray[i]"
+                                                        [ngModelOptions]="{standalone: true}" disabled
+                                                        [checked]="permission[item]?.length > 0">
+                                                    <span class="checkmark"></span> -->
+                                                </label>
+                                                <div class="row ">
+                                               
+
+                                                    <div class="col-2 d-flex" *ngFor="let assets of innerPermisstionArr[i][item]">
+                                   
+                                                        <input type="checkbox" disabled (input)="addInsidePerm(item,assets, $event,i)" [checked]="permission[item]?.includes(assets)"> <span class="ml-1" style="margin-top: -3px;"> {{assets}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="text-center mt40 mb40 mt-5">
+
+                                            <button class="btn btn-large  max-WT-150  btn-secondary"
+                                                routerLink="/admin">Back</button>
+                                            <button class="btn btn-large  max-WT-150  btn-primary ml-1"
+                                                routerLink="/admin/edit-admin"
+                                                [queryParams]="{id:adminId}">Edit</button>
+
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

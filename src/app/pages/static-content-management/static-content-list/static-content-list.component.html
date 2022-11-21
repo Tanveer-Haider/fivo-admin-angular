@@ -1,0 +1,120 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Static Content</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/static-content">Static Content</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/static-content">All</a></li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row mt-2">
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let data of ServicePoviderHeader;let i=index">
+                <div class="card">
+                    <div class="card-body" [ngClass]="data?.backgroundColor">
+
+                        <div class="row">
+
+                            <div class="col-2">
+                                <i [class]="data?.icon+' '+'header-icons'"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font">4</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">{{data?.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S.No</th>
+
+                                        <th scope="col">Page Name</th>
+                                        <!-- <th scope="col">Description</th> -->
+
+                                        <th scope="col" style="width: 1%;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total}; let i = index">
+                                        <td scope="row">{{i+1}}</td>
+
+
+                                        <td>{{item.type | split}}</td>
+                                        <!-- <td>{{item.description}}</td> -->
+                                        <td class="d-flex">
+                                            <button class="btn btn-success " title="View" (click)="navigateToViewStaticContent(item?.type)">
+                                                View
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">4</td>
+                                        <td>Contact us</td>
+                                        <td class="d-flex">
+                                            <button class="btn btn-success " title="View" routerLink="/static-content/view-contact-us" >
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,272 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Delivery agents</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/delivery">Delivery agents
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">view agent</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="agentForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Agent Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select" formControlName="agentType" disabled
+                                                >
+                                                <option value="">Select Agent Type</option>
+                                                <option value="COMPANY">Company</option>
+                                                <option value="INDIVIDUAL">Individual</option>
+                                            </select>
+                                 
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">First Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" placeholder="First Name" readonly
+                                                formControlName="firstname" >
+                                                <i *ngIf="agentForm.get('agentType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Surname</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" placeholder="Surname" readonly
+                                                formControlName="surname" >
+                                                <i *ngIf="agentForm.get('agentType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Company Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5 ">
+                                            <input type="text" name="" class="form-control form-control_custom" placeholder="Company name" readonly
+                                                formControlName="companyName" >
+                                                <i *ngIf="agentForm.get('agentType').value=='INDIVIDUAL'"
+                                                class="fa fa-ban" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">NRC No.</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5 ">
+                                            <input type="text" name="" class="form-control form-control_custom" placeholder="NRC No." readonly
+                                                formControlName="NRCNumber" >
+                                                <i *ngIf="agentForm.get('agentType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Company Registration Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Company registration number" readonly
+                                                formControlName="registrationNumber" >
+                                                <i *ngIf="agentForm.get('agentType').value=='INDIVIDUAL'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Address</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" placeholder="Address" readonly
+                                                formControlName="address" >
+                                    
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" readonly aria-label="Country" class="form-control form-control_custom  d-inline country col-md-4 col-lg-3 text-center" [formControl]="myControl" maxlength="7" (keypress)="common.numberOnly($event)"
+                                            [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between" *ngFor="let option of filteredOptions | async" [value]="option.code">
+                                                <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <input type="text" name="" class="form-control form-control_custom d-inline col-md-8 col-lg-9 number " placeholder="Phone no" readonly
+                                                formControlName="phoneNumber" >
+                                        
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" placeholder="Email Address" readonly
+                                                formControlName="email" >
+                                   
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Vehicle Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <!-- <input type="password" name="" class="form-control form-control_custom" placeholder="Email" id=""> -->
+                                            <ng-multiselect-dropdown [placeholder]="'Select Type'"  [disabled]="isDropdownDisabled" 
+                                                formControlName="vechicleType" [settings]="dropdownSettings"
+                                                [data]="deliverylist" (onSelect)="onItemSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)">
+                                            </ng-multiselect-dropdown>
+                                        </span>
+                                    </div>
+                                </div>
+
+           
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-4 text-bold">Upload Documents</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <!-- <img [src]="getAgentimage" class="img-fluid">  -->
+                                            <a [href]="getAgentimage" target="_blank" rel="noopener noreferrer" style=" white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis ; display:flex">
+                                                {{getAgentimage}}
+                                            </a>
+
+                                
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Status</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <select class="form-control form-control_custom"  disabled  formControlName="status">
+                                                <option value="ACTIVE">Active</option>
+                                                <option value="BLOCKED">Inactive</option>
+                                            </select>
+                                           
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Completed Delivery</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"   (keypress)="common.numberOnly($event)"
+                                                [value]="'0'" disabled>
+                                           
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Average Rating</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6 d-flex" style="align-self: center;">
+                                           <i class="fa fa-star" *ngFor="let star of length(agentData?.rating || 1)"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary"
+                                routerLink="/delivery">Back</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

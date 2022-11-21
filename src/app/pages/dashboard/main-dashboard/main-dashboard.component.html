@@ -1,0 +1,301 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+      
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Dashboard</h2>
+                
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-center">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body card_custom" style="background: #18A088;" routerLink="/client">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class='fas fa-child header-icons' aria-hidden="true"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalClient || '0'}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Clients</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card_custom" style="background: #3C80BA;" routerLink="/jobs">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-tasks header-icons" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.pendingJob || '0'}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font w-space-nowrap ">Service Orders</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card_custom" style="background: #EB1C24;" routerLink="/materials">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-tasks header-icons" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.pendingMaterial || '0'}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Material Orders</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card_custom" style="background: #A2D202;" routerLink="/earnings">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                            
+                                <p class="text-light earning">K</p>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalEarns || '0'}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Earnings</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card_custom" style="background: #EEAE4D;" routerLink="/expert">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-bars header-icons" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalExperts || '0'}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Experts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card_custom" style="background:  #3F4E61;" routerLink="/delivery">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-bars header-icons" aria-hidden="true"></i>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{listArray?.totalAgent || '0'}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Delivery Agents</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+         
+            <div class="col-lg-12 col-md-12">
+
+                <div class="card">
+                    <div class="card-header chart-header">
+                        <p>Earning chart</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <div class="chart-title">
+                                    <span> <i class="fa fa-minus mr-1" style="color: green;" aria-hidden="true"></i>Materials</span><br>
+                                    <span> <i class="fa fa-minus mr-1" style="color: blue;" aria-hidden="true"></i>Service</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="max-height: 450px;">
+                            <canvas id="myChart" width="600" height="350"></canvas>
+                        </div>
+                        
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="card">
+
+                            <div class="card-body ">
+                                <div class="row chart-header table-header">
+                               
+                                    <div class="col-9">
+                                        <b>Pending Service Orders</b>
+                                    </div>
+
+                                </div>
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div class="table-responsive">
+                                            <table class="table" aria-describedby="dashboard">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Order ID</th>
+                                                        <th scope="col">Order Date</th>
+                                                        <th scope="col">Client</th>
+                                                        <th scope="col">Total Labour Fee</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let item of pending_job_listArray| paginate: { 
+                                                        itemsPerPage: pageSize,
+                                                        currentPage: currentPage,
+                                                        totalItems: total}">
+
+                                                        <td>{{item?.orderId}}</td>
+                                                        <td>{{item?.createdAt | date:'medium'}}</td>
+                                                        <td>{{item?.clientId?.firstName}} {{item?.clientId?.surName}}</td>
+                                                        <td>{{item?.total}}</td>
+                                                        <td>
+                                                            <i class="fa fa-eye btn btn-theme" (click)="navigateToViewJobs(item?._id)"></i>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr *ngIf="pending_job_listArray.length==0" class="text-center">
+                                                        <td colspan="6" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="pending_job_listArray.length>1">
+                                            <div class="text-right">
+                                                <pagination-controls (pageChange)="changePage($event,'job')"></pagination-controls>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="row chart-header table-header">
+                                  
+                                    <div class="col-9">
+                                        <b>Pending Material Orders</b>
+                                    </div>
+
+                                </div>
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div class="table-responsive">
+                                            <table class="table" aria-describedby="dashboard">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Order ID</th>
+                                                        <th scope="col">Order Date</th>
+                                                        <th scope="col">Client</th>
+                                                        <th scope="col">Grand Total</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let item of pending_material_listArray | paginate: { 
+                                                        itemsPerPage: pageSize,
+                                                        currentPage: currentPage,
+                                                        totalItems: total_material}">
+                                                        <td>{{item?.orderId}}</td>
+                                                        <td>{{item?.createdAt | date:'medium'}}</td>
+                                                        <td>{{item?.clientId?.firstName}} {{item?.clientId?.surName}}</td>
+                                                        <td>{{item?.total}}</td>
+                                                        <td>
+                                                            <i class="fa fa-eye btn btn-theme" (click)="navigateToView(item?._id)"></i>
+                                                        </td>
+                                                    </tr>
+                                                 
+                                                    <tr *ngIf="pending_material_listArray.length==0">
+                                                        <td colspan="6" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="pending_material_listArray.length>1">
+                                            <div class="text-right">
+                                                <pagination-controls (pageChange)="changePage($event,'material')"></pagination-controls>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

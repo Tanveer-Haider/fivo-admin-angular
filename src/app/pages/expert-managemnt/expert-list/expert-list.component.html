@@ -1,0 +1,268 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Experts</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/expert">Experts
+                                                        </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/expert">Experts List</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export To Excel</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body  card_custom" style="background: rgb(25, 160, 137);" (click)="filterStatus('ALL')">
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="fa fa-users header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.totalExperts || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">All Experts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="card  card_custom" style="background: rgb(66, 140, 203);" (click)="filterStatus('ACTIVE')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="fa fa-check header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.totalVerifiedExperts || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font w-space-nowrap">Active Experts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="card  card_custom" style="background: rgb(63, 78, 97);" (click)="filterStatus('BLOCKED')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="fa fa-times header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.totalUnVerifiedExperts || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Inactive Experts</p> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="col-lg-5 ml-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <select [(ngModel)]="action" class="form-control form-select" >
+                                    <option selected value="0">Bulk Action</option>
+                                    <option value="Delete">Delete</option>
+                                    
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <button class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" *ngIf="listArray.length>0"><input type="checkbox" name="" [(ngModel)]="selectAll" (input)="addMultipleId($event)" ></th>
+                                        <th scope="col">Expert Name</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Trade</th>
+                                        <!-- <th scope="col">Expert Fee</th> -->
+                                        <th scope="col">Completed Jobs</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Last Login
+                                            <i class="fas fa-long-arrow-alt-down" (click)="sorting()"></i><i class="fas fa-long-arrow-alt-up" (click)="sorting()"></i>
+                                            <!-- <img src="/assets/images/Layer.svg" alt=""> -->
+                                        </th>
+                                        <th scope="col">Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+                                        <td scope="row"><input type="checkbox" (input)="addAdminId(item?._id,$event)" [(ngModel)]="checkbox[i]" name="" ></td>
+                                        <!-- <td>{{item?.firstName || '-'}} {{item?.surName || '-'}} </td> -->
+                                        <td>{{item?.firstName ? item?.firstName+'  '+item?.surName : item?.firstName || item?.userName }}</td>
+                                        <td>{{item?.countryCode}} {{item?.mobileNumber || '--'}}</td>
+                                        <td>{{item?.email || '--'}}</td>
+                                       <td>
+                                        <div class="d-flex">
+                                            <span class="d-flex" *ngFor="let tradedata of item?.trade ;let j=index">{{tradedata?.description}}<p>{{j != item?.trade?.length - 1 ? '/' : ''}}</p></span>
+                                            <!-- <div *ngIf="item?.trade[0]" class="dropdown">
+                                                <i class="fa fa-ellipsis-h " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                                                    </i>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <p class="dropdown-item" *ngFor="let tradedata of item?.trade ;let j=index">{{tradedata?.description}}</p>
+
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        </td>
+                                        <!-- <td>{{item?.feeAmount}}</td> -->
+                                        <td>{{item?.completedDeliveries }}</td>
+                                        <td>{{(item?.status == 'ACTIVE' ? 'Active' : 'Inactive') | titlecase}}</td>
+                                        <td>{{(item?.updatedAt | date : 'medium') || '--'}}</td>
+
+
+                                        <td class="d-flex">
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('expertsManagement', 'View')" class="btn btn-success" (click)="navigateView(item?._id)" title="View">
+                                                View
+                                            </button>
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('expertsManagement', 'Edit')" class="btn btn-secondary ml-2" (click)="navigateEdit(item?._id)" title="Edit">
+                                                Edit
+                                            </button>
+
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('expertsManagement', 'Delete')" class="btn btn-danger ml-2" (click)="openDeleteModal(item?._id)" title="Delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="listArray.length==0">
+                                        <td colspan="6" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray.length>0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1"  style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this expert. Please confirm to proceed.
+                </p>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteAdmin()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="deleteAdmin()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

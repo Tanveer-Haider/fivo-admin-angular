@@ -1,0 +1,231 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Inventory</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/inventory">Inventory</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View
+                                                        product</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Category</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <select name="" class="form-control form-select" >
+                                            <option value="">Electrical</option>
+                                        </select> -->
+                                        <p>{{productData?.categoryId?.categoryName}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Unit</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <select name="" class="form-control form-select" >
+                                            <option value="">No.</option>
+                                            <option value="">Yes</option>
+
+                                        </select> -->
+                                        <p>{{productData?.unit}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Item</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Item" > -->
+                                        <p>{{productData?.item}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Stock</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Stock" > -->
+                                        <p>{{productData?.stock}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Brand</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5 ">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Brand" > -->
+                                        <p>{{productData?.brand}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Reorder Level</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5 ">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Reorder Level" > -->
+                                        <p>{{productData?.reorderLevel}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Size</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Size" > -->
+                                        <p>{{productData?.size || "--"}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Price</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Price" > -->
+                                        <p>{{useCurrency}} {{productData?.price || "--"}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Colour</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <input type="password" name="" class="form-control" placeholder="Colour" > -->
+                                        <p>{{productData?.color || "--"}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row  mt-1">
+                                    <label class="col-md-4 text-bold">Discount</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <!-- <input type="text" name="" class="form-control" placeholder="Discount" > -->
+                                        <p>{{productData?.discount || "--"}}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row  mt-1">
+                                    <label class="col-md-4 text-bold">Upload Image</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5" *ngFor="let item of images">
+                                        <!-- <input type="file" name="" class="form-control"  > -->
+                                        <img [src]="item" alt="" style="max-width: 150px;">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row  mt-1">
+                                    <label class="col-md-4 text-bold">Status</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                        <label class="switch" *ngIf="productData?.status=='ACTIVE'">
+                                            <input type="checkbox" checked readonly>
+                                            <span class="slider round"></span>
+                                    </label>
+                                    <label class="switch" *ngIf="productData?.status!='ACTIVE'">
+                                            <input type="checkbox" readonly>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row  mt-1">
+                                    <label class="col-md-4 text-bold">Meta keyword</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <div class="col-md-5">
+                                        <span *ngFor="let item of metaKey">
+                                            <!-- <input type="text" name="" class="form-control" placeholder="Metakey" > -->
+                                            <p>{{item}}</p>
+                                        </span>
+                                    </div>
+                                    <!-- <span class="col-md-2 ">
+                                        <button class="btn btn-info">Add</button>
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-5 mb40">
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/inventory">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

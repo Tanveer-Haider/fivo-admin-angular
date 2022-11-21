@@ -1,0 +1,254 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Push Notification</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/notification">Push Notification</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/notification">Send Notification</a></li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export To Excel</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <!-- <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12" *ngFor="let data of ServicePoviderHeader;let i=index">
+                <div class="card">
+                    <div class="card-body" [ngClass]="data?.backgroundColor">
+
+                        <div class="row">
+
+                            <div class="col-2">
+                                <i [class]="data?.icon+' '+'header-icons'"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">4</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">{{data?.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card" (click)="filterStatus('ALL')">
+                    <div class="card-body bg-green card_custom">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-bars header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{notificationArray?.totalClient + notificationArray?.totalExperts + notificationArray?.totalAgent}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">All</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card" (click)="filterStatus('USER')">
+                    <div class="card-body bg-yellow card_custom">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-star header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{notificationArray?.totalClient}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Clients</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card" (click)="filterStatus('EXPERT')">
+                    <div class="card-body bg-violet card_custom">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-comment-alt header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{notificationArray?.totalExperts}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Experts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card" (click)="filterStatus('AGENT')">
+                    <div class="card-body bg-darkblue card_custom">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-heart header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{notificationArray?.totalAgent}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Delivery Agents</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="ml-2">
+                        <button (click)="openSelectTemplateModal('EMAIL')" class="btn btn-space"><i class="fa fa-envelope" aria-hidden="true"></i>Send Mail</button>
+                        <button (click)="openSelectTemplateModal('APP')" class="btn btn-space"><i class="fa fa-bell" aria-hidden="true"></i>Send Notification</button>
+                        <button (click)="openSelectTemplateModal('SMS')" class="btn btn-space"><i class="fa fa-envelope" aria-hidden="true"></i>Send SMS</button>
+                        <button (click)="openSelectTemplateModal('WHATSAPP')" class="btn btn-space"><i class="fa fa-envelope" aria-hidden="true"></i>Send Whatsapp</button>
+                    </div>
+                    <div class="pl-1">
+                        <input type="text" class="form-control" (keypress)="commonService.preventSpace($event)" placeholder="Search" (input)="searchText($event)" [(ngModel)]="search" name=""  style="margin-left: -10px;" maxlength="60">
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <input type="checkbox" [(ngModel)]="selectAll" name=""  (input)="addMultipleId($event)">
+                                        </th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Recipient</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+                                        <th scope="row"><input type="checkbox" [(ngModel)]="checkbox[i]" (input)="addId(item?._id,$event)" name="" ></th>
+                                        <td>{{item?.firstName}} {{item?.surName}} {{item?.companyName}}</td>
+                                        <td>{{item?.userType | titlecase}}</td>
+                                        <td>+91 {{item.mobileNumber}}</td>
+                                        <td>{{item?.email}}</td>
+                                    </tr>
+                                    <tr *ngIf="listArray.length==0">
+                                        <td colspan="9" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray.length>0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1"  style="width: 4em;">
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade blur-background" id="selectTemplateModalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Select Template</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <select name=""  class="form-control" [(ngModel)]="templateId">
+                           <option selected disabled value="none">Select Template</option>
+                           <option *ngFor="let item of templateList"  [value]="item?._id" >{{item?.templateName}}</option>
+                       </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer footer-padding">
+                <button type="button" class=" btn btn-primary" (click)="sendNotification()">Send</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

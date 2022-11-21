@@ -1,0 +1,59 @@
+td{
+    min-width: 200px;
+    max-width: 250px;
+}
+button.btn.btn-space{
+    color: whitesmoke;
+    background: #4b82c5;
+    border-radius: 1px;
+}
+button.btn.btn-space i{
+    padding-right: 3px;
+}
+
+
+.triangle {
+    display: inline-block;
+    margin: 0 ;
+    vertical-align: middle;
+  }
+  .triangle-1 {
+    width: 25px;
+    height: 12px;
+    border-bottom: solid 0px rgb(0 191 0);
+    border-right: solid 15px rgb(0 191 0);
+    border-left: solid 10px transparent;
+    border-top: solid 33px transparent;
+  }
+
+  .triangle-0 {
+    width: 25px;
+    height: 15px;
+    border-top: solid 0px rgb(113 138 165);
+    border-left: solid 14px rgb(0 123 255);
+    border-right: solid 7px transparent;
+    border-bottom: solid 33px transparent;
+  }
+  .btn-secondary, .btn-primary{
+      margin: 0;
+      border: none;
+      border-radius: 0;
+    }
+    .btn-primary{
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    .btn-secondary{
+        background-color: rgb(0 191 0);
+       border-top-right-radius: 5px;
+       border-bottom-right-radius: 5px;
+    }
+
+.btn-primary:hover, .btn-primary:active{
+  background-color: #007bff !important;
+  border: none !important;
+}
+.btn-secondary:hover, .btn-secondary:active{
+  background-color: rgb(0 191 0) !important;
+  border: none !important;
+}

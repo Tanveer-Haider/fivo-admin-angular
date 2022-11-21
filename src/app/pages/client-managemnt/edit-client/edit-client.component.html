@@ -1,0 +1,253 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header mb-0">
+                    <h2 class="pageheader-title ">Clients</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/client">Clients list</a>
+                                                </li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit
+                                                        Client</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                    <!-- <div class="card mb-0">
+                        <div class="card-header bg-dark-custom p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb bg-dark"
+                                                style="width: fit-content;padding: 8px !important;">
+                                                <li class="breadcrumb-item">
+                                                    <p class="text-light mb-0">Details</p>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div> -->
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <span class="d-flex"><label for="" class="text-bold">Personal </label>&nbsp;<p> Settings</p>
+                        </span>
+                        <span>
+                            <p style="font-size: small;">Your personal accont settings</p>
+                        </span>
+
+
+                    </div> -->
+                    <div class="card-body">
+                        <form [formGroup]="clientFrom">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">First Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="First Name" maxlength="32" formControlName="firstname"
+                                               >
+                                            <div class="text-danger"
+                                                *ngIf="clientFrom.get('firstname').invalid && (clientFrom.get('firstname').dirty || clientFrom.get('firstname').touched)">
+                                                <span *ngIf="(clientFrom.get('firstname').hasError('required'))">
+                                                    *Firstname is required.
+                                                </span>
+                                                <span *ngIf="(clientFrom.get('firstname').hasError('pattern'))">
+                                                    *Please enter a valid firstname.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row ">
+                                        <label class="col-md-4 text-bold">Last Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="32" placeholder="Last Name" formControlName="lastname">
+                                            <div class="text-danger"
+                                                *ngIf="clientFrom.get('lastname').invalid && (clientFrom.get('lastname').dirty || clientFrom.get('lastname').touched)">
+                                                <span *ngIf="(clientFrom.get('lastname').hasError('required'))">
+                                                    *Lastname is required.
+                                                </span>
+                                                <span *ngIf="(clientFrom.get('lastname').hasError('pattern'))">
+                                                    *Please enter a valid lastname.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5 ">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="60" placeholder="Email Address" formControlName="email"
+                                               >
+                                            <div class="text-danger"
+                                                *ngIf="clientFrom.get('email').invalid && (clientFrom.get('email').dirty || clientFrom.get('email').touched)">
+                                                <span *ngIf="clientFrom.get('email').hasError('required')">*Please
+                                                    enter email address.</span>
+                                                <span *ngIf="clientFrom.get('email').hasError('pattern')">*Please
+                                                    enter valid email address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                             <input type="text" aria-label="Country" class="form-control form-control_custom d-inline country col-md-4 col-lg-3 text-center" [formControl]="myControl" maxlength="7" (keypress)="common.numberOnly($event)"
+                                            [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between" *ngFor="let option of filteredOptions | async" [value]="option.code">
+                                                <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <input type="text" name="" class="form-control d-inline col-md-8 col-lg-9 number form-control_custom"
+                                                maxlength="10" placeholder="Phone Number" formControlName="number" >
+                                            <div class="text-danger"
+                                                *ngIf="clientFrom.get('number').invalid && (clientFrom.get('number').dirty || clientFrom.get('number').touched)">
+                                                <span *ngIf="clientFrom.get('number').hasError('required')">*Please
+                                                    enter phone number.</span>
+                                                <span *ngIf="clientFrom.get('number').hasError('pattern')">*Please
+                                                    enter valid phone number.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Date of Birth</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="date" name="" class="form-control form-control_custom"
+                                                formControlName="dob" [max]="today">
+                                            <div class="text-danger"
+                                                *ngIf="clientFrom.get('dob').invalid && (clientFrom.get('dob').dirty || clientFrom.get('dob').touched)">
+                                                <span *ngIf="clientFrom.get('dob').hasError('required')">*Please enter
+                                                    date of birth.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Status</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <select class="form-control form-control_custom" formControlName="status">
+                                                <option value="ACTIVE">Active</option>
+                                                <option value="BLOCKED">Inactive</option>
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="clientFrom.get('dob').invalid && (clientFrom.get('dob').dirty || clientFrom.get('dob').touched)">
+                                                <span *ngIf="clientFrom.get('dob').hasError('required')">*Please enter
+                                                    date of birth.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-6 col-md-12 col-sm-12">
+    
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Password</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="password" name="" class="form-control form-control_custom" placeholder="password" formControlName="password">
+                                            <div class="text-danger" *ngIf="clientFrom.get('password').invalid && (clientFrom.get('password').dirty || clientFrom.get('password').touched)" >
+                                                <span *ngIf="clientFrom.get('password').hasError('required')">*Please Enter Password.</span>
+                                        </div>   
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Confirm Password</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="password" name="" class="form-control form-control_custom" placeholder="Confirm Password" formControlName="confirmPassword">
+                                            <div *ngIf="clientFrom.get('confirmPassword').dirty" class="text-danger">
+                                                <span *ngIf="clientFrom.get('confirmPassword').value != clientFrom.get('password').value">*Password and Confirm Password must be match.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div> -->
+
+
+
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary" [disabled]="clientFrom.invalid"
+                                (click)="editClient()">Update</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

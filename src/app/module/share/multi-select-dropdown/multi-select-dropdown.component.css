@@ -1,0 +1,134 @@
+/***
+    css for multi select drop down
+**/
+.drop-toggle {
+    background-color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    border: 1px solid #ccc;
+    /* width: 233px; */
+    text-align: left;
+    width: 100%;
+}
+.drop-toggle i {
+    float: right;
+}
+
+.drop-show {
+    /* padding: 4px; */
+    padding: 15px;
+    width: 222px;
+    background-color: #fff;
+    border: 1px solid #bababa;
+    position: absolute;
+    z-index: 100;
+    -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    margin-left: 1px;
+
+    max-height: 200px;
+    overflow-y: auto;
+}
+.drop-show label {
+    /* display: block; */
+    font-size: 15px;
+    cursor: pointer;
+}
+.drop-show label input {
+    vertical-align: top;
+}
+.drop-show label span {
+    display: inline-block;
+}
+
+/* not working */
+.word-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* [type="checkbox"]
+{
+    vertical-align:middle;
+} */
+.drop-sub-show {
+    padding-left: 15px;
+}
+
+.label-checkbox-align {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* checkbox inner color */
+
+ /* .geekmarks{
+     
+        border: 1px solid green;
+        padding: 3px;
+        color: black;
+        background: green;
+    
+ }
+ .geekmarks {
+    background: green;
+    color: black;
+  }
+
+  .geekmarks:checked {
+    background: red;
+    color: black;
+  } */
+
+  /* .checkbox {
+    margin: 0 0 1em 2em;
+  }
+  .checkbox .tag {
+    color: #595959;
+    display: block;
+    float: left;
+    font-weight: bold;
+    position: relative;
+    width: 120px;
+  }
+  .checkbox label {
+    display: inline;
+  }
+  .checkbox .input-assumpte {
+    display: none;
+  }
+  .input-assumpte + label {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 9px;
+    display: inline-block;
+    position: relative;
+  }
+  .input-assumpte:checked + label:after {
+    background-color: #595959;
+    color: #595959;
+    content: '\2714';
+    font-size: 10px;
+    left: 0px;
+    padding: 2px 8px 2px 2px;
+    position: absolute;
+    top: 0px;
+  } */

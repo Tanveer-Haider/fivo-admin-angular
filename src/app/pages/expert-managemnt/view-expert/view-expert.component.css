@@ -1,0 +1,16 @@
+
+.fa-ban {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: red;
+    font-size: 18px;
+}
+.country{
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.number{
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}

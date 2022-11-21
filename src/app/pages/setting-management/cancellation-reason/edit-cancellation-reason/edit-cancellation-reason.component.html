@@ -1,0 +1,106 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Cancellation Reason</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Settings</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit Cancellation Reason</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <form action="" [formGroup]="reasonform">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Cancellation Reason</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                            <textarea name="" cols="30" rows="10" class="form-control form-control_custom" maxlength="250" formControlName="cancellationReason"></textarea>
+                                        </span>
+                                    </div>
+                                    <!-- <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Cancellation Fee</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                     
+                                            <input type="text" class="form-control form-control_custom"
+                                                formControlName="cancellationFee">
+                                        </span>
+                                    </div> -->
+                                </form>
+                            </div>
+                            <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Answer</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                        <textarea class="form-control" name="" cols="30" rows="5" style="max-height: 10em;min-height: 10em;"></textarea>
+                                     </span>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <div class="text-center mt-5 mb40">
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="updateReason()">Update</button>
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/setting/cancellation-reason">Back</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

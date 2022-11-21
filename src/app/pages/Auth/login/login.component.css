@@ -1,0 +1,17 @@
+.splash-container {
+    /* margin-top: 15%; */
+    margin-top: 10%;
+}
+
+.text-danger {
+    color: red;
+    text-align: start
+}
+.positon-relative{
+    position: relative;
+}
+.eye-icon{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}

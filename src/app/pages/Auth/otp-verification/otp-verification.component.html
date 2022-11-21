@@ -1,0 +1,38 @@
+<div class="splash-container">
+    <div class="card login-section">
+        <div class="login_box_outer">
+            <div class="text-center p-3 pb-0">
+                <a href="../index.html">
+                    <img class="logo-img" src="../assets/images/logo.png" alt="logo"></a>
+                <span class="splash-description pt-2">Please enter OTP sent to the provided email address.</span>
+            </div>
+          
+            <div class="card-body pt-0">
+                <form [formGroup]="otpForm">
+                    <div class="form-group">
+                      
+                        <div class="text-center ">
+                            <ng-otp-input (onInputChange)="onOtpChange($event)" class="otp" [config]="config" style="background:transparent ; color: #fff;" formControlName="otp">
+                            </ng-otp-input>
+                        </div>
+                      
+                    </div>
+                   
+                    <span class="timestamp-data">
+                        <p *ngIf="diff != 0">
+                            {{'00:' + diff}}
+                        </p>
+                        <p *ngIf="diff == 0" (click)="resendOtp()" style="cursor: pointer;">
+                            Resend OTP
+                        </p>
+                    </span>
+                    <button type="submit" class="btn bg-green btn-lg btn-block font-bold btn-green br15" [disabled]="userOTP?.length != 4" (click)="navigateToResetPassword()">Submit</button>
+                    <div class="text-center mt-2">
+                        <a [routerLink]="['/login']">Back to login</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+@media (min-width: 992px){
+    .col-lg-9{
+    flex: 0 0 71%;
+    max-width: 71%;
+    }
+}
+
+.document-image{
+    max-width: 200px;
+    max-height: 150px;
+    margin: 1em;
+}

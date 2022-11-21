@@ -1,0 +1,144 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title ">Auto Notification</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><em class="fa fa-home"></em></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/auto-notification">Auto Notification</a></li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="col-lg-5 ml-2">
+                        <!-- <div class="row">
+                            <div class="col-4">
+                                <select [(ngModel)]="action" class="form-control form-select" >
+                                    <option selected value="0">Bulk Action</option>
+                                    <option value="Delete">Delete</option>
+                                    
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <button class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table" aria-describedby="notification table">
+                                <thead>
+                                    <tr>
+                                        <!-- <th scope="col"  *ngIf="listArray.length>0"><input type="checkbox" [(ngModel)]="selectAll" (input)="addMultipleId($event)" name="" id=""></th> -->
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Recipient</th>
+                                        <th scope="col">Notification type</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i=index">
+                                        <!-- <td ><input type="checkbox" (input)="addAdminId(item?._id,$event)" [(ngModel)]="checkbox[i]" name="" id=""></td> -->
+                                        <td>{{item?.subject}}</td>
+                                        <td>{{item?.receipient | titlecase}}</td>
+                                        <!-- <td>{{item?.type | titlecase}}</td> -->
+                                        <td class="d-flex">
+                                            <span class="d-flex" *ngFor="let tradedata of item?.autoNotifyType ;let j=index">{{tradedata}}<p>{{j != item?.autoNotifyType?.length - 1 ? '/' : ''}}</p></span>
+
+                                        </td>
+                                        <td>{{item?.status == 'true' ? 'Active' : 'Inactive'}}</td>
+                                        <td class="d-flex">
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('autoNotifications', 'View')"  class="btn btn-success" (click)="veiwNotification(item?._id)" title="View">
+                                                View
+                                            </button>
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('autoNotifications', 'Edit')" class="btn btn-secondary ml-2" (click)="editNotification(item?._id)" title="Edit">
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="listArray.length==0">
+                                        <td colspan="5" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray.length>0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1"  style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this client. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteNotifaication()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

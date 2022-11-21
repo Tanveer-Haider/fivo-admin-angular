@@ -1,0 +1,97 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">View {{pageName | split}}</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/static-content"> Static Content</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View {{pageName | split}}</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+                
+                    <div class="card-body">
+                        <div class="row">
+                        
+                            <div class="col-md-4">
+                                <p>Page Name</p>
+                            </div>
+                            <div class="col-md-1">
+                                <span>:</span>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" disabled class="form-control form-control_custom" [value]="pageName | split">
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                        
+                            <div class="col-md-4">
+                                <p>Description</p>
+                            </div>
+                            
+                            <div class="col-12">
+                                <ck-editor *ngIf="data" name="data" skin="moono-lisa" language="en" [fullPage]="true"
+                                            [(ngModel)]="data"></ck-editor>
+                            </div>
+
+
+                        </div>
+
+                        <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="editStaticContent()">Update</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

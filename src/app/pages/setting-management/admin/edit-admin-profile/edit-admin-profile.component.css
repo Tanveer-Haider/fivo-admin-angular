@@ -1,0 +1,12 @@
+.country{
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.number{
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.card-body{
+    margin: 0 auto;
+}

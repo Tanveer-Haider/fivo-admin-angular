@@ -1,0 +1,156 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">App Logo</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Logo
+                                                        </a></li>
+                                                <!-- <li class="breadcrumb-item"><a href="#" class="breadcrumb-link"></a>
+                                                </li> -->
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Logo</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                     <img style="width: 150px;" [src]="croppedImage || (imgSrc ? imgSrc : '/assets/images/eco-slider-img-1.png')" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-3">
+                                    <label class="col-md-4 text-bold">Upload Image</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                    <span class="col-md-5">
+                                      <input type="file" name="" (change)="uploadImg($event)"  >
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+                        <div class="text-center mt-5 mb40">
+                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" class="btn btn-primary  max-WT-150" (click)="openUpdateModal()">Update</button>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+<div class="modal fade blur-background" id="upadteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Logo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to change the logo . Please confirm to proceed.
+                </p>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="logoId ? editLogo() : addLogo()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="logoId ? editLogo() : addLogo()">Confirm</button>
+                    <div class="triangle triangle-0"></div>
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btnn2" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade blur-background" id="resizeImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Resize Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="27/12" [resizeToWidth]="200" [cropperMinWidth]="200" format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal">Confirm</button>
+                    <div class="triangle triangle-0"></div>
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal" (click)="reset()">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

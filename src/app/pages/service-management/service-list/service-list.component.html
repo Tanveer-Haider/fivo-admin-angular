@@ -1,0 +1,293 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Service Management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/services">Service Management
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/services">Services</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export To Excel</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <!-- <div class="col-md-4 col-sm-6" *ngFor="let data of AgentHeader;let i=index">
+                <div class="card">
+                    <div class="card-body" [ngClass]="data?.backgroundColor">
+
+                        <div class="row">
+
+                            <div class="col-2">
+                                <i [class]="data?.icon+' '+'header-icons'"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font">{{total}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">All</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body bg-green card_custom">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-bars header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.totalService || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">All</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="row p-3 justify-content-between">
+                    <div class="col-lg-5 ml-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <select [(ngModel)]="action" class="form-control form-select" >
+                                    <option selected value="0">Bulk Action</option>
+                                    <option value="Delete">Delete</option>
+                                    
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <button class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="pl-1 d-flex">
+                        <div class="text-center col-md-4">
+                            <i class="fa fa-filter filter_custom" aria-hidden="true" (click)="openFilterModal()"></i>
+                            <p class="flter-para">filter</p>
+                        </div>
+                        <input type="text" class="form-control" maxlength="60" placeholder="Search" name=""  style="margin-left: -10px;" (keypress)="commonService.preventSpace($event)" placeholder="Search" name=""  style="margin-left: -10px;" [(ngModel)]="search" (input)="searchText($event)">
+                    </div>
+                </div>
+
+
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" *ngIf="listArray.length>0"><input type="checkbox" name="" [(ngModel)]="selectAll" (input)="addMultipleId($event)" ></th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Unit</th>
+                                        <th scope="col">price</th>
+                                        <!-- <th scope="col">Discount</th> -->
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Status</th>
+
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+                                        <td scope="row"><input type="checkbox" (input)="addAdminId(item?._id,$event)" [(ngModel)]="checkbox[i]"></td>
+                                        <td>{{item?.description}}</td>
+                                        <td>{{item?.categoryDetails?.categoryName}}</td>
+                                        <td>{{item?.unit}}</td>
+                                        <td>{{useCurrency}} {{item?.price}}</td>
+                                       
+                                        <td>
+                                            <div class="illustration">
+                                                <img [src]="item?.serviceImage" class="img-fluid" alt="Responsive image" style="max-width: 100px;max-height: 70px;">
+                                            </div>
+                                        </td>
+                                        <td>{{item?.status == 'ACTIVE' ? 'Active' : 'Inactive'}}</td>
+                                        <td class="d-flex">
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('serviceManagement', 'View')" class="btn btn-success" title="View" (click)="viewService(item?._id)">
+                                                View
+                                            </button>
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('serviceManagement', 'Edit')" class="btn btn-secondary ml-2" title="Edit" (click)="editService(item?._id)">
+                                                Edit
+                                            </button>
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('serviceManagement', 'Delete')" class="btn btn-danger ml-2" title="Delete" (click)="openDeleteModal(item?._id)">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="listArray.length==0">
+                                        <td colspan="8" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray.length>0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1"  style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete modal -->
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Service</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this service. Please confirm to proceed.
+                </p>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="deleteService()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="deleteService()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- delete in bulk modal -->
+<div class="modal fade blur-background" id="deletebulkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Services</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete these services. Please confirm to proceed.
+                </p>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteService()">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="deleteService()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- filter modal -->
+<div class="modal fade blur-background" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 300px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Filter Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-space-between mb-2">
+                    <label for="" class="col-md-3">Category</label><span class="col-md-1">:</span>
+                    <select name="" class="form-control form-select col-md-7"  (change)="selectCategory($event)">
+                        <option value="">Select Category </option>
+                        <option value="{{item?._id}}"  *ngFor="let item of categories">{{item?.categoryName}}</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success col-md-12" data-dismiss="modal" (click)="filterList()">Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

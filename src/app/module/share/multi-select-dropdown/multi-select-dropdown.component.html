@@ -1,0 +1,102 @@
+<div>
+    <!-- <h3>Multi select dropdown</h3> -->
+    <div (mouseleave)="showDropDown = false">
+        <button class="drop-toggle btn flat form-control_custom" (click)="showDropDown=!showDropDown">
+            <!-- <span *ngIf="checkedList.length<=0">Select</span> -->
+            <!-- <span class="word-ellipsis" *ngIf="checkedList.length>0">{{checkedList.join(', ')}}</span> -->
+            <span>Select</span>
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <div class="drop-show" *ngIf="showDropDown">
+        <!-- <div class="drop-show"> -->
+            <label class="label-checkbox-align">
+                <span>Select All</span>    
+                <input type="checkbox" [(ngModel)]="isAllCheckedSelected" (change)="checkUncheckAll()"/>
+            </label>
+            <div *ngFor="let item of list; let i = index;">
+                
+
+                
+                <span class="font-weight-bold" data-toggle="collapse" [attr.data-target]="'#child' + i">
+                    <i class="fa fa-plus"></i> 
+                    <!-- <span class="label-checkbox-align"> -->
+
+                        {{item?.category?.categoryName}}
+                        <input type="checkbox" class="pull-right" [(ngModel)]="item.category.checked" (change)="checkUnCheckAllSubMenuValue(i, item.category.checked)" />
+                  
+                        <!-- <div class="checkbox">
+                            <div class="tag">Confidencial</div>
+                            <input type="checkbox" class="input-assumpte" id="input-confidencial">
+                            <label for="input-confidencial"></label>
+                          </div> -->
+                        <!-- </span> -->
+
+                </span>
+
+
+
+
+                <div class="collapse drop-sub-show" [attr.id]="'child' + i">
+                    <label class="label-checkbox-align" *ngFor="let a of item.products">
+                        <span>{{a.item}}</span>
+                        <input type="checkbox" [(ngModel)]="a.checked" (change)="getSelectedValue(a.checked,a._id)" />
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div>
+    <h3>Multi select dropdown</h3>
+    <div (mouseleave)="showDropDown = false">
+        <button class="drop-toggle btn flat form-control_custom" (click)="showDropDown=!showDropDown">
+            <span *ngIf="checkedList.length<=0">Select</span>
+            <span class="word-ellipsis" *ngIf="checkedList.length>0">{{checkedList.join(', ')}}</span>
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <div class="drop-show" *ngIf="showDropDown">
+            <label class="label-checkbox-align">
+                <span>Select All</span>    
+                <input type="checkbox" [(ngModel)]="isAllCheckedSelected" (change)="checkUncheckAll()"/>
+            </label>
+            <div *ngFor="let item of list; let i=index;">
+                <span class="font-weight-bold" data-toggle="collapse" [attr.data-target]="'#child' + i">
+                    <i class="fa fa-plus"></i> {{item?.category?.categoryName}}
+                </span>
+                <div class="collapse drop-sub-show" [attr.id]="'child' + i">
+                    <label class="label-checkbox-align" *ngFor="let a of item.products">
+                        <span>{{a.item}}</span>
+                        <input type="checkbox" [(ngModel)]="a.checked" (change)="getSelectedValue(a.checked,a._id)" />
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<!-- 
+<div>
+    <h3>Multi select dropdown</h3>
+    <div (mouseleave)="showDropDown = false">
+        <button class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
+            <span *ngIf="checkedList.length<=0">Select</span>
+            <span *ngIf="checkedList.length>0">{{checkedList.join(', ')}}</span>
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <div class="drop-show" *ngIf="showDropDown">
+            <label *ngFor="let a of list">
+                <input type="checkbox" [(ngModel)]="a.checked" 
+                    (change)="getSelectedValue(a.checked,a.name)" />
+                <span>{{a.name}}</span>
+            </label>
+        </div>
+    </div>
+</div>
+ -->

@@ -1,0 +1,376 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Order Management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/order">Order
+                                                        Management</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/order">All</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export To Excel</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card" (click)="filterStatus('ALL')">
+                    <div class="card-body  card_custom" style="background: rgb(24, 160, 136);">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-bars header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.all || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">All</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card bg-pink  card_custom" (click)="filterStatus('PENDING')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-tasks header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.Pending || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font w-space-nowrap">Pending</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card bg-yellow  card_custom" (click)="filterStatus('UNDER_REVIEW')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-hourglass-half header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.underReview || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Under Review</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card bg-blue  card_custom" (click)="filterStatus('ASSIGNED')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-star header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.assigned || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Assigned</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card bg-red  card_custom" (click)="filterStatus('DISPATCHED')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-truck header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.Dispatched || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Dispatched</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card bg-light-green  card_custom" (click)="filterStatus('STARTED_OFF')">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-heart header-icons"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.startedOff || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">Started Off</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive" style="min-height: 11em;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <!-- <th scope="col"><input type="checkbox" name="" ></th> -->
+                                        <th scope="col">Order ID</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Client</th>
+                                        <th scope="col">Agent/Expert</th>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Google Location</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" style="white-space: nowrap;">Update Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total}"> -->
+                                    <tr *ngFor="let item of adminList| paginate: { 
+                                        itemsPerPage: pageSize,
+                                        currentPage: currentPage,
+                                        totalItems: total};">
+
+                                        <!-- <th scope="row"><input type="checkbox" name="" ></th> -->
+                                        <td>{{item?.orderId}}</td>
+                                        <td>{{item?.createdAt | date:'medium'}}</td>
+                                        <td>{{(item?.clientId?.firstName | titlecase)}} {{item?.clientId?.surName | titlecase}}</td>
+                                        <td>{{(item?.agent_Expert_Id?.firstName | titlecase) ||(item?.agent_Expert_Id?.userName | titlecase) || '--' }} {{item?.agent_Expert_Id?.surName | titlecase}}</td>
+                                        <td>{{(item?.area | titlecase) || (item?.agent_Expert_Id?.address | titlecase) || '--' }}</td>
+                                        <td>
+                                            <a [href]="'https://www.google.com/maps/@'+item?.location?.coordinates[0]+','+item?.location?.coordinates[1]+',5z'" target="_blank" rel="noopener noreferrer">
+                                                https://www.google.com/maps/@{{item?.location?.coordinates[0]}},{{item?.location?.coordinates[1]}},5z
+                                            </a>
+                                        </td>
+                                        <td>{{useCurrency}} {{item?.total}}</td>
+                                        <td>{{item?.updateOrderStatus?.replace('_',' ') | titlecase}}</td>
+                                        <!-- <td><i class="fa fa-ellipsis-h" aria-hidden="true"></i></td> -->
+                                        <td style="overflow: unset;">
+                                            <!-- {{(item?.updateOrderStatus | titlecase) || "--"}} -->
+                                            <div class="dropdown-table m-0">
+                                                <!-- <p> &nbsp;</p> -->
+                                                <div class="dropdown">
+                                                    <i *ngIf="item?.updateOrderStatus == 'CANCEL'" class="fa fa-ellipsis-h " (click)="commonService.errorToast('Can not update status if order is already cancelled')">
+    
+                                                    </i>
+                                                    <i *ngIf="item?.updateOrderStatus != 'CANCEL'" class="fa fa-ellipsis-h " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    
+                                                    </i>
+                                                    <!-- <i *ngIf="item?.orderType == 'PRODUCT' && item?.updateOrderStatus != 'CANCEL'" class="fa fa-ellipsis-h " id="productMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    
+                                                    </i> -->
+                                                    <!-- for service -->
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" (click)="openStatusOrderModal(item,'UNDER_REVIEW')">Under review</a>
+                                                        <!-- <a class="dropdown-item" (click)="updateStatus(item?._id,'ASSIGNED')">Assigned</a>
+                                                        <a class="dropdown-item" (click)="updateStatus(item?._id,'PENDING')">Pending</a> -->
+                                                        <a *ngIf="item.orderType == 'SERVICE'" class="dropdown-item" (click)="openStatusOrderModal(item,'STARTED_OFF')">Started off</a>
+
+                                                        <a *ngIf="item.orderType == 'PRODUCT'" class="dropdown-item" (click)="openStatusOrderModal(item,'DISPATCHED')">Dispatched</a>
+                                                        <a *ngIf="item.orderType == 'SERVICE'" class="dropdown-item" (click)="openStatusOrderModal(item,'COMPLETED')">Completed</a>
+                                                        <a *ngIf="item.orderType == 'PRODUCT'" class="dropdown-item" (click)="openStatusOrderModal(item,'DELIVERED')">Delivered</a>
+                                                        <!-- <a class="dropdown-item" (click)="updateStatus(item?._id,'CANCEL')">Cancel</a> -->
+                                                    </div>
+                                                    <!-- for product -->
+
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td><button class="btn btn-success" routerLink="/order/view-order" [queryParams]="{id :item?._id}" title="View">
+                                                View
+                                            </button>
+                                            <button class="btn btn-info ml-2" title="Cancel" (click)="openCancelModal(item?._id)">
+                                                Cancel
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="adminList.length==0">
+                                        <td colspan="10" class="text-center">Data not found</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="adminList.length>0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1" style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="adminList.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+<div class="modal fade blur-background" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancel Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body">
+                <p>
+                    You're about to cancel this order. Please confirm to proceed.
+                </p>
+            </div>
+            <!-- <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="cancelOrder()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btnn" data-dismiss="modal">Close</button>
+                </div>
+            </div> -->
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="cancelOrder()">Confirm</button>
+                    <div class="triangle triangle-0"></div>
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btn-triangle" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="modal-dialog modal-sm" id="dropdownMenuButton">...</div> -->
+
+
+
+<div class="modal fade blur-background" id="updateorderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancel Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body">
+                <p>
+                    You're about to update the status of this order. Please confirm to proceed.
+                </p>
+            </div>
+            <!-- <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="cancelOrder()">Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btnn" data-dismiss="modal">Close</button>
+                </div>
+            </div> -->
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" (click)="updateStatus()">Confirm</button>
+                    <div class="triangle triangle-0"></div>
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btn-triangle" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

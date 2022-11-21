@@ -1,0 +1,220 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">View Contact Us</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/static-content"> Static Content</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View Contact
+                                                        Us</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <form [formGroup]="contactUsForm">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <p>Page Name</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <span>:</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" disabled class="form-control form-control_custom"
+                                        [value]="'Contact Us'">
+
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+
+                                <div class="col-md-4">
+                                    <p>Phone Number</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <span>:</span>
+                                </div>
+                                <!-- <div class="col-md-5">
+                                    <input type="text" formControlName="phone" (keypress) placeholder="Phone Number"
+                                        class="form-control form-control_custom">
+                                    <div class="text-danger"
+                                        *ngIf="contactUsForm.get('phone').invalid && (contactUsForm.get('phone').dirty || contactUsForm.get('phone').touched)">
+                                        <span *ngIf="(contactUsForm.get('phone').hasError('required'))">
+                                            *phone is required.
+                                        </span>
+                                        <span *ngIf="(contactUsForm.get('phone').hasError('pattern'))">
+                                            *Please enter a valid phone.
+                                        </span>
+                                    </div>
+
+
+                                </div> -->
+
+                                <span class="col-md-5">
+                                    <input type="text" aria-label="Country"
+                                        class="form-control form-control_custom d-inline country col-md-4 col-lg-3 text-center"
+                                        [formControl]="myControl" maxlength="7"
+                                        (keypress)="commonService.numberOnly($event)" [matAutocomplete]="auto"
+                                        style="border-radius: 20px 0px 0px 20px !important;">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option class="d-flex justity-content-space-between"
+                                            *ngFor="let option of filteredOptions | async" [value]="option.code">
+                                            <span>{{option.name}}</span><span>{{option.code}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                    <input type="text" name=""
+                                        class="form-control d-inline col-md-8 col-lg-9 number form-control_custom"
+                                        placeholder="Phone Number" autocomplete="false" 
+                                        (keypress)="commonService.numberOnly($event)" maxlength="16" formControlName="phone"
+                                        style="border-radius: 0px 20px 20px 0px !important;">
+                                    <div class="text-danger"
+                                        *ngIf="contactUsForm.get('phone').invalid && (contactUsForm.get('phone').dirty || contactUsForm.get('phone').touched)">
+                                        <span *ngIf="contactUsForm.get('phone').hasError('required')">*Please
+                                            enter phone number.</span>
+                                        <span *ngIf="contactUsForm.get('phone').hasError('minlength') ">*Please
+                                            enter valid phone number.</span>
+
+                                    </div>
+                                </span>
+
+
+
+
+
+                            </div>
+                            <div class="row mt-2">
+
+                                <div class="col-md-4">
+                                    <p>Email</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <span>:</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" formControlName="email" placeholder="Email"
+                                        class="form-control form-control_custom">
+                                    <div class="text-danger"
+                                        *ngIf="contactUsForm.get('email').invalid && (contactUsForm.get('email').dirty || contactUsForm.get('email').touched)">
+                                        <span *ngIf="(contactUsForm.get('email').hasError('required'))">
+                                            *Email is required.
+                                        </span>
+                                        <span *ngIf="(contactUsForm.get('email').hasError('pattern'))">
+                                            *Please enter a valid email.
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mt-2">
+
+                                <div class="col-md-4">
+                                    <p>Web Url</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <span>:</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" formControlName="webUrl" placeholder="Web Url"
+                                        class="form-control form-control_custom">
+                                    <div class="text-danger"
+                                        *ngIf="contactUsForm.get('webUrl').invalid && (contactUsForm.get('webUrl').dirty || contactUsForm.get('webUrl').touched)">
+                                        <span *ngIf="(contactUsForm.get('webUrl').hasError('required'))">
+                                            *Web url is required.
+                                        </span>
+                                        <span *ngIf="(contactUsForm.get('webUrl').hasError('pattern'))">
+                                            *Please enter a valid web url.
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mt-2">
+
+                                <div class="col-md-4">
+                                    <p>Address</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <span>:</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <!-- <input type="text" formControlName="address" placeholder="address"
+                                        class="form-control form-control_custom"> -->
+                                        <textarea name="" class="form-control form-control_custom" formControlName="address" id="" cols="30" rows="3"></textarea>
+                                    <div class="text-danger"
+                                        *ngIf="contactUsForm.get('address').invalid && (contactUsForm.get('address').dirty || contactUsForm.get('address').touched)">
+                                        <span *ngIf="(contactUsForm.get('address').hasError('required'))">
+                                            *Address is required.
+                                        </span>
+                                        <span *ngIf="(contactUsForm.get('address').hasError('pattern'))">
+                                            *Please enter a valid address.
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="text-center mt-5 mb40">
+
+                                <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="updateContactUs()">Update</button>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </form>
+
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

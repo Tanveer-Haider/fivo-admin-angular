@@ -1,0 +1,17 @@
+/* addClient.css */
+.country{
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.number{
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+.positon-relative{
+    position: relative;
+}
+.eye-icon{
+    position: absolute;
+    right: 27px;
+    top: 13px;
+}

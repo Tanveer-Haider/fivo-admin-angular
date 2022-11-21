@@ -1,0 +1,242 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Earnings</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/earnings">Earnings</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/earnings">Earnings
+                                                        List</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()" ><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export To Excel</button>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="col-lg-5 ml-2">
+                        <!-- <div class="row">
+                            <div class="col-4">
+                                <select class="form-control form-select" >
+                                    <option selected value="0">Bulk Action</option>
+                                    <option value="Delete">Delete</option>
+                                    
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <button class="btn" style="border: 1px solid #00000040;">Apply</button>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                    <div class="pl-1 d-flex">
+                        <div class="form-check">
+                            <input type="text" class="form-control" (input)="searchText($event)" placeholder="Search" name=""  style="margin-left: -10px;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><input type="checkbox" name="" ></th>
+                                        <th scope="col">Order ID</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Expert Fee</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Delivery Fee</th>
+                                        <th scope="col">Material Amount</th>
+                                        <th scope="col">Cancellation Fee</th>
+                                        <th scope="col">Admin Earning</th>
+                                        <th scope="col">Payment Status</th>
+                                        <th scope="col" style="overflow: unset;">Settlement Status</th>
+                                        <th scope="col">Actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+                                        <th scope="row"><input type="checkbox" name="" ></th>
+                                        <td>{{item?.orderDetails?.orderId}}</td>
+
+                                        <td>{{item?.orderDetails?.createdAt | date : 'medium'}}</td>
+                                        <td>{{useCurrency}} {{item?.orderDetails?.expertFee || 0}}</td>
+                                        <td>{{useCurrency}} {{item?.orderDetails?.total}}</td>
+                                        <td>{{useCurrency}} {{item?.orderDetails?.deliveryFee || 0}}</td>
+                                        <td>{{useCurrency}} {{item?.orderDetails?.orginalTotalPrice || 0}}</td>
+                                        <td>{{useCurrency}} {{item?.cancelReasonDetails?.cancellationFee || 0}}</td>
+                                        <ng-container *ngIf="item?.transactionType == 'PRODUCT'">
+                                            <ng-container *ngIf="item?.cancelReasonDetails">
+                                                <td>{{useCurrency}} {{parseInt(item?.serviceAreaDetails.indexes) * parseInt(item?.cancelReasonDetails?.cancellationFee)}}</td>
+
+                                            </ng-container>
+                                            <ng-container *ngIf="!item?.cancelReasonDetails">
+                                                <td>{{useCurrency}} {{item?.orderDetails?.total - item?.orderDetails?.deliveryFee || 0}}</td>
+
+                                            </ng-container>
+                                            
+                                            
+
+                                        </ng-container>
+                                        <ng-container *ngIf="item?.transactionType == 'SERVICE'">
+                                            <ng-container *ngIf="item?.cancelReasonDetails">
+                                                <td>{{useCurrency}} {{parseInt(item?.serviceAreaDetails.indexes) * parseInt(item?.cancelReasonDetails?.cancellationFee)}}</td>
+
+                                            </ng-container>
+                                            <ng-container *ngIf="!item?.cancelReasonDetails">
+                                                <td>{{useCurrency}} {{calculateAdminEarning(item?.orderDetails?.total,item?.agentExpertDetails?.commission) || 0}}</td>
+
+                                            </ng-container>
+                                            
+                                           
+
+                                        </ng-container>
+                                        
+                                        <!-- <td>
+                                            <div class="d-flex dropdown-table">
+                                                <p>Paid &nbsp;</p>
+                                                <div class="dropdown">
+                                                    <i class="fa fa-ellipsis-h " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    
+                                                    </i>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item">Paid</a>
+                                                        <a class="dropdown-item">Unpaid</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td> -->
+
+
+
+                                        <td style="overflow: unset !important">
+                                            <div class="d-flex dropdown-table">
+                                                <p>{{item?.paymentStatus | titlecase}} &nbsp;</p>
+                                         
+                                            <div class="dropdown-table m-0">
+                                              
+                                                <div class="dropdown" >
+                                                    <i class="fa fa-ellipsis-h " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    
+                                                    </i>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" (click)="changePaymentStatus(item?._id,'PAID')">Paid</a>
+                                                        <a class="dropdown-item" (click)="changePaymentStatus(item?._id,'UNPAID')">Unpaid</a>
+                                                     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </td>
+
+
+
+                                        <td style="overflow: unset !important">
+                                            <div class="d-flex dropdown-table">
+                                                <p>{{item?.settlementStatus | titlecase}}</p> &nbsp;
+                                                <div class="dropdown">
+                                                    <i class="fa fa-ellipsis-h " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    
+                                                    </i>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" (click)="changeSettelmentStatus(item?._id,'SETTLED')">Setteled</a>
+                                                        <a class="dropdown-item" (click)="changeSettelmentStatus(item?._id,'UNSETTLED')">Unsetelled</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td class="d-flex">
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('earnings', 'View')" class="btn btn-success" (click)="navigateToOrder(item?.orderDetails?.orderType , item?.orderDetails?._id)" title="View">
+                                                View
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                   <tr *ngIf="listArray.length <= 0">
+                                       <td colspan="12" class="text-center">
+                                           Data Not Found
+                                       </td>
+
+                                   </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1"  style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>

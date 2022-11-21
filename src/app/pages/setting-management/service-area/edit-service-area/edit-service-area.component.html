@@ -1,0 +1,119 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Edit Service Areas</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/setting/delivery-vehicle-list">Service Areas</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit Service Areas</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form action="" [formGroup]="vehicleForm">
+                            <div class="row">
+
+                                <!-- upload image -->
+
+                             
+                                <!-- first name -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Service Area</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                            <!-- <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Service Area" formControlName="vehicleType" ngx-google-places-autocomplete [options]='options'
+                                                #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"> -->
+                                                <input type="text"  class="form-control form-control_custom"
+                                                placeholder="Service Area" formControlName="vehicleType">
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- last name -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Indices</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Indices" formControlName="baseRate" maxlength="16"
+                                                >
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+
+                            <div class="text-center mt-5 mb40">
+                                <button class="btn btn-large  max-WT-250 mr-1 btn-secondary"
+                                    routerLink="/setting/sevice-area">Back</button>
+
+                                <button class="btn btn-large  max-WT-150 ml-1 btn-primary"
+                                    (click)="addServiceArea()">Update</button>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

@@ -1,0 +1,281 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title ">Administrartion</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><em class="fa fa-home"></em></li>
+                                                <li class="breadcrumb-item"><a routerLink="/admin"
+                                                        class="breadcrumb-link">Administrartion</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit
+                                                        Admin</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+                    <div class="card-header">
+                        <form [formGroup]="addAdminFrom">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Username</label>
+                                        <span style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="32" formControlName="userName" placeholder="Username" 
+                                                readonly>
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('userName').invalid && (addAdminFrom.get('userName').dirty || addAdminFrom.get('userName').touched)">
+                                                <span *ngIf="(addAdminFrom.get('userName').hasError('required'))">
+                                                    *Username is required.
+                                                </span>
+                                                <span *ngIf="(addAdminFrom.get('userName').hasError('minlength'))">
+                                                    *Please enter a valid username.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Name</label>
+                                        <span style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="32" formControlName="name" placeholder="Name" 
+                                                (keypress)="commonService.preventSpace($event)" readonly>
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('name').invalid && (addAdminFrom.get('name').dirty || addAdminFrom.get('name').touched)">
+                                                <span *ngIf="(addAdminFrom.get('name').hasError('required'))">
+                                                    *Name is required.
+                                                </span>
+                                                <span *ngIf="(addAdminFrom.get('name').hasError('pattern'))">
+                                                    *Please enter a valid name.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                formControlName="email" placeholder="Email Address" >
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('email').invalid && (addAdminFrom.get('email').dirty || addAdminFrom.get('email').touched)">
+                                                <span *ngIf="addAdminFrom.get('email').hasError('required')">*Please
+                                                    enter email address.</span>
+                                                <span *ngIf="addAdminFrom.get('email').hasError('email')">*Please
+                                                    enter email address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" aria-label="Country"
+                                                class="form-control form-control_custom d-inline country col-md-4 text-center"
+                                                [formControl]="myControl" maxlength="7"
+                                                (keypress)="commonService.numberOnly($event)" [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between"
+                                                    *ngFor="let option of filteredOptions | async"
+                                                    [value]="option.code">
+                                                    <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <input type="text" name="" autocomplete="false"
+                                                class="form-control form-control_custom number  d-inline col-md-8"
+                                                maxlength="10" placeholder="Phone Number"
+                                                (keypress)="commonService.numberOnly($event)" formControlName="number"
+                                                >
+                                            <div class="text-danger"
+                                                *ngIf="addAdminFrom.get('number').invalid && (addAdminFrom.get('number').dirty || addAdminFrom.get('number').touched)">
+                                                <span *ngIf="addAdminFrom.get('number').hasError('required')">*Please
+                                                    enter phone number.</span>
+                                                <span *ngIf="addAdminFrom.get('number').hasError('pattern')">*Please
+                                                    enter valid phone number.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="order-view  max-WT-700  setting-page mb-5">
+                                    <div class="mb40">
+                                        <form>
+                                            <div class="add-store-block input-style mb20 mt20">
+
+                                                <!-- <div style="text-align: center;">
+                                                    <h1 class="page_title">Permissions</h1>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="text-left pl-3">
+                                                        <h5 class="globalCheckBox pl-0" style="color: rgb(21, 20, 24);">
+                                                            Access
+                                                            rights</h5>
+                                                        <input type="checkbox" (input)="allAsset($event)"
+                                                            [checked]="allPermission">
+                                                        <label class="ml-3">All</label>
+                                                    </div>
+
+                                                </div> -->
+                                                <div class="card-body">
+                                                    <div class="order-view  max-WT-700  setting-page mb-5">
+                                                        <div class="mb40">
+                                                            <form>
+                                                                <div class="add-store-block input-style mb20 mt20">
+
+                                                                    <div style="text-align: center;">
+                                                                        <h1 class="page_title">Permissions</h1>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="text-left pl-3">
+                                                                            <h5 class="globalCheckBox pl-0"
+                                                                                style="color: rgb(21, 20, 24);">Access
+                                                                                rights
+                                                                            </h5>
+                                                                            <input type="checkbox"
+                                                                                (input)="allAsset($event)" [checked]="allPermission">
+                                                                            <label class="ml-3">All</label>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="row "
+                                                                        style="margin-top: 3%;padding-left: 10px;">
+
+
+                                                                        <div class="col-md-4 col-lg-4 col-sm-12 mt-2 pl-1 pr-1"
+                                                                            *ngFor="let item of permissionArr; let i = index">
+                                                                            <label class="globalCheckBox"
+                                                                                style="text-transform: capitalize;">
+                                                                                <div class="row">
+                                                                                    <div class="col-12">
+                                                                                        <p>{{name[i] |lowercase}}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- <input type="checkbox" [(ngModel)]="permArray[i]"
+                                                        [ngModelOptions]="{standalone: true}"
+                                                        [checked]="permission[item]?.length > 0"> -->
+                                                                                <!-- <span class="checkmark"></span> -->
+                                                                            </label>
+                                                                            <div class="row ">
+                                                                                <div class="col-2 d-flex" *ngFor="let assets of innerPermisstionArr[i][item]">
+                                   
+                                                                                    <input type="checkbox" (input)="addInsidePerm(item,assets, $event,i)" [checked]="permission[item]?.includes(assets)"> <span class="ml-1"> {{assets}}</span>
+                                                                                </div>
+                                                                                <!-- <div class="col-2 d-flex">
+
+
+
+
+
+                                                                                    <input type="checkbox"
+                                                                                        (input)="addInsidePerm(item,'Add', $event,i)"
+                                                                                        [checked]="permission[item]?.includes('Add')">
+                                                                                    <span class="ml-1">Add</span>
+                                                                                    <span class="geekmark"></span>
+
+
+                                                                                </div>
+
+                                                                                <div class="col-2 d-flex">
+
+                                                                                    <input type="checkbox"
+                                                                                        (input)="addInsidePerm(item,'View', $event,i)"
+                                                                                        [checked]="permission[item]?.includes('View')">
+                                                                                    <span class="ml-1">View</span>
+                                                                                    <span class="geekmark"></span>
+                                                                                </div>
+                                                                                <div class="col-2 d-flex">
+                                                                                    <input type="checkbox"
+                                                                                        (input)="addInsidePerm(item,'Edit', $event,i)"
+                                                                                        [checked]="permission[item]?.includes('Edit')">
+                                                                                    <span class="ml-1">Edit</span>
+                                                                                    <span class="geekmark"></span>
+                                                                                </div>
+                                                                                <div class="col-2 d-flex">
+                                                                                    <input type="checkbox"
+                                                                                        (input)="addInsidePerm(item,'Delete', $event,i)"
+                                                                                        [checked]="permission[item]?.includes('Delete')">
+                                                                                    <span class="ml-1">Delete</span>
+                                                                                    <span class="geekmark"></span>
+                                                                                </div> -->
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    </div>
+
+                                                                    <div class="text-center mt40 mb40 mt-5">
+
+                                                                        <button
+                                                                            class="btn btn-large  max-WT-150  btn-secondary"
+                                                                            routerLink="/admin">Back</button>
+                                                                        <button
+                                                                            class="btn btn-large  max-WT-150  btn-primary ml-1"
+                                                                            (click)="editAdmin()">Update</button>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- ============================================================== -->
+                                    <!-- footer -->
+                                    <!-- ============================================================== -->
+
+                                    <!-- ============================================================== -->
+                                    <!-- end footer -->
+                                    <!-- ============================================================== -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>ƒ
+</div>

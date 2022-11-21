@@ -1,0 +1,166 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Cancellation Management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Settings
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Cancellation
+                                                        Management</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="d-flex justify-content-end pt-2 mb-2 mr-1">
+                    <div class="">
+                        <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Add')"
+                            class="btn btn-secondary" (click)="addReason()">Add Reason</button>
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S.No</th>
+                                        <!-- <th scope="col">Cancellation Fee</th> -->
+                                        <th scope="col">Cancellation Reason</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray  | paginate: { 
+                                        itemsPerPage: itemsPerPage,
+                                        currentPage: currentPage,
+                                        totalItems: total};let i=index">
+                                        <td>{{itemsPerPage * (currentPage - 1) + i+1}}</td>
+                                        <!-- <td class="table-data">{{item?.cancellationFee}}</td> -->
+                                        <td class="table-data">{{item?.cancellationReason}}</td>
+                                        <td class="d-flex">
+                                            <button class="btn btn-secondary ml-2" title="Edit"
+                                                (click)="editReason(item?._id)">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger ml-2" title="Delete"
+                                                (click)="openDeleteModal(item?._id)">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="!listArray.length">
+                                        <td colspan="3" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray.length>0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-0 mt-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row  mt-1 pb-3 pl-2">
+                            <label class="col-md-4 text-bold">Cancellation Fee</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                            <span class="col-md-5">
+                                <input type="text" name="" class="form-control form-control_custom"
+                                    placeholder="Cancellation Fee" [(ngModel)]="cancellationAmount"
+                                    (keypress)="commonService.numberOnly($event)">
+                            </span>
+                            <span class="col-md-2 ">
+                                <button class="btn btn-info"
+                                    *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')"
+                                    (click)="updateCancellationFee()" [disabled]="!cancellationAmount">Update</button>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+
+
+<!-- delete modal -->
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Cancellation Reason</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this cancellation reason. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteReason()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+
+                <button type="button" class=" btn btn-primary" (click)="deleteReason()"
+                    data-dismiss="modal">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">System Email</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Settings
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">System Email</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+                    <form [formGroup]="editForm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">System Email</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" class="form-control" formControlName="email"
+                                                placeholder="System Email">
+                                            <div class="text-danger"
+                                                *ngIf="editForm.get('email').invalid && (editForm.get('email').dirty || editForm.get('email').touched)">
+                                                <span *ngIf="editForm.get('email').hasError('required')">*Please
+                                                    enter email address.</span>
+                                                <span *ngIf="editForm.get('email').hasError('pattern')">*Please
+                                                    enter valid email address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Password</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" class="form-control" formControlName="password"
+                                                placeholder="Password">
+                                            <div class="text-danger"
+                                                *ngIf="editForm.get('password').invalid && (editForm.get('password').dirty || editForm.get('password').touched)">
+                                                <span *ngIf="editForm.get('password').hasError('required')">*Please
+                                                    enter password.</span>
+                                                <span *ngIf="editForm.get('password').hasError('pattern')">
+                                                    *Password should have minimum 8
+                                                    characters, at least 1 uppercase letter, 1 lowercase letter, 1
+                                                    number and 1 special
+                                                    character.
+                                                </span>
+                                            </div>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-5 mb40">
+
+
+                                <button
+                                    *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')"
+                                    class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="updateEmail()"
+                                    [disabled]="editForm.invalid">Update</button>
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

@@ -1,0 +1,179 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">FAQ Management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/faq">FAQ Management
+                                                        </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/faq">FAQ List</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="d-flex justify-content-end pt-2 mb-2 mr-1">
+                    <div class="">
+                        <button class="btn btn-primary" (click)="addFaq()">Add FAQ</button>
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S.No</th>
+                                        <th scope="col">Question</th>
+                                        <th scope="col">Answer</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of faqResult | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems:total} ;let i = index">
+                                        <td>{{itemsPerPage * (currentPage - 1) + i+1}}</td>
+                                        <td>{{data?.question}}</td>
+                                        <td>{{data?.answer}}</td>
+                                        <td class="d-flex">
+                                            <button class="btn btn-success ml-2" title="View" (click)="viewUser(data?._id)">
+                                                View
+                                            </button>
+                                            <button class="btn btn-secondary ml-2" title="Edit" (click)="editFaq(data?._id)">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger ml-2" title="Delete" (click)="deleteFaqModal(data?._id)" data-target="#deleteModal" data-toggle="modal">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>2</td>
+                                        <td>what is faq?</td>
+                                        <td>faq is frequently aksed question.</td>
+                                        <td class="d-flex">
+                                            <button class="btn btn-secondary ml-2" routerLink = "/advert/view-faq" title="View">
+                                                View
+                                            </button>
+                                            <button class="btn btn-secondary ml-2" routerLink = "/advert/edit-faq" title="View">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger ml-2" title="View" (click)="openDeleteModal()">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <td>3</td>
+                                        <td>what is faq?</td>
+                                        <td>faq is frequently aksed question.</td>
+                                        <td class="d-flex">
+                                            <button class="btn btn-secondary ml-2" routerLink = "/faq/view-faq" title="View">
+                                                View
+                                            </button>
+                                            <button class="btn btn-secondary ml-2" routerLink = "/faq/edit-faq" title="View">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger ml-2" title="View" (click)="openDeleteModal()">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr> -->
+                                    <tr *ngIf="total==0">
+                                        <td colspan="11" vertical-align="middle">
+                                            <div class="no-record">
+                                                <div class="no-recordin">
+                                                    <h5 class="text-center">No record found</h5>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <div class="custom-pagination mt20 text-center" style="float: right;" *ngIf="total>itemsPerPage">
+                                <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
+                            </div> -->
+                            <div class="custom-pagination w-100 mt-2 pb-2">
+                                <div class="text-right" *ngIf="total>itemsPerPage">
+                                    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+
+
+<!-- delete modal -->
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Faq</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body">
+                <p>
+                    You're about to delete this faq. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteFaq()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+
+                <button type="button" class=" btn btn-primary" (click)="deleteFaq()" data-dismiss="modal">Delete</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

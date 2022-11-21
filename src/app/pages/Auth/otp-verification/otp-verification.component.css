@@ -1,0 +1,50 @@
+.splash-container {
+    /* margin-top: 15%; */
+    margin-top: 10%;
+}
+/* 
+ng-otp-input {
+    width: 35px !important;
+    height: 35px !important;
+    margin: auto !important;
+} */
+
+/* .wrapper {
+    padding-left: 0px !important;
+    margin-top: 0em !important;
+}
+
+.container ng-otp-input .wrapper {
+    padding-left: 0 !important;
+} */
+
+/* .otp .wrapper {
+    padding-left: 0 !important;
+    margin-top: 0px !important;
+} */
+
+/* @media (min-width: 1025px) {
+    .wrapper {
+        padding-left: 0px !important;
+    }
+} */
+
+/* .form-group {
+    position: relative;
+    right: 20.5em;
+    width: 65em;
+} */
+
+/* .otp-input {
+    height: 35px !important;
+    width: 35px !important;
+}
+
+.otp > * {
+    margin-top: 0px !important;
+} */
+
+
+.timestamp-data {
+    text-align: end;
+}

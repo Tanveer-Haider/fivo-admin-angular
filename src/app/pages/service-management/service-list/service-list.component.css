@@ -1,0 +1,15 @@
+.illustration img {
+    max-width: 100%;
+    width: 150px; 
+    height: 100px;
+    object-fit: fill;
+    object-position: bottom;
+  }
+  .filter_custom{
+    font-size: 25px;
+    color: #28a745;
+}
+.flter-para{
+    margin: 0;
+    font-size: 10px;
+}

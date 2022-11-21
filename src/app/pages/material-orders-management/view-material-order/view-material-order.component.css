@@ -1,0 +1,9 @@
+.text-bold{
+    font-weight: 600;
+}
+.bg-red{
+    color: white;
+}
+.bg-red > *{
+    margin-top: 7px;
+}

@@ -1,0 +1,243 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Coupons</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/coupons">Coupons
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit coupons</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="discountForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Coupon Name" maxlength="32" formControlName="name">
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('name').invalid && (discountForm.get('name').dirty || discountForm.get('name').touched)">
+                                                <span *ngIf="discountForm.get('name').hasError('required')">*Please
+                                                    enter coupon name.</span>
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Coupon Code</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                            <input type="text" class="form-control form-control_custom"
+                                                placeholder="Coupon Code" maxlength="32" formControlName="couponCode">
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('couponCode').invalid && (discountForm.get('couponCode').dirty || discountForm.get('couponCode').touched)">
+                                                <span
+                                                    *ngIf="discountForm.get('couponCode').hasError('required')">*Please
+                                                    enter
+                                                    coupon code.</span>
+                                    <!-- <span *ngIf="couponForm.get('name').hasError('pattern')">*Please enter
+                                                    valid name.</span> -->
+                                </div>
+                                </span>
+                            </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row mt-1">
+                            <label class="col-md-4 text-bold">Start Date</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                            <span class="col-md-5">
+                                            <input type="date" name="" class="form-control form-control_custom"
+                                                placeholder="dd/mm/yyyy" formControlName="startDate">
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('startDate').invalid && (discountForm.get('startDate').dirty || discountForm.get('startDate').touched)">
+                                                <span *ngIf="discountForm.get('startDate').hasError('required')">*Please
+                                                    enter start date.</span>
+                        </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row mt-1">
+                        <label class="col-md-4 text-bold">End Date</label>
+                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                        <span class="col-md-5">
+                                            <input type="date" name="" class="form-control form-control_custom"
+                                                placeholder="dd/mm/yyyy" formControlName="endDate">
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('endDate').invalid && (discountForm.get('endDate').dirty || discountForm.get('endDate').touched)">
+                                                <span *ngIf="discountForm.get('endDate').hasError('required')">*Please
+                                                    enter end date.</span>
+                    </div>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+
+                <div class="row mt-1">
+                    <label class="col-md-4 text-bold">Service</label>
+                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                    <span class="col-md-5">
+                                            <app-multi-select-dropdown [list]="serviceArray"
+                                                (shareIndividualCheckedList)="shareIndividualCheckedListService($event)"
+                                                (shareCheckUncheckAll)="shareCheckUncheckAllService($event)"
+                                                (checkUnCheckAllSubMenu)="checkUnCheckAllSubMenuService($event)">
+
+                                            </app-multi-select-dropdown>
+
+                                            <!-- <ng-multiselect-dropdown [placeholder]="'Select Service'"
+                                                formControlName="service" [settings]="serviceDropdownSettings"
+                                                [data]="serviceList" (onSelect)="onServiceSelect($event)"
+                                                (onSelectAll)="onServiceSelectAll($event)"
+                                                (onDeSelect)="onServiceDeSelect($event)">
+                                            </ng-multiselect-dropdown>
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('service').invalid && (discountForm.get('service').dirty || discountForm.get('service').touched)">
+                                                <span *ngIf="discountForm.get('service').hasError('required')">*Please
+                                                    select service.</span>
+                </div> -->
+                </span>
+
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+
+            <div class="row mt-1">
+                <label class="col-md-4 text-bold">Material</label>
+                <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                <span class="col-md-5">
+                                            <app-multi-select-dropdown [list]="materialArray"
+                                            (shareIndividualCheckedList)="shareIndividualCheckedListProduct($event)"
+                                            (shareCheckUncheckAll)="shareCheckUncheckAllProduct($event)"
+                                            (checkUnCheckAllSubMenu)="checkUnCheckAllSubMenuProduct($event)">
+
+                                        </app-multi-select-dropdown>
+                                            <!-- <ng-multiselect-dropdown [placeholder]="'Select Material'"
+                                                formControlName="material" [settings]="materialDropdownSettings"
+                                                [data]="materialList" (onSelect)="onServiceSelect($event)"
+                                                (onSelectAll)="onServiceSelectAll($event)"
+                                                (onDeSelect)="onServiceDeSelect($event)">
+                                            </ng-multiselect-dropdown>
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('material').invalid && (discountForm.get('material').dirty || discountForm.get('material').touched)">
+                                                <span *ngIf="discountForm.get('material').hasError('required')">*Please
+                                                    select material.</span>
+            </div> -->
+            </span>
+
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="row mt-1">
+            <label class="col-md-4 text-bold">Discount</label>
+            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+            <span class="col-md-5">
+
+                                            <ul class="nav nav_custom" id="myTab" role="tablist">
+                                                <li class="" role="presentation">
+                                                    <p class="" [ngClass]="{'show': discountType === 'FLAT'}"
+                                                        data-toggle="tab" role="tab" aria-selected="true"
+                                                        (click)="selectType('FLAT')">Flat</p>
+                                                </li>
+                                                <li class="" role="presentation">
+                                                    <p class="" [ngClass]="{'show': discountType === 'PERCENTAGE'}"
+                                                        data-toggle="tab" role="tab" aria-selected="false"
+                                                        (click)="selectType('PERCENTAGE')">Rate</p>
+                                                </li>
+                                            </ul>
+
+                                        </span>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="row mt-1">
+            <label class="col-md-4 text-bold">Amount</label>
+            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+            <span class="col-md-5">
+                                            <!-- [maxlength]="*ngIf='discountType=='PERCENTAGE'?'2'':'16' " -->
+                                            <input type="text" class="form-control form-control_custom"
+                                                [maxlength]="discountType=='PERCENTAGE'?2:16 "
+                                                [placeholder]="discountType=='PERCENTAGE'?'Discount%' :'Discount'"
+                                                formControlName="discount"
+                                                (keypress)="commonService.numberOnly($event)">
+                                            <div class="text-danger"
+                                                *ngIf="discountForm.get('discount').invalid && (discountForm.get('discount').dirty || discountForm.get('discount').touched)">
+                                                <span *ngIf="discountForm.get('discount').hasError('required')">*Please
+                                                    enter the discount.</span>
+        </div>
+        </span>
+    </div>
+</div>
+<div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="row mt-1">
+        <label class="col-md-4 text-bold">Status</label>
+        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+        <span class="col-md-5">
+                                            <label class="switch">
+                                                <input type="checkbox" formControlName="status">
+                                                <span class="slider round"></span>
+        </label>
+        </span>
+    </div>
+</div>
+
+
+</div>
+</form>
+
+<div class="text-center mt-5 mb40">
+
+    <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="editDiscount()">Update</button>
+
+    <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/coupons">Back</button>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>

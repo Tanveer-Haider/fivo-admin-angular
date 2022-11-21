@@ -1,0 +1,240 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title ">Coupons</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/coupons">Coupons
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Add coupons</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="couponForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" class="form-control form-control_custom"
+                                                placeholder="Name" maxlength="32" formControlName="name">
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('name').invalid && (couponForm.get('name').dirty || couponForm.get('name').touched)">
+                                                <span *ngIf="couponForm.get('name').hasError('required')">*Please enter
+                                                    name.</span>
+                                        <span *ngIf="couponForm.get('name').hasError('pattern')">*Please enter
+                                                    valid name.</span>
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Coupon Code</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5">
+                                            <input type="text" class="form-control form-control_custom"
+                                                placeholder="Coupon Code" maxlength="32" formControlName="couponCode">
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('couponCode').invalid && (couponForm.get('couponCode').dirty || couponForm.get('couponCode').touched)">
+                                                <span *ngIf="couponForm.get('couponCode').hasError('required')">*Please
+                                                    enter
+                                                    coupon code.</span>
+                                    <!-- <span *ngIf="couponForm.get('name').hasError('pattern')">*Please enter
+                                                    valid name.</span> -->
+                                </div>
+                                </span>
+                            </div>
+                    </div>
+
+
+
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row mt-1">
+                            <label class="col-md-4 text-bold">Start Date</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                            <span class="col-md-5">
+                                            <input type="date" class="form-control form-control_custom"
+                                                formControlName="startDate" [min]="commonService.todayDate()"
+                                                placeholder="dd/mm/yyyy">
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('startDate').invalid && (couponForm.get('startDate').dirty || couponForm.get('startDate').touched)">
+                                                <span *ngIf="couponForm.get('startDate').hasError('required')">*Please
+                                                    enter the start date.</span>
+                        </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="row mt-1">
+                        <label class="col-md-4 text-bold">End Date</label>
+                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                        <span class="col-md-5">
+                                            <input type="date" [readonly]="!couponForm.value.startDate"
+                                                class="form-control form-control_custom"
+                                                [min]="couponForm.value.startDate" placeholder="dd/mm/yyyy"
+                                                formControlName="endDate">
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('endDate').invalid && (couponForm.get('endDate').dirty || couponForm.get('endDate').touched)">
+                                                <span *ngIf="couponForm.get('endDate').hasError('required')">*Please
+                                                    enter the end date.</span>
+                    </div>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="row mt-1">
+                    <label class="col-md-4 text-bold">Service</label>
+                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                    <span class="col-md-5 ">
+                                            <app-multi-select-dropdown [list]="serviceArray"
+                                                (shareIndividualCheckedList)="shareIndividualCheckedListService($event)"
+                                                (shareCheckUncheckAll)="shareCheckUncheckAllService($event)"
+                                                (checkUnCheckAllSubMenu)="checkUnCheckAllSubMenuService($event)">
+                                            </app-multi-select-dropdown>
+                                            <!-- <ng-multiselect-dropdown [placeholder]="'Select Service'"  
+                                                formControlName="service" [settings]="serviceDropdownSettings"
+                                                [data]="serviceList" (onSelect)="onServiceSelect($event)"
+                                                (onSelectAll)="onServiceSelectAll($event)"
+                                                (onDeSelect)="onServiceDeSelect($event)">
+                                            </ng-multiselect-dropdown>
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('service').invalid && (couponForm.get('service').dirty || couponForm.get('service').touched)">
+                                                <span *ngIf="couponForm.get('service').hasError('required')">*Please
+                                                    enter the service.</span>
+                </div> -->
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="row mt-1">
+                <label class="col-md-4 text-bold">Material</label>
+                <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                <span class="col-md-5 ">
+                                            <app-multi-select-dropdown [list]="materialArray"
+                                            (shareIndividualCheckedList)="shareIndividualCheckedListProduct($event)"
+                                            (shareCheckUncheckAll)="shareCheckUncheckAllProduct($event)"
+                                            (checkUnCheckAllSubMenu)="checkUnCheckAllSubMenuProduct($event)">
+                                        </app-multi-select-dropdown>
+                                            <!-- <ng-multiselect-dropdown [placeholder]="'Select Material'"
+                                                formControlName="material" [settings]="materialDropdownSettings"
+                                                [data]="materialList" (onSelect)="onServiceSelect($event)"
+                                                (onSelectAll)="onServiceSelectAll($event)"
+                                                (onDeSelect)="onServiceDeSelect($event)">
+                                            </ng-multiselect-dropdown>
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('material').invalid && (couponForm.get('material').dirty || couponForm.get('material').touched)">
+                                                <span *ngIf="couponForm.get('material').hasError('required')">*Please
+                                                    enter the material.</span>
+            </div> -->
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="row mt-1">
+            <label class="col-md-4 text-bold">Discount</label>
+            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+            <span class="col-md-5">
+
+                                            <ul class="nav nav_custom" id="myTab" role="tablist">
+                                                <li class="" role="presentation">
+                                                    <p class="" data-toggle="tab" role="tab" aria-selected="true"
+                                                        (click)="selectType('FLAT')">Flat</p>
+                                                </li>
+                                                <li class="" role="presentation">
+                                                    <p class="" data-toggle="tab" role="tab" aria-selected="false"
+                                                        (click)="selectType('PERCENTAGE')">Rate</p>
+                                                </li>
+                                            </ul>
+
+                                        </span>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="row mt-1">
+            <label class="col-md-4 text-bold">Amount</label>
+            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+            <span class="col-md-5">
+                                            <!-- [maxlength]="*ngIf='discountType=='PERCENTAGE'?'2'':'16' " -->
+                                            <input type="text" class="form-control form-control_custom"
+                                                [maxlength]="discountType=='PERCENTAGE'?2:16 "
+                                                [placeholder]="discountType=='PERCENTAGE'?'Discount%' :'Discount'"
+                                                formControlName="discount"
+                                                (keypress)="commonService.numberOnly($event)">
+                                            <div class="text-danger"
+                                                *ngIf="couponForm.get('discount').invalid && (couponForm.get('discount').dirty || couponForm.get('discount').touched)">
+                                                <span *ngIf="couponForm.get('discount').hasError('required')">*Please
+                                                    enter the discount.</span>
+        </div>
+        </span>
+    </div>
+</div>
+<div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="row mt-1">
+        <label class="col-md-4 text-bold">Status</label>
+        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+        <span class="col-md-5">
+                                            <label class="switch">
+                                                <input type="checkbox" formControlName="status">
+                                                <span class="slider round"></span>
+        </label>
+        </span>
+    </div>
+</div>
+
+
+</div>
+</form>
+<div class="text-center mt-5 mb40">
+
+    <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="addDiscount()" [disabled]="couponForm.invalid">Submit</button>
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>

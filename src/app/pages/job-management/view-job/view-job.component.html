@@ -1,0 +1,288 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Service Order</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/jobs">Service Order</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View Service</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Client Name</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.clientId?.firstName}} {{orderDetail?.clientId?.surName}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Email</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.clientId?.email}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Phone Number</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.clientId?.mobileNumber}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Google Location</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <!-- <span class="col-md-6 col-sm-7 col-7">https://g.page/realnet-telecom-pvt-ltd?share</span> -->
+                                        <span class="col-md-5">
+                                            <a [href]="'https://www.google.com/maps/@'+orderDetail?.location?.coordinates[0]+','+orderDetail?.location?.coordinates[1]+',5z'" target="_blank" rel="noopener noreferrer">
+                                                https://www.google.com/maps/@{{orderDetail?.location?.coordinates[0]}},{{orderDetail?.location?.coordinates[1]}},5z
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Area</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.area}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Status</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <!-- <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.orderStatus | titlecase}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.orderStatus}}</span>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Order ID</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.orderId}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Order date</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.createdAt | date:'medium'}}</span>
+                                    </div>
+                                    <!-- <div class="row">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Completion date</label>
+                                        <span style="width: 10px;">:</span> -->
+                                    <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                    <!-- <span class="col-md-6 col-sm-7 col-7">2021-01-31 22:07:24</span>
+                                    </div> -->
+                                    <div class="row" *ngIf="orderDetail?.orderStatus == 'COMPLETED'">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Completion date</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">{{orderDetail?.updatedAt | date:'medium'}}</span>
+                                    </div>
+                                    <div class="row" *ngIf="orderDetail?.orderStatus == 'CANCEL'">
+                                        <label class="col-md-4 col-sm-4 col-4 text-bold">Cancellation Reason</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-6 col-sm-7 col-xs-8">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-6 col-sm-7 col-7">'---'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header header-details-data">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa fa-suitcase" aria-hidden="true" style="color: white;"></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <b>Job Order Details</b>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Unit</th>
+                                                        <th scope="col">Qty</th>
+                                                        <th scope="col">Disc</th>
+                                                        <th scope="col">Amt</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let details of serviceListDetails">
+
+                                                        <td>{{details?.description}}</td>
+                                                        <td>{{details?.unit}}</td>
+                                                        <td>{{'--'}}</td>
+                                                        <!-- <td>{{details?.discount}}</td> -->
+                                                        <td>
+                                                            <p *ngFor="let data of serviceAgent">{{data?.amount || '--'}} {{data?.disCountType=="FLAT"?"":"%" || '--'}}</p>
+                                                        </td>
+                                                        <td>{{details?.price}}</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Order Amount</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{orderDetail?.total}}</td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td>Delivery Fee</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>k 200</td>
+                                                    </tr> -->
+
+                                                    <tr>
+                                                        <td>Grand Total</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{orderDetail?.total}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header header-details-data_new">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa fa-users" aria-hidden="true" style="color: white;"></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <b>Expert</b>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <th></th> -->
+                                                        <th scope="col">Name &nbsp;<i (click)="sortAgent('firstName')" class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Phone No.</th>
+                                                        <th scope="col">Trade </th>
+                                                        <th scope="col">Avg. Ratting</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <!-- <td><input type="checkbox" name=""></td> -->
+                                                        <td (click)="navigateView(orderDetail?.agent_Expert_Id?._id)">{{orderDetail?.agent_Expert_Id?.userName || '-'}}</td>
+                                                        <td>{{orderDetail?.agent_Expert_Id?.mobileNumber}}</td>
+                                                        <!-- <td>{{expert?.trade[0].description}}</td> -->
+                                                        <td class="d-flex">
+                                                            <span class="d-flex" *ngFor="let trade of orderDetail?.agent_Expert_Id?.trade ;let j=index">
+                                                                {{trade.description}}<p>{{j != trade?.length - 1 ? '/' : ''}}</p></span>
+
+                                                        </td>
+                                                        <td>
+                                                            <ul class="list-inline rating-list d-flex">
+                                                                <li *ngFor="let star of stars; let i= index" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= expert?.rating)}"> ★
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <tr *ngIf="!orderDetail?.agent_Expert_Id">
+                                                        <td colspan="4">Data not Found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>

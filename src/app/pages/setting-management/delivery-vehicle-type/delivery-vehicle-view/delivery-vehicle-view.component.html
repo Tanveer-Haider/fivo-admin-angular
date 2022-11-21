@@ -1,0 +1,148 @@
+<!-- view profile -->
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">View Vehicle Type</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"  routerLink="/setting/delivery-vehicle-list">Delivery</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View Vehicle Type</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- <div class="user-profile">
+                            <div class="image-box text-left"> -->
+                        <!-- <img [src]="imgSrc ||'assets/img/avatar 1.png'" class="profile-pic" alt=""> -->
+                        <!-- <img src="/assets/images/profile-img.jpg" class="profile-pic" alt="">
+
+                            </div>
+                        </div> -->
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">Image </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <img [src]="listArray?.vehicleImage" class="profile-pic" alt="" style="max-width: 200px;max-height: 200px;">
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">Vehicle Type </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{listArray?.vehicleType}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">Base Rate </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{listArray?.baseRate}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">Carrying Capacity</label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{listArray?.capacity}}</label>
+                            </div>
+                        </div>
+                        <!-- 
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">Email </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>admin@mailinator.com</label>
+                            </div>
+                        </div> -->
+                        <!-- <div class="form-group row text-left">
+                            <label class="col-md-3">Mobile Number</label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>9854512542</label>
+                            </div>
+                        </div> -->
+
+
+                        <!-- <div class="form-group row text-left">
+                            <label class="col-md-3">Country </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>India</label>
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">State </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>Uttar Pradesh</label>
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-3">City </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>Ghaziabad</label>
+                            </div>
+                        </div> -->
+
+
+
+                        <div class="text-center mt-5 mb40">
+                            <button class="btn btn-large  max-WT-250 mr-1 btn-secondary" routerLink="/setting/delivery-vehicle-list">Back</button>
+
+                            <!-- <button class="btn btn-large  max-WT-150 ml-1 btn-primary" >Edit Delivery Type</button> -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Social Network</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Settings
+                                                        </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Social Network</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="table-responsive" style="margin-bottom: 30px;">
+                            <table class="table table-striped table-bordered table-hover kv-grid-table kv-table-wrap" aria-describedby="user management list">
+                                <thead class="thead">
+                                    <tr class="no_wrap_th text-center">
+                                        <th scope="col" class="Sorting-img heading1">S.No</th>
+                                        <th scope="col" class="Sorting-img">Social Name</th>
+                                        <th scope="col" class="Sorting-img">Social Link</th>
+                                        <th scope="col" class="action_td_btn3 Sorting-img heading2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center" *ngFor="let item of userData ;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td class="content">{{(item.socialName | titlecase )||'--'}}</td>
+                                        <td class="content" style="padding: 0px !important;">
+                                            <span *ngIf="!isSocialLink[i]">{{item.socialLink }}</span>
+                                            <input *ngIf="isSocialLink[i]" [(ngModel)]="socialLink[i]" maxlength="32" [ngModelOptions]="{standalone : true}" type="text" class="form-control text-center">
+                                        </td>
+                                        <td *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" class="justify-content-center d-flex">
+                                            <button *ngIf="!isSocialLink[i]" class="btn btn-secondary ml-2" style="padding: 2px 10px;" title="Edit" (click)="socialLinkEdit(i,socialLink[i],item.socialName ,item?._id)">
+                                            Edit
+                                         </button>
+                                            <button *ngIf="isSocialLink[i]" class="btn btn-success ml-2" style="padding: 2px 10px;" title="Save" (click)="updateSocialLink(socialLink[i])">
+                                          Save
+                                         </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="text-center" *ngIf="!userData.length">
+                                        <td colspan="6">No Record Found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary">Update</button>
+
+
+                        </div> -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

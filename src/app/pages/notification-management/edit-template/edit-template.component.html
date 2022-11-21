@@ -1,0 +1,169 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Push Notification</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/notification">Push Notification</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/notification/template-list">Templates</a>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit Template</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <from [formGroup]="templateForm">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Notification Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="notificationType">
+                                                <option value="EMAIL">Email</option>
+                                                <option value="SMS">SMS</option>
+                                                <option value="APP">APP</option>
+                                                <option value="WHATSAPP">Whatsapp</option>
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="templateForm.get('notificationType').invalid && (templateForm.get('notificationType').dirty || templateForm.get('notificationType').touched)">
+                                                <span
+                                                    *ngIf="templateForm.get('notificationType').hasError('required')">*Please
+                                                    enter the notification type.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Template Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                formControlName="templateName">
+                                            <div class="text-danger"
+                                                *ngIf="templateForm.get('templateName').invalid && (templateForm.get('templateName').dirty || templateForm.get('templateName').touched)">
+                                                <span
+                                                    *ngIf="templateForm.get('templateName').hasError('required')">*Please
+                                                    enter the template name.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div *ngIf="templateForm.value.notificationType == 'EMAIL'" class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email Subject</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name=""
+                                                [readonly]="templateForm.value.notificationType != 'EMAIL'"
+                                                class="form-control form-control_custom" formControlName="subject">
+                                            <div class="text-danger"
+                                                *ngIf="templateForm.get('subject').invalid && (templateForm.get('subject').dirty || templateForm.get('subject').touched)">
+                                                <span *ngIf="templateForm.get('subject').hasError('required')">*Please
+                                                    enter the email subject.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <div *ngIf="templateForm.value.notificationType != 'EMAIL'"
+                                    class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Title</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6">
+                                            <input type="text" name="" class="form-control form-control_custom" 
+                                                formControlName="title">
+                                            <div class="text-danger"
+                                                *ngIf="templateForm.get('title').invalid && (templateForm.get('title').dirty || templateForm.get('title').touched)">
+                                                <span *ngIf="templateForm.get('title').hasError('required')">*Please
+                                                    enter title.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div> -->
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="row  mt-1">
+                                        <label class="col-md-10 text-bold">Message</label>
+                                        <span class="col-md-12">
+                                            <ck-editor
+                                                *ngIf="templateForm.value.notificationType == 'EMAIL' "
+                                                name="data" skin="moono-lisa" language="en" [fullPage]="true"
+                                                formControlName="message"></ck-editor>
+                                            <textarea *ngIf="templateForm.value.notificationType != 'EMAIL'"
+                                                placeholder="Meassage" name="data" formControlName="sms"
+                                                class="form-control form-control_custom" cols="30" rows="10"></textarea>
+                                            <div class="text-danger"
+                                                *ngIf="templateForm.get('message').invalid && (templateForm.get('message').dirty || templateForm.get('message').touched)">
+                                                <span *ngIf="templateForm.get('message').hasError('required')">*Please
+                                                    enter the Message.</span>
+                                            </div>
+                                            <div class="text-danger"
+                                                *ngIf="templateForm.get('sms').invalid && (templateForm.get('sms').dirty || templateForm.get('sms').touched)">
+                                                <span *ngIf="templateForm.get('sms').hasError('required')">*Please enter
+                                                    message.</span>
+                                            </div>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </from>
+
+                        <div class="text-center mt-5 mb40">
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary"
+                                routerLink="/notification/template-list">Back</button>
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary"
+                                (click)="editNotification()">Update</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

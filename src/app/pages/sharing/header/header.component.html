@@ -1,0 +1,51 @@
+<div class="dashboard-header">
+    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <a class="navbar-brand"><img src="/assets/images/admin-logo.jpeg" style="width: 3em;" alt=""></a>
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link btn-toggle"  ><em class="fa fa-bars"></em></a>
+        </button> -->
+        <a class="nav-link btn-toggle"><em class="fa fa-bars"></em></a>
+
+        <div class="collapse navbar-collapse ">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+
+                <li class="nav-item dropdown nav-user d-flex align-items-center">
+                    <!-- <a class="nav-link btn-toggle" ><em class="fa fa-bars"></em></a> -->
+                    <!-- <div class="nav-user-info d-flex align-items-center"> -->
+                    <i class="fa fa-user mr-3"></i>
+                    <h5 class="mb-0 text-dark nav-user-name">{{profileData?.userName || 'admin'}}</h5>
+                    <!-- </div> -->
+                    <!-- <a class="nav-link nav-user-img" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a> -->
+                    <i class="nav-link fas fa-chevron-down ml-1" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                        <a class="dropdown-item" (click)="viewProfile()"><i class="fas fa-user mr-2"></i>Account</a>
+                        <a class="dropdown-item" (click)="changePassword()"><i class="fa fa-key mr-2"></i>Change Password</a>
+                        <a class="dropdown-item" (click)="logout()"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<!-- <header  class="header">
+    <nav aria-label="" class="navbar clearfix">
+        <div class="logo-box" >
+            <a class="navbar-brand logo text-center" id="logo" *ngIf="showLogo == false">
+                gbgb
+            </a>
+            <a class="navbar-brand logo" id="logo1" *ngIf="showLogo == true" >
+                bnfghn
+            </a>
+        </div>
+        <div class="d-flex header-padding" style="margin-left: auto;">
+            <div class="header-right-part" >
+                <button class="btn btn-toggle" (click)="head()" type="button" >
+                    <em class="fa fa-bars"></em>
+                </button>
+            </div>
+            <button class="btn btn-md  butn" data-toggle="modal" data-target="#logoutModal1">Logout</button>
+        </div>
+    </nav>
+</header> -->

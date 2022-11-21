@@ -1,0 +1,7 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<app-header *ngIf="service.isLoggedIn()"></app-header>
+<app-side-bar *ngIf="service.isLoggedIn()"></app-side-bar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

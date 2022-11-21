@@ -1,0 +1,290 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Service Areas</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Service Areas
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">List Service
+                                                        Areas</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row mt-2">
+            <div class="col-md-4 col-sm-6" *ngFor="let data of AgentHeader;let i=index"> -->
+        <!-- <div class="card"> -->
+        <!-- <div class="card-body" [ngClass]="data?.backgroundColor"> -->
+
+        <!-- <div class="row">
+
+                            <div class="col-2">
+                                <i [class]="data?.icon+' '+'header-icons'"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font">4</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">{{data?.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div>
+        </div> -->
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="row">
+                        <div class="col-9">
+                            <select [(ngModel)]="action" class="form-control form-select" style="margin-left: 8px;">
+                                <option selected value="0">Bulk Action</option>
+                                <option value="Delete">Delete</option>
+
+                            </select>
+
+                        </div>
+                        <div class="col-3">
+                            <button
+                                *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Delete')"
+                                class="btn" style="border: 1px solid #00000040;"
+                                (click)="openBulkDeleteModal()">Apply</button>
+                        </div>
+                    </div>
+                    <div class="pl-1">
+                        <!-- <button class="btn btn-primary btn-export">Add Vehicle</button> -->
+                    </div>
+                    <div class="col-3 d-flex justify-content-end">
+
+                        <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Add')"
+                            class="btn btn-primary btn-export" routerLink="/setting/add-service-area"> Add Area</button>
+
+                    </div>
+
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" *ngIf="listArray.length>0"><input type="checkbox" name=""
+                                                [(ngModel)]="selectAll" (input)="addMultipleId($event)"></th>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Indices</th>
+
+                                        <th scope="col" style="width: 1%;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+                                        <td scope="row"><input type="checkbox" (input)="addAdminId(item?._id,$event)"
+                                                [(ngModel)]="checkbox[i]"></td>
+                                        <td>{{item?.area}}</td>
+                                        <td>{{item?.indexes}}</td>
+
+
+                                        <td class="d-flex">
+                                            <!-- <span class="col-md-2">
+                                                <label class="switch">
+                                                    <input type="checkbox">
+                                                    <span class="slider round"></span>
+                                            </label>
+                                            </span> -->
+                                            <!-- <button class="btn btn-success" title="Unblock" (click)="activeBlock(item?._id)" *ngIf="item?.status=='BLOCKED'">
+                                               Unblock
+                                            </button>
+                                            <button class="btn btn-danger ml-2" title="Block" (click)="activeBlock(item?._id)" *ngIf="item?.status=='ACTIVE'">
+                                                Block
+                                             </button> -->
+                                            <!-- <button class="btn btn-success ml-2" title="View" (click)="viewVehicle(item?._id)">
+                                                View
+                                            </button> -->
+                                            <button
+                                                *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')"
+                                                class="btn btn-secondary ml-2" title="Edit"
+                                                (click)="editVehicle(item?._id)">
+                                                Edit
+                                            </button>
+                                            <button
+                                                *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Delete')"
+                                                class="btn btn-danger ml-2" title="Delete"
+                                                (click)="openDeleteModal(item?._id)">
+                                                Delete
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray.length">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1" style="width: 4em;">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete modal -->
+<div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete this area. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <!-- <button type="button" class="btn btn-primary" (click)="deleteService()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+
+                <button type="button" class=" btn btn-primary" (click)="deleteService()">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete in bulk modal -->
+<div class="modal fade blur-background" id="deletebulkModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Services</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to delete these area. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteService()">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+
+                <button type="button" class=" btn btn-primary" data-dismiss="modal" (click)="deleteService()">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- block-unblock modal -->
+<div class="modal fade blur-background" id="BlockModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Block Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to Block this vehicle. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <!-- <button type="button" class="btn btn-primary" (click)="blockvehicle()" data-dismiss="modal">Confirm</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+
+                <button type="button" class=" btn btn-primary" (click)="blockvehicle()"
+                    data-dismiss="modal">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,742 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Material Order</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/order">Material Order</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">View</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Client Name</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">{{orderDetail?.clientId?.firstName}}{{orderDetail?.clientId?.surName}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">{{orderDetail?.clientId?.email}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">{{orderDetail?.clientId?.mobileNumber}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Google Location</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <a [href]="'https://www.google.com/maps/@'+orderDetail?.location?.coordinates[0]+','+orderDetail?.location?.coordinates[1]+',10z'" target="_blank" rel="noopener noreferrer">
+                                                https://www.google.com/maps/@{{orderDetail?.location?.coordinates[0]}},{{orderDetail?.location?.coordinates[1]}},10z
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Area</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span *ngIf="editOrder" class="col-md-5">{{orderDetail?.area}}</span>
+                                        <select class="form-control col-md-5" *ngIf="!editOrder" [(ngModel)]="address">
+                                            <option [value]="item?.area" *ngFor="let item of addressList">{{item?.area}}</option>
+                                           
+                                        </select>
+                                    </div>
+                                    <!-- <input *ngIf="!editOrder" type="text" name="" class="form-control form-control_custom col-md-5"
+                                                placeholder="Address" maxlength="60" formControlName="address" ngx-google-places-autocomplete [options]='options'
+                                                #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+                                                > -->
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Status</label>
+                                        <span style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">{{orderDetail?.orderStatus | titlecase}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Order ID</label>
+                                        <span style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">{{orderDetail?.orderId}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Order Date</label>
+                                        <span style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">{{orderDetail?.createdAt | date:'medium'}}</span>
+
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Delivery Date</label>
+                                        <span style="width: 10px;">:</span>
+
+                                        <span class="col-md-5" *ngIf="orderDetail?.orderStatus == 'DELIVERED'">{{orderDetail?.updatedAt | date:'medium'}}</span>
+                                        <span class="col-md-5" *ngIf="orderDetail?.orderStatus != 'DELIVERED'">{{'--'}}</span>
+
+                                    </div>
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card">
+                            <!-- <div class="card-header"> -->
+                            <div class="card-header header-details-data del-agent">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa fa-suitcase" aria-hidden="true" style="color: white;"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <b>{{orderDetail.orderType == 'SERVICE' ? 'Service' : 'Material'}} Order Details</b>
+                                    </div>
+                                    <!-- <div class="col-3">
+                                        <button *ngIf="editOrder && orderDetail.orderType != 'SERVICE'" class="btn btn-secondary w-100" style="background-color: #545b62;"  (click)="editOrder = !editOrder" >Edit</button>
+                                        <button *ngIf="!editOrder" class="btn btn-secondary w-100" style="background-color: #545b62;" (click)="openEditModal()"  >Update</button>
+
+                                    </div> -->
+
+                                </div>
+                            </div>
+                            <!-- <div class="row ml-2">
+                                <label class="col-md-4 text-bold">Order Date</label>
+                                <span style="width: 10px;">:</span>
+                               
+                                <span class="col-md-5">{{orderDetail?.createdAt | date:'medium'}}</span>            
+
+                            </div>
+                            <div class="row ml-2">
+                                <label class="col-md-4 text-bold">Order ID</label>
+                                <span style="width: 10px;">:</span>
+                                
+                                <span class="col-md-5">{{orderDetail?.orderId}}</span>
+                            </div> -->
+
+                            <!-- </div> -->
+                            <div class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th scope="col">Item</th>
+                                                        <th scope="col">Unit</th>
+                                                        <th scope="col">Qty</th>
+                                                        <th scope="col">Disc</th>
+                                                        <th scope="col">Amt</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngIf="orderDetail.orderType == 'PRODUCT'">
+
+                                                    <tr *ngFor="let item of orderDetail?.productId;let index = index">
+
+                                                        <td>{{item?.productDetails?.brand}} {{item?.productDetails?.item}} {{item?.productDetails?.color}} {{item?.productDetails?.size}}</td>
+                                                        <td>{{item?.productDetails?.unit}}</td>
+                                                        <td>
+                                                            <span>
+                                                                <p *ngIf="editOrder" class="m-0" >{{item?.quantity}}</p>
+                                                                <input *ngIf="!editOrder" type="number" [max]="item.productDetails?.stock" (input)="udateQuantity($event,index)" min="1" class="form-control" [value]="item?.quantity" maxlength="2" (keypress)="commonService.numberOnly($event)" style="width: 4rem;" >
+                                                            </span>
+
+                                                        </td>
+                                                        <td>{{item?.productDetails?.discount}}</td>
+                                                        <td>{{useCurrency}} {{item?.quantity * item?.productDetails?.price}}</td>
+                                                        <i *ngIf="!editOrder" (click)="addProduct(0,item)" class="fa fa-times" style="margin-top: 1.5rem; color: red;" aria-hidden="true"></i>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-bold">Order Amount</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{useCurrency}} {{totalAmount}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-bold">Delivery Fee</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{useCurrency}} {{orderDetail?.deliveryFee}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-bold">Grand Total</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{useCurrency}} {{grandTotal}}</td>
+                                                    </tr>
+                                                    <!-- <tr *ngIf="orderMaterialDetail?.productId.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr> -->
+                                                </tbody>
+
+                                                <tbody *ngIf="orderDetail.orderType == 'SERVICE'">
+
+                                                    <tr *ngFor="let item of orderDetail?.serviceId">
+
+                                                        <td>{{item?.description}} </td>
+                                                        <td>{{item?.unit}}</td>
+                                                        <td>--</td>
+
+                                                        <td>{{useCurrency}} {{ item?.price}}</td>
+                                                        <i *ngIf="!editOrder" class="fa fa-times" style="margin-top: 1.5rem;" aria-hidden="true"></i>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                        <td class="text-bold">Order Amount</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{totalAmount}}</td>
+                                                    </tr> -->
+                                                    <!-- <tr>
+                                                        <td class="text-bold">Discount</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{orderDetail?.deliveryFee}}</td>
+                                                    </tr> -->
+                                                    <tr>
+                                                        <td class="text-bold">Grand Total</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{useCurrency}} {{orderDetail?.total}}</td>
+                                                    </tr>
+                                                    <!-- <tr *ngIf="orderMaterialDetail?.productId.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr> -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Delivery Agent List -->
+                    <div class="col-sm-12 col-md-6" *ngIf="editOrder && orderDetail?.orderType != 'SERVICE'">
+                        <div class="card">
+                            <div class="card-header header-details-data_new del-agent">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa fa-users" style="color: white;" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <b>Delivery Agent</b>
+                                    </div>
+                                    <!-- <div class="col-3">
+                                        <button *ngIf="!orderDetail.agent_Expert_Id" class="btn btn-secondary w-100 " (click)="openAssignModal()" style="background-color: #545b62;">Assign</button>
+                                        <button *ngIf="orderDetail.agent_Expert_Id && isAssigned" class="btn btn-secondary " (click)="reAssginAgent()"  style="background-color: #545b62;">Reassign</button>
+                                        <button *ngIf="orderDetail.agent_Expert_Id && !isAssigned" class="btn btn-secondary" (click)="openreAssignModal()"  style="background-color: #545b62;">Reassign</button>
+                                    </div> -->
+                                    <!-- (click)="openreAssignModal()" -->
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div *ngIf="!isAssigned " class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th scope="col">Name &nbsp;<i (click)="sortAgent('firstName')" class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Phone No.</th>
+                                                        <th scope="col">Vehicle type &nbsp;<i (click)="sortAgentVehicle()" class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Avg. Ratting</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let agent of listArray">
+                                                        <td>
+                                                            <!-- <input type="checkbox" [value]="agent.id" [checked]="agent?._id"
+                                                            (change)="onCheckboxChange($event)"> -->
+                                                            <input type="radio" (click)="getAgentId(agent?._id)" style="display: block;" [value]="'35'" name="agent">
+                                                        </td>
+                                                        <td (click)="navigateView(agent?._id)">{{agent?.firstName}} {{agent?.surName}}</td>
+                                                        <td>{{agent?.mobileNumber}}</td>
+                                                        <td>{{agent?.vehicleType[0]?.vehicleType}}</td>
+                                                        <td>
+                                                            <ul class="list-inline rating-list d-flex">
+                                                                <li *ngFor="let star of stars; let i= index" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= agent?.rating)}"> ★
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr *ngIf="listArray.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- If agent is assigned  -->
+
+                                        <div *ngIf="isAssigned " class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th scope="col">Name &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Phone No.</th>
+                                                        <th scope="col">Vehicle type &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Avg. Ratting</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>
+                                                            <!-- <input type="checkbox" [value]="agent.id" [checked]="agent?._id"
+                                                            (change)="onCheckboxChange($event)"> -->
+                                                            <input type="radio" style="display: block;" checked value="true" name="agent">
+                                                        </td>
+                                                        <td (click)="navigateView(orderDetail?.agent_Expert_Id?._id)">{{orderDetail?.agent_Expert_Id?.firstName}} {{orderDetail?.agent_Expert_Id?.surName}}</td>
+                                                        <td>{{orderDetail?.agent_Expert_Id?.mobileNumber}}</td>
+                                                        <td>{{orderDetail?.deliveryVehicle?.vehicleType}}</td>
+                                                        <td>*****</td>
+
+                                                    </tr>
+                                                    <tr *ngIf="listArray.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Expert List -->
+                    <div class="col-sm-12 col-md-6" *ngIf="orderDetail?.orderType == 'SERVICE'">
+                        <div class="card">
+                            <div class="card-header header-details-data_new del-agent">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa fa-users" style="color: white;" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <b>Expert Agent</b>
+                                    </div>
+                                    <!-- <div class="col-3">
+                                        <button *ngIf="!isAssigned" class="btn btn-secondary w-100 " (click)="openAssignModal()" style="background-color: #545b62;">Assign</button>
+                                        <button *ngIf="isAssigned" class="btn btn-secondary w-100 " (click)="openreAssignModal()" style="background-color: #545b62;">Reassgin</button>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div *ngIf="!isAssigned " class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th scope="col">Expert Name &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Phone No.</th>
+                                                        <th scope="col">Trade</th>
+                                                        <th scope="col">Commision&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Avg. Ratting</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let agent of expertList">
+                                                        <td>
+                                                            <!-- <input type="checkbox" [value]="agent.id" [checked]="agent?._id"
+                                                            (change)="onCheckboxChange($event)"> -->
+                                                            <input type="radio" (click)="getAgentId(agent?._id)" style="display: block;" [value]="'35'" name="agent">
+                                                        </td>
+                                                        <td>{{agent?.userName}}</td>
+                                                        <td>{{agent?.mobileNumber}}</td>
+                                                        <td>
+                                                            <span class="d-flex" *ngFor="let agent of item?.trade ;let j=index">{{tradedata?.description}}<p>{{j != item?.trade?.length - 1 ? '/' : ''}}</p></span>
+                                                            <span class="d-flex" *ngIf="!item?.trade">--</span>
+                                                        </td>
+
+
+                                                        <td>{{agent?.commission || 0}}</td>
+                                                        <td>
+                                                            <ul class="list-inline rating-list d-flex">
+                                                                <li *ngFor="let star of stars; let i= index" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= agent?.rating)}"> ★
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr *ngIf="listArray.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- If agent is assigned  -->
+
+                                        <div *ngIf="isAssigned " class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th scope="col">Name &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Phone No.</th>
+                                                        <th scope="col">Vehicle type &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        <th scope="col">Avg. Ratting</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>
+                                                            <!-- <input type="checkbox" [value]="agent.id" [checked]="agent?._id"
+                                                            (change)="onCheckboxChange($event)"> -->
+                                                            <input type="radio" style="display: block;" checked value="true" name="agent">
+                                                        </td>
+                                                        <td>{{orderDetail?.agent_Expert_Id?.firstName}} {{orderDetail?.agent_Expert_Id?.surName}}</td>
+                                                        <td>{{orderDetail?.agent_Expert_Id?.mobileNumber}}</td>
+                                                        <td>{{orderDetail?.deliveryVehicle?.vehicleType}}</td>
+                                                        <td>*****</td>
+
+                                                    </tr>
+                                                    <tr *ngIf="listArray.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Item Selection -->
+                    <div class="col-6" *ngIf="!editOrder">
+                        <div class="card">
+                            <div class="card-header header-details-data_new del-agent">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa fa-users" style="color: white;" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <b>Item Selection</b>
+                                    </div>
+                                    <!-- <div class="col-3">
+                                        <button *ngIf="!isAssigned" class="btn btn-secondary w-100 " (click)="openAssignModal()" style="background-color: #545b62;">Assign</button>
+                                        <button *ngIf="isAssigned" class="btn btn-secondary w-100 " (click)="openreAssignModal()" style="background-color: #545b62;">Reassgin</button>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                            <div *ngIf="orderDetail.orderType == 'PRODUCT'" class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+                                        <input type="text" placeholder="Search by item/brand/colour/size" class="form-control" (input)="searchItemMaterail($event)">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th scope="col">
+                                                            <select class="form-control" [(ngModel)]="categoryName" [ngModelOptions]="{standalone: true}" (change)="getItem($event)">
+                                                                <option [value]="0" selected disabled>Category</option>
+                                                                <option [value]="item?._id" *ngFor="let item of categoryList">{{item?.categoryName}}</option>
+                                                            </select>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th scope="col">
+                                                            <select class="form-control" [(ngModel)]="itemName">
+                                                                <option [value]="0" disabled selected>Item</option>
+                                                                <option value="item?.item" *ngFor="let item of itemList">{{item?.item}}</option>
+                                                            </select>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th scope="col">
+                                                            <select class="form-control">
+                                                                <option value="">Brand</option>
+                                                            </select>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th scope="col">
+                                                            <select class="form-control">
+                                                                <option value="">Colour</option>
+                                                            </select>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th scope="col">
+                                                            <select class="form-control">
+                                                                <option value="">Size</option>
+                                                            </select>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th scope="col">
+                                                            <select class="form-control">
+                                                                <option value="">Shape</option>
+                                                            </select>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+                                        </div>
+
+                                        <!-- If agent is assigned  -->
+
+
+
+                                    </div>
+                                </div>
+
+                                <!-- <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+                                        <input type="text" placeholder="Search by item/brand/colour/size" class="form-control" (input)="searchItemMaterail($event)">
+                                        <div  class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        
+                                                        <th scope="col">Item</th>
+                                                        <th scope="col">Unit</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Discount</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let agent of materialList">
+                                                        
+                                                        <td class="d-flex">{{agent?.item}} {{agent?.color}} {{agent?.brand}} {{agent.size}}</td>
+                                                       <td>{{agent?.unit}}</td>
+                                                       <td>{{agent?.price}}</td>
+                                                       <td>{{agent?.discount}}</td>
+                                                        <td>
+                                                            <button class="btn btn-success" (click)="addProduct(1,agent)">Add</button>
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr *ngIf="listArray.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                       
+
+                                       
+                                        
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+                            <div *ngIf="orderDetail.orderType == 'SERVICE'" class="card-body">
+                                <div class="global-table no-radius p0">
+                                    <div class="tab-content1" id="htmlData">
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th scope="col">Select Category</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let agent of serviceList">
+
+                                                        <td>{{agent?.categoryName}} </td>
+                                                        <td><button>Add</button></td>
+
+                                                    </tr>
+                                                    <tr *ngIf="listArray.length==0">
+                                                        <td colspan="4" class="text-center">Data not found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- If agent is assigned  -->
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-2 pb-3 mb40">
+                    <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/materials" style="background-color: #545b62;">Back</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+<div class="modal fade blur-background" id="assignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancel Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to assign this order. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <button type="button" class=" btn btn-primary" (click)="assginAgent()" style="border-top-right-radius: 0;border-bottom-right-radius: 0;">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="    position: relative;
+                right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btnn2 btn-triangle" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade blur-background" id="reAssignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancel Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to re-assign this order. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <button type="button" class=" btn btn-primary" (click)="assginAgent()" style="border-top-right-radius: 0;border-bottom-right-radius: 0;">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="position: relative;right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary  btn-triangle " data-dismiss="modal" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade blur-background" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You're about to edit this order. Please confirm to proceed.
+                </p>
+            </div>
+            <div class="modal-footer footer-padding">
+                <button type="button" class=" btn btn-primary" style="border-top-right-radius: 0;border-bottom-right-radius: 0;" (click)="updateOrder()">Confirm</button>
+                <div class="triangle triangle-0"></div>
+                <div style="position: relative;right: 38px;">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-secondary btn-triangle" data-dismiss="modal" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

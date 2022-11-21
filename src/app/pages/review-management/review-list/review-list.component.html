@@ -1,0 +1,172 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Reviews</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/reviews">Reviews</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/reviews">Review List</a></li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export" (click)="exportAsXLSX()"><i
+                                            class="fa fa-download" aria-hidden="true"></i> &nbsp; Export To
+                                        Excel</button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-center">
+            <div class="col-md-4 col-sm-6 col-12" *ngFor="let data of ServicePoviderHeader;let i=index">
+                <div class="card">
+                    <div class="card-body card_custom" [ngClass]="data?.backgroundColor">
+
+                        <div class="row">
+
+                            <div class="col-3">
+                                <i [class]="data?.icon+' '+'header-icons'"></i>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="header-font dashboard-icon-mar">{{dashboard?.AllReview || 0}}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="header-font  w-space-nowrap">{{data?.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="row p-3 justify-content-between">
+                    <div class="col-lg-5 ml-2">
+                        <!-- <div class="row">
+                            <div class="col-4">
+                                <select [(ngModel)]="action" class="form-control form-select" >
+                                    <option selected value="0">Bulk Action</option>
+                                    <option value="Delete">Delete</option>
+                                    
+                                </select>
+
+                            </div>
+                            <div class="col-3">
+                                <button class="btn" style="border: 1px solid #00000040;" (click)="openBulkDeleteModal()">Apply</button>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                    <div class="pl-1 d-flex">
+                        <!-- <div class="mt-1">
+                            <i class="fa fa-filter " aria-hidden="true" (click)="openFilterModal()"></i>
+                        </div> -->
+                        <div class="form-check">
+                            <input type="text" class="form-control" (keypress)="commonService.preventSpace($event)" maxlength="60" placeholder="Search" name="" style="margin-left: -10px;" [(ngModel)]="search" (input)="searchText($event)">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <!-- <th scope="col" *ngIf="listArray.length>0"><input type="checkbox" name="" [(ngModel)]="selectAll" (input)="addMultipleId($event)" id=""></th> -->
+                                        <th scope="col">Rating</th>
+                                        <th scope="col">Reviewed by</th>
+                                        <th scope="col">Review</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Order ID</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: pageSize,
+                                    currentPage: currentPage,
+                                    totalItems: total}; let i= index">
+                                        <!-- <td scope="row"><input type="checkbox" (input)="addAdminId(item?._id,$event)" [(ngModel)]="checkbox[i]"></td> -->
+                                        <td>
+                                            <ul class="list-inline rating-list d-flex">
+                                                <li *ngFor="let star of stars; let j= index" (click)="countStar(star)" id="{{'starId'+j}}" [ngClass]="{'selected': (star <= item?.rating)}"> ★
+                                                    <!-- <i class="mdi mdi-star ">★</i> -->
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{item?.clientId?.firstName}} {{item?.clientId?.surName}}</td>
+                                        <td>{{item?.review}}</td>
+                                        <td>{{item?.updatedAt | date: 'medium'}}</td>
+                                        <td>{{item?.orderId?.orderId}}</td>
+                                        <td class="d-flex">
+
+                                            <!-- <button *ngIf="commonService?.getUserType() && commonService?.getPermission('reviews', 'View')" class="btn btn-success " (click)="viewReview(item?._id)" title="View">
+                                                View
+                                            </button> -->
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('reviews', 'View')" class="btn btn-success " (click)="viewReview(item?.orderId?.orderType, item?.orderId?._id)" title="View">
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="listArray?.length == 0">
+                                        <td colspan="7" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-100 text-right mt-1" *ngIf="listArray?.length > 0">
+                            <div class="">
+                                <strong class="pl-2">Show</strong>&nbsp;
+                                <select name="" (change)="addRow($event)" class="form-select mr-1" style="width: 4em;">
+
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                <strong class="ml-1 mr-1">entites</strong>
+                            </div>
+
+                        </div>
+                        <div class="custom-pagination w-100 mt-2 pb-2" *ngIf="listArray?.length > 0">
+                            <div class="text-right">
+                                <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

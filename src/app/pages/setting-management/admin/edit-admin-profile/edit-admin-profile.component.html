@@ -1,0 +1,233 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Edit Profile</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Profile</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit Profile</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card row">
+
+                    <div class="card-body col-md-8 col-sm-12">
+                        <div class="user-profile">
+                            <div class="image-box text-center">
+                                <img [src]="editImage" class="profile-pic" alt="" style="max-width: 100px;">
+                                <!-- <img src="/assets/images/profile-img.jpg" class="profile-pic" alt=""> -->
+
+                            </div>
+                        </div>
+                        <form action="" [formGroup]="editForm">
+                            <div class="row">
+
+                                <!-- upload image -->
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-4 text-bold">Upload Image</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-7">
+                                            <input type="file" name="" class="form-control form-control_custom"
+                                                (change)="uploadFile($event)">
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- first name -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">User Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-7">
+                                            <!-- <textarea class="form-control" name=""  cols="30" rows="5" ></textarea> -->
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="32" placeholder="User Name" formControlName="userName">
+
+                                            <div class="text-danger"
+                                                *ngIf="editForm.get('userName').invalid && (editForm.get('userName').dirty || editForm.get('userName').touched)">
+                                                <span *ngIf="(editForm.get('userName').hasError('required'))">
+                                                    *UserName is required.
+                                                </span>
+                                            </div>
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- last name -->
+                                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Date Of Birth</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-7">
+                                     
+                                       <input type="date" name=""  class="form-control form-control_custom"  placeholder="Last Name" formControlName="dob" data-date-inline-picker="true">
+                                    </span>
+                                </div>
+                            </div> -->
+                                <!-- email -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-7">
+                                            <!-- <textarea class="form-control" name=""  cols="30" rows="5" ></textarea> -->
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="60" readonly placeholder="Email Address"
+                                                formControlName="email">
+                                            <div class="text-danger"
+                                                *ngIf="editForm.get('email').invalid && (editForm.get('email').dirty || editForm.get('email').touched)">
+                                                <span *ngIf="(editForm.get('email').hasError('required'))">
+                                                    *Email address is required.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- mobile no -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-7">
+                                            <!-- <textarea class="form-control" name=""  cols="30" rows="5" ></textarea> -->
+                                            <input type="text" aria-label="Country"
+                                                class="form-control form-control_custom d-inline country col-md-2"
+                                                [formControl]="myControl" maxlength="7"
+                                                (keypress)="commonService.numberOnly($event)" [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between"
+                                                    *ngFor="let option of filteredOptions | async"
+                                                    [value]="option.code">
+                                                    <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <!-- <input type="text" name=""  class="form-control form-control_custom col-md-2 d-inline"  placeholder="Country Code" formControlName="countryCode"> -->
+                                            <input type="text" name=""
+                                                class="form-control form-control_custom col-md-10 d-inline number"
+                                                maxlength="16" placeholder="Phone Number" formControlName="phone">
+                                            <div class="text-danger"
+                                                *ngIf="editForm.get('phone').invalid && (editForm.get('phone').dirty || editForm.get('phone').touched)">
+                                                <span *ngIf="(editForm.get('phone').hasError('required'))">
+                                                    *Phone number is required.
+                                                </span>
+                                                <span *ngIf="(editForm.get('phone').hasError('minlength'))">
+                                                    *Please enter valid phone number.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- country -->
+                                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Country Code</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                       <textarea class="form-control form-control_custom" name=""  cols="30" rows="5" ></textarea>
+                                    </span>
+                                    </div>
+                                </div> -->
+                                <!-- state -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Address</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-7">
+                                            <!-- <textarea class="form-control form-control_custom" name=""  cols="30" rows="5" ></textarea> -->
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                maxlength="60" placeholder="Address" formControlName="address">
+                                            <div class="text-danger"
+                                                *ngIf="editForm.get('address').invalid && (editForm.get('address').dirty || editForm.get('address').touched)">
+                                                <span *ngIf="(editForm.get('address').hasError('required'))">
+                                                    *Address is required.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- city -->
+                                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">City</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                       <textarea class="form-control form-control_custom" name=""  cols="30" rows="5" ></textarea>
+                                       <input type="text" name=""  class="form-control form-control_custom"  placeholder="City">
+                                    </span>
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+                            <div class="text-center mt-5 mb40">
+                                <button class="btn btn-large  max-WT-250 mr-1 btn-secondary"
+                                    routerLink="/setting/view-admin-profile">Back</button>
+
+                                <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="updateProfile()"
+                                    [disabled]="editForm.invalid">Submit</button>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

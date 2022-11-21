@@ -1,0 +1,275 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Service management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/services">Service management
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit service</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="serviceForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Category</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="category" (change)="selectId($event)">
+                                                <option value="">Select Category </option>
+                                                <option *ngFor="let item of categories" value="{{item?._id}}">
+                                                    {{item?.categoryName}}</option>
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('category').invalid && (serviceForm.get('category').dirty || serviceForm.get('category').touched)">
+                                                <span *ngIf="serviceForm.get('category').hasError('required')">*Please
+                                                    enter the category.</span>
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row mt-1">
+                                    <label class="col-md-4 text-bold">Unit</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                    <span class="col-md-5 col-sm-6">
+                                            <!-- <select name="" class="form-control form-control_custom form-select"  formControlName="unit" >
+                                                <option value="" selected>Select Unit</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No.</option>
+                                            </select> -->
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Unit" formControlName="unit">
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('unit').invalid && (serviceForm.get('unit').dirty || serviceForm.get('unit').touched)">
+                                                <span *ngIf="serviceForm.get('unit').hasError('required')">*Please enter
+                                                    the unit.</span>
+                                </div>
+                                </span>
+
+                            </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row mt-1">
+                            <label class="col-md-4 text-bold">Price</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                            <span class="col-md-5 ">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Price" formControlName="price"
+                                                (keypress)="commonService.numberOnly($event)">
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('price').invalid && (serviceForm.get('price').dirty || serviceForm.get('price').touched)">
+                                                <span *ngIf="serviceForm.get('price').hasError('required')">*Please
+                                                    enter the price.</span>
+                        </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+
+                    <div class="row mt-1">
+                        <label class="col-md-4 text-bold">Meta Keyword</label>
+                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Meta keyword" formControlName="meta">
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('meta').invalid && (serviceForm.get('meta').dirty || serviceForm.get('meta').touched)">
+                                                <span *ngIf="serviceForm.get('meta').hasError('required')">*Please enter
+                                                    the meta keyword.</span>
+                    </div>
+                    <div class="row d-flex justify-content-space-between" *ngFor="let item of metakey let i = index">
+                        <a class=" col-md-8">{{item}}</a><i class="fa fa-times text-danger col-md-4 text-center" (click)="removeMetakey(item,i)"></i>
+                    </div>
+                    </span>
+                    <span class="col-md-2 ">
+                                            <button class="btn btn-info"
+                                                (click)="addMetaKey(serviceForm.get('meta'))">Add</button>
+                                        </span>
+                    <!-- <div class="col-md-11 mt-1 ">
+                                            <div class="col-md-6 float-right "
+                                                style="max-height: 80px;overflow:auto;margin: 1em 5em 2em;">
+                                                <div class="col-md-12 d-flex justify-content-space-between"
+                                                    *ngFor="let item of metakey let i = index">
+                                                    <a class="mr-2 col-md-8">{{item}}</a><i
+                                                        class="fa fa-times text-danger ml-3 col-md-4 text-center"
+                                                        (click)="removeMetakey(item,i)"></i>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                </div>
+            </div>
+            <!-- <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-4 text-bold">Discount</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5 col-sm-6">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="0%" maxlength="2" formControlName="discount"
+                                                (keypress)="commonService.numberOnly($event)">
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('discount').invalid && (serviceForm.get('discount').dirty || serviceForm.get('discount').touched)">
+                                                <span *ngIf="serviceForm.get('discount').hasError('required')">*Please
+                                                    enter the discount.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div> -->
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="row  mt-1">
+                    <label class="col-md-4 text-bold">Upload image</label>
+                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                    <span class="col-md-5">
+                                            <span style="display: flex;align-items: center;">
+                                            <input type="file" name="" class="form-control form-control_custom mr-2"
+                                                formControlName="document" (change)="uploadImg($event)">
+                                                <i  class="fa fa-question-circle" aria-hidden="true" alt=""
+                                                data-toggle="tooltip"  data-placement="top"
+                                                title="Note :Image dimension should be within 200px*200px"></i>
+                                            </span>
+                    <img [src]="croppedImage ||documentImage" alt="" class="img-fluid">
+                    <div class="text-danger" *ngIf="serviceForm.get('document').invalid && (serviceForm.get('document').dirty || serviceForm.get('document').touched)">
+                        <span *ngIf="serviceForm.get('document').hasError('required')">*Please
+                                                    upload the image.</span>
+                    </div>
+                    </span>
+                    <!-- <div class="col-md-12 text-center">
+                                            <img [src]="documentImage" alt="" class="document-image">
+                                        </div> -->
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="row">
+                    <label class="col-md-4 text-bold">Status</label>
+                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                    <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="status">
+                                                <option value="ACTIVE">Active</option>
+                                                <option value="BLOCK">Inactive</option>
+
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('status').invalid && (serviceForm.get('status').dirty || serviceForm.get('status').touched)">
+                                                <span *ngIf="serviceForm.get('status').hasError('required')">*Please
+                                                    select the status.</span>
+                </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row mt-1">
+                <label class="col-md-4 col-lg-2 text-bold">Description</label>
+                <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                <span class="col-md-5 col-lg-9">
+                                            <textarea class="form-control form-control_custom"
+                                                id="exampleFormControlTextarea1" formControlName="description"
+                                                rows="3"></textarea>
+                                            <div class="text-danger"
+                                                *ngIf="serviceForm.get('description').invalid && (serviceForm.get('description').dirty || serviceForm.get('description').touched)">
+                                                <span
+                                                    *ngIf="serviceForm.get('description').hasError('required')">*Please
+                                                    enter the description.</span>
+            </div>
+            </span>
+        </div>
+    </div>
+
+</div>
+</form>
+
+<div class="text-center mt-5 mb40">
+
+    <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="editService()">Update</button>
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- end footer -->
+<!-- ============================================================== -->
+</div>
+</div>
+
+<div class="modal fade blur-background" id="resizeImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Resize Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1/1" [resizeToWidth]="200" [cropperMinWidth]="200" format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal">Confirm</button>
+                    <div class="triangle triangle-0"></div>
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal" (click)="reset()">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Home Screen</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Home Screen
+                                                    </a></li>
+                                                <!-- <li class="breadcrumb-item"><a routerLink="/services"
+                                                        class="breadcrumb-link">Services</a>
+                                                </li> -->
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="global-table no-radius p0">
+                    <div class="tab-content1" id="htmlData">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S No.</th>
+                                        <th scope="col">Home Screen Type</th>
+                                        <th scope="col">Home Screen Image</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listArray | paginate: { 
+                                    itemsPerPage: itemsPerPage,
+                                    currentPage: currentPage,
+                                    totalItems: total};let i = index">
+
+                                    <td>{{itemsPerPage * (currentPage - 1) + i+1}}</td>
+                                        <td>{{item.categoryType}}</td>
+                                        <td><img width="70px" [src]="item?.homeScreenImage"></td>
+                                        <td class="d-flex">
+                                            <button *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" class="btn btn-secondary ml-2" title="Edit" (click)="navigateEditHomeScreen(item?._id,item?.categoryType,item)">
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="!listArray.length">
+                                        <td colspan="3" class="text-center">Data not found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 
+                   <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12" *ngFor="let item of listArray;let i=index">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">{{item?.name}}</h3>
+                                <img class="img-fluid mb-4" [src]="item?.homeScreenImage" alt="Card image cap">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <input type="file" (change)="uploadImg(item._id,$event)" name="" >
+                                </div>
+                                <div class="modal-footer" style="justify-content: center;">
+
+                                <button type="button" class="btn btn-primary mt-2" data-dismiss="modal" (click)="edithomeScreen(item?._id)">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- delete modal -->
+        <div class="modal fade blur-background" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Service</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            You're about to delete this homescreen. Please confirm to proceed.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Confirm</button>
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>

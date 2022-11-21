@@ -1,0 +1,193 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title ">Category</h2>
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb ">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link" routerLink="/category">Category</a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit
+                                                        category</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="categoryForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Category Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                        <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="categoryType" >
+                                                <option value="">Select Category</option>
+                                                <option value="SERVICE">Service</option>
+                                                <option value="MATERIAL">Material</option>
+                                            </select>
+                                   
+                                            <div class="text-danger"
+                                                *ngIf="categoryForm.get('categoryType').invalid && (categoryForm.get('categoryType').dirty || categoryForm.get('categoryType').touched)">
+                                                <span
+                                                    *ngIf="categoryForm.get('categoryType').hasError('required')">*Please
+                                                    enter the category type.</span>
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <label class="col-md-4 text-bold">Category Name</label>
+                                    <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                                    <span class="col-md-5">
+                                            <input type="text" class="form-control form-control_custom"
+                                                placeholder="Category name" formControlName="categoryName">
+                                            <div class="text-danger"
+                                                *ngIf="categoryForm.get('categoryName').invalid && (categoryForm.get('categoryName').dirty || categoryForm.get('categoryName').touched)">
+                                                <span
+                                                    *ngIf="categoryForm.get('categoryName').hasError('required')">*Please
+                                                    enter the category name.</span>
+                                </div>
+                                </span>
+                            </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row  mt-1">
+                            <label class="col-md-4 text-bold">Meta keyword</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                            <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Meta keyword" formControlName="metakey" >
+                                       
+                                            <div class="d-flex justify-content-space-between"
+                                                *ngFor="let item of metakey; let j = index">
+                                                <a class="col-md-8 pl-0">{{item}}</a><i
+                                                    class="fa fa-times text-danger ml-3 col-md-4 text-center"
+                                                    (click)="removeMetakey(item,j)"></i>
+                                            </div>
+                                        </span>
+                            <span class="col-md-2 ">
+                                            <button class="btn btn-info"
+                                                (click)="addMeta(categoryForm.get('metakey'))">Add</button>
+                                        </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row  mt-1">
+                            <label class="col-md-4 text-bold">Upload Image</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                            <span class="col-md-5">
+                                            <span style="display: flex;align-items: center;">
+                                            <input type="file" name="" class="form-control form-control_custom mr-2"
+                                                (change)="uploadImg($event)" formControlName="document" >
+                                                <i class="fa fa-question-circle" aria-hidden="true" alt=""
+                                                data-toggle="tooltip" data-placement="top"
+                                                title="Note :Image dimension should be within  200px*200px"></i>
+                                            </span>
+                            </span>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <img [src]="croppedImage || categoryImage" alt="" style="max-width: 100px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="row  mt-1">
+                            <label class="col-md-4 text-bold">Status</label>
+                            <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+
+                            <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="status" >
+                                                <option value="">Select Status</option>
+                                                <option value="ACTIVE">Active</option>
+                                                <option value="BLOCKED">Inactive</option>
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="categoryForm.get('status').invalid && (categoryForm.get('status').dirty || categoryForm.get('status').touched)">
+                                                <span *ngIf="categoryForm.get('status').hasError('required')">*Please
+                                                    select the status.</span>
+                        </div>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            </form>
+
+            <div class="text-center mt-5 mb40">
+
+                <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="editCategory()">Update</button>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="modal fade blur-background" id="resizeImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Resize Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1/1" [resizeToWidth]="200" [cropperMinWidth]="200" format="png" (imageCropped)="imageCropped($event)" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal">Confirm</button>
+                    <div class="triangle triangle-0"></div>
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal" (click)="reset()">Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>

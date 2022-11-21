@@ -1,0 +1,466 @@
+
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Delivery Agents</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link"
+                                                        routerLink="/delivery">Delivery Agents
+                                                    </a></li>
+                                                <li class="breadcrumb-item"><a class="breadcrumb-link">Edit agent</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <form [formGroup]="agentForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <label class="col-md-4 text-bold">Agent Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <select name="" class="form-control form-control_custom form-select"
+                                                formControlName="agentType"  (change)="restForm(agentForm.get('agentType').value)">
+                                                <option value="">Select Agent Type</option>
+                                                <option value="COMPANY">Company</option>
+                                                <option value="INDIVIDUAL">Individual</option>
+                                            </select>
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('agentType').invalid && (agentForm.get('agentType').dirty || agentForm.get('agentType').touched)">
+                                                <span *ngIf="agentForm.get('agentType').hasError('required')">*Please
+                                                    enter the agent type.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">First Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom" maxlength="32"
+                                                placeholder="First Name" formControlName="firstname" 
+                                                [readonly]="agentForm.get('agentType').value=='COMPANY'">
+                                            <i *ngIf="agentForm.get('agentType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('firstname').invalid && (agentForm.get('firstname').dirty || agentForm.get('firstname').touched)">
+                                                <span *ngIf="(agentForm.get('firstname').hasError('required'))">
+                                                    *Firstname is required.
+                                                </span>
+                                                <span *ngIf="(agentForm.get('firstname').hasError('pattern'))">
+                                                    *Please enter a valid firstname.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Surname</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Surname" formControlName="surname" maxlength="32"
+                                                [readonly]="agentForm.get('agentType').value=='COMPANY'">
+                                            <i *ngIf="agentForm.get('agentType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('surname').invalid && (agentForm.get('surname').dirty || agentForm.get('surname').touched)">
+                                                <span *ngIf="(agentForm.get('surname').hasError('required'))">
+                                                    *Surname is required.
+                                                </span>
+                                                <span *ngIf="(agentForm.get('surname').hasError('pattern'))">
+                                                    *Please enter a valid surname.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Company Name</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5 ">
+                                            <input type="text" name="" class="form-control form-control_custom" [readonly]="agentForm.get('agentType').value=='INDIVIDUAL'"
+                                                placeholder="Company name" formControlName="companyName" maxlength="32">
+                                                <i *ngIf="agentForm.get('agentType').value=='INDIVIDUAL'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                            <div class="text-danger"  
+                                                *ngIf="agentForm.get('companyName').invalid && (agentForm.get('companyName').dirty || agentForm.get('companyName').touched)">
+                                                <span *ngIf="agentForm.get('companyName').hasError('required')">*Please
+                                                    enter the company name.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">NRC No.</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5 ">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="NRC No."
+                                                [readonly]="agentForm.get('agentType').value=='COMPANY'"
+                                                formControlName="NRCNumber" maxlength="16">
+                                            <i *ngIf="agentForm.get('agentType').value=='COMPANY'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('NRCNumber').invalid && (agentForm.get('NRCNumber').dirty || agentForm.get('NRCNumber').touched)">
+                                                <span *ngIf="agentForm.get('NRCNumber').hasError('required')">*Please
+                                                    enter the nrc number.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Company Registration Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Company registration number"  [readonly]="agentForm.get('agentType').value=='INDIVIDUAL'"
+                                                formControlName="registrationNumber"  maxlength="16">
+                                                <i *ngIf="agentForm.get('agentType').value=='INDIVIDUAL'" class="fa fa-ban"
+                                                aria-hidden="true"></i>
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('registrationNumber').invalid && (agentForm.get('registrationNumber').dirty || agentForm.get('registrationNumber').touched)">
+                                                <span
+                                                    *ngIf="agentForm.get('registrationNumber').hasError('required')">*Please
+                                                    enter the company registration number.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Address</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Address" formControlName="address"  maxlength="64">
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('address').invalid && (agentForm.get('address').dirty || agentForm.get('address').touched)">
+                                                <span *ngIf="agentForm.get('address').hasError('required')">*Please
+                                                    enter the address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" aria-label="Country" class="form-control form-control_custom d-inline country col-md-4 col-lg-3 text-center" [formControl]="myControl" maxlength="7" (keypress)="common.numberOnly($event)"
+                                            [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between" *ngFor="let option of filteredOptions | async" [value]="option.code">
+                                                <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <input type="text" name="" class="form-control d-inline col-md-8 col-lg-9 number form-control_custom"
+                                                placeholder="Phone Number" formControlName="phoneNumber"  maxlength="10">
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('phoneNumber').invalid && (agentForm.get('phoneNumber').dirty || agentForm.get('phoneNumber').touched)">
+                                                <span *ngIf="agentForm.get('phoneNumber').hasError('required')">*Please
+                                                    enter phone number.</span>
+                                                <span *ngIf="agentForm.get('phoneNumber').hasError('pattern')">*Please
+                                                    enter valid phone number.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Phone Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                             <input type="text" aria-label="Country" class="form-control form-control_custom d-inline country col-md-4 text-center" [formControl]="myControl" maxlength="7" (keypress)="common.numberOnly($event)"
+                                            [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option class="d-flex justity-content-space-between" *ngFor="let option of filteredOptions | async" [value]="option.code">
+                                                <span>{{option.name}}</span><span>{{option.code}}</span>
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <input type="text" name="" class="form-control d-inline col-md-8 number form-control_custom"
+                                                maxlength="10" placeholder="Phone no" formControlName="phoneNumber"
+                                                >
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('phoneNumber').invalid && (agentForm.get('phoneNumber').dirty || agentForm.get('phoneNumber').touched)">
+                                                <span *ngIf="agentForm.get('phoneNumber').hasError('required')">*Please
+                                                    enter phone number.</span>
+                                                <span *ngIf="agentForm.get('phoneNumber').hasError('pattern')">*Please
+                                                    enter valid phone number.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                </div> -->
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Email</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"
+                                                placeholder="Email" formControlName="email" maxlength="60">
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('email').invalid && (agentForm.get('email').dirty || agentForm.get('email').touched)">
+                                                <span *ngIf="agentForm.get('email').hasError('required')">*Please
+                                                    enter email address.</span>
+                                                <span *ngIf="agentForm.get('email').hasError('pattern')">*Please
+                                                    enter valid email address.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Vehicle Type</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <ng-multiselect-dropdown [placeholder]="'Select Type'"
+                                                [settings]="dropdownSettings" [data]="deliverylist"
+                                                formControlName="vechicleType" (onSelect)="onItemSelect($event)"
+                                                (onDeSelect)="onDeSelect($event)"
+                                                (onDeSelectAll)="onDeSelectAll($event)"
+                                                (onSelectAll)="onSelectAll($event)">
+                                            </ng-multiselect-dropdown>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Commission</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block " style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <label class="switch">
+                                                <input type="checkbox" formControlName="commission">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div> -->
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-4 text-bold">Upload Documents</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <span style="display: flex;align-items: center;">
+                                            <input type="file"  accept=".pdf,.docx,.docs" class="form-control form-control_custom mr-2"
+                                                (change)="uploadImg($event)" formControlName="document" multiple>
+                                                <i  class="fa fa-question-circle" aria-hidden="true" alt=""
+                                                data-toggle="tooltip"  data-placement="top"
+                                                title="Note : Supported document format should be PDF and DOCS"></i>
+                                            </span>
+                                            <div class="text-danger"
+                                                *ngIf="agentForm.get('document').invalid && (agentForm.get('document').dirty || agentForm.get('document').touched)">
+                                                <span *ngIf="agentForm.get('document').hasError('required')">*Please
+                                                    upload the document.</span>
+                                            </div>
+                                         
+                                            <!-- <img [src]="croppedImage || imgSrc" alt="" class="img-fluid"> -->
+                                         <div>
+                                         <a [href]="docs" target="_blank" rel="noopener noreferrer" style=" white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis ; display:flex" *ngFor="let docs of imageLinks">
+                                                {{docs}}
+                                            </a>
+                                        </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row  mt-1">
+                                        <label class="col-md-4 text-bold">Password</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="password" name="" class="form-control form-control_custom"
+                                                autocomplete="new-password" placeholder="Password"
+                                                formControlName="password" maxlength="32">
+                                            <div *ngIf="agentForm.get('password').invalid && (agentForm.get('password').touched || agentForm.get('password').dirty)"
+                                                class="text-danger">
+                                                <span *ngIf="agentForm.get('password').hasError('required')">*Please
+                                                    enter password.</span>
+                                                <span *ngIf="agentForm.get('password').hasError('pattern')">
+                                                    *Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Confirm Password</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="password" name="" class="form-control form-control_custom"
+                                                placeholder="Confirm Password" formControlName="confirmPassword" >
+                                            <div *ngIf="agentForm.get('confirmPassword').dirty" class="text-danger">
+                                                <span *ngIf="agentForm.get('confirmPassword').hasError('required')">*Please
+                                                    enter confirm password.</span>
+                                                <span
+                                                    *ngIf="agentForm.get('confirmPassword').value != agentForm.get('password').value">*Password
+                                                    and confirm password should match.</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Status</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <!-- <span class="col-md-5">{{data?.kycId || '---'}}</span> -->
+                                        <span class="col-md-5">
+                                            <select class="form-control form-control_custom"   formControlName="status">
+                                                <option value="ACTIVE">Active</option>
+                                                <option value="BLOCKED">Inactive</option>
+                                            </select>
+                                           
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Completed Delivery</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-5">
+                                            <input type="text" name="" class="form-control form-control_custom"   (keypress)="common.numberOnly($event)"
+                                                [value]="'0'" disabled>
+                                           
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-5 text-bold">Average Rating</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
+                                        <span class="col-md-6 d-flex">
+                                           <i class="fa fa-star"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-5 mb40">
+
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary" (click)="editAgent()"
+                                >Update</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+
+<div class="modal fade blur-background" id="resizeImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Resize Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1/1"
+                [resizeToWidth]="200"
+                [cropperMinWidth]="200"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+               
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            </div>
+         
+            <div class="modal-footer justify-content-center" style="padding: 5px;">
+                <div style="position: relative; left: 19px;" class="tri">
+                    <button type="button" class=" btn btn-primary btnn" data-dismiss="modal" >Confirm</button>
+                    <div class="triangle triangle-0"></div >
+                </div>
+                <div style="position: relative; right: 23px;" class="tri">
+                    <div class="triangle triangle-1"></div>
+                    <button type="button" class="btn btn-triangle" data-dismiss="modal" (click)="reset()" >Close</button></div>
+            </div>
+        </div>
+    </div>
+</div>
