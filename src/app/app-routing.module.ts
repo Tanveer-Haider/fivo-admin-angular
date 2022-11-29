@@ -44,6 +44,12 @@ const routes: Routes = [
   { path: 'services', loadChildren: () => import('./pages/service-management/service-management.module').then(m => m.ServiceManagementModule), canActivate: [DashboardGuard] },
   { path: 'inbox', loadChildren: () => import('./pages/inbox-management/inbox-management.module').then(m => m.InboxManagementModule), canActivate: [DashboardGuard] },
 
+
+
+
+
+  { path: 'ticket', loadChildren: () => import('./pages/ticket-management/ticket-management.module').then(m => m.TicketManagementModule), canActivate: [DashboardGuard] },
+
 ];
 
 @NgModule({

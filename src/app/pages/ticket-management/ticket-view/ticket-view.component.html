@@ -1,0 +1,125 @@
+<div class="wrapper">
+    <div class="container-fluid dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title top-head-data-detail">Ticket Management</h2>
+                    <!-- <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p> -->
+
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb top-head-data-detail">
+                                                <li class="breadcrumb-item"><i class="fa fa-home"></i></li>
+                                                <li class="breadcrumb-item"><a routerLink="/ticket" class="breadcrumb-link">Ticket</a></li>
+                                                <li class="breadcrumb-item"><a routerLink="/ticket/ticket-view" class="breadcrumb-link">Ticket Detail</a>
+                                                </li>
+
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-export"><i class="fa fa-download"
+                                            aria-hidden="true"></i> &nbsp; Export</button>
+
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="content-section">
+            <div class="outer-box">
+                <div class="card row">
+                    <div class="card-body col-md-6 col-sm-12">
+
+                        <div class="form-group row text-left">
+                            <label class="col-md-6">User Name </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{ProfileData?.userName || '--'}}</label>
+                            </div>
+                        </div>
+                     
+
+                        <div class="form-group row text-left">
+                            <label class="col-md-6">Email </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{ProfileData?.email || '--'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-6">Message</label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{ProfileData?.message || '--'}}</label>
+                                
+                            </div>
+                        </div>
+                      
+
+
+                        <div class="form-group row text-left">
+                            <label class="col-md-6">Status </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5"><label>{{ProfileData?.status || '--'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row text-left">
+                            <label class="col-md-6">Date & Time </label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{ProfileData?.updatedAt | date : 'medium'}}</label>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row text-left">
+                            <label class="col-md-5">City</label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                <label>{{ProfileData?.city || '--'}}</label>
+                            </div>
+                        </div> -->
+                        <!-- <div class="form-group row text-left">
+                            <label class="col-md-5">Country Code</label>
+                            <div class="col-md-1"> :</div>
+                            <div class="col-md-5">
+                                
+                            </div>
+                        </div> -->
+                        <!-- *ngIf="commonService?.getUserType() && commonService?.getPermission('settings', 'Edit')" -->
+                        <div class="text-center mt-5 mb40">
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-primary" routerLink="/ticket">Resolved</button>
+                            <button class="btn btn-large  max-WT-150 ml-1 btn-secondary" routerLink="/ticket">Back</button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>

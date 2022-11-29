@@ -64,7 +64,7 @@ export class SideBarComponent implements OnInit {
     //     { "id": 2, "routerLink": "/add-advert", permissionKey: 'Add', "subName": "Add Advert" }
     //   ]
     // },
-    // { "id": 10, "routerLink": "/jobs", "icon": "fa fa-users", permissionKey: 'jobManagement', "Name": "Service Orders" },
+    { "id": 10, "routerLink": "/ticket", "icon": "fa fa-users", permissionKey: 'jobManagement', "Name": "Ticket Management" },
     // { "id": 11, "routerLink": "/materials", "icon": "fa fa-user", permissionKey: 'materialOrderManagement', "Name": "Material Orders" },
     // { "id": 12, "routerLink": "/earnings", "icon": "fa fa-money", permissionKey: 'earnings', "Name": "Earnings" },
     // {
