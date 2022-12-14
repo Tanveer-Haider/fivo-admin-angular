@@ -74,9 +74,7 @@ export class OtpVerificationComponent implements OnInit {
       otp: this.userOTP
     }
 
-    localStorage.setItem('verifyOtpToken', `res['result']['token']`)
-    this.router.navigate(['/reset-password'])
-    return
+
     this.commonService.showSpinner()
 
     this.service.postApi('admin/verifyOTP', this.userData, 0).subscribe(res => {

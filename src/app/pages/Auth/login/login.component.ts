@@ -47,11 +47,17 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     };
     let apiReqUrl = "admin/adminlogin"
-    // this.commonService.showSpinner()
 
-    localStorage.setItem("token", 'res.result.token');
-        this.commonService.loginData.next('res.result')
-        this.commonService.successToast('Login Successfull');
+
+    
+
+    this.service.postApi(apiReqUrl, apiReqData, 0).subscribe((res: any) => {
+      console.log(res)
+      if (res.responseCode == 200) {
+        this.commonService.hideSpinner();
+        localStorage.setItem("token", res.result.token);
+        this.commonService.loginData.next(res.result)
+        this.commonService.successToast(res.responseMessage);
         this.router.navigate(["dashboard"]);
         // remember me
         if (this.loginForm.value.rememberMe) {
@@ -64,34 +70,14 @@ export class LoginComponent implements OnInit {
         } else {
           localStorage.removeItem("loginData");
         }
-
-    // this.service.postApi(apiReqUrl, apiReqData, 0).subscribe((res: any) => {
-    //   console.log(res)
-    //   if (res.responseCode == 200) {
-    //     this.commonService.hideSpinner();
-    //     localStorage.setItem("token", res.result.token);
-    //     this.commonService.loginData.next(res.result)
-    //     this.commonService.successToast(res.responseMessage);
-    //     this.router.navigate(["dashboard"]);
-    //     // remember me
-    //     if (this.loginForm.value.rememberMe) {
-    //       let loginData = {
-    //         email: this.loginForm.value.email,
-    //         password: btoa(this.loginForm.value.password),
-    //         rememberMe: this.loginForm.value.rememberMe,
-    //       };
-    //       localStorage.setItem("loginData", JSON.stringify(loginData));
-    //     } else {
-    //       localStorage.removeItem("loginData");
-    //     }
-    //   } else {
-    //     this.commonService.hideSpinner();
-    //     this.commonService.errorToast(res.responseMessage);
-    //   }
-    // },
-    //   (error: any) => {
-    //     this.commonService.hideSpinner();
-    //     this.commonService.errorToast(error.error.responseMessage)
-    //   })
+      } else {
+        this.commonService.hideSpinner();
+        this.commonService.errorToast(res.responseMessage);
+      }
+    },
+      (error: any) => {
+        this.commonService.hideSpinner();
+        this.commonService.errorToast(error.error.responseMessage)
+      })
   }
 }

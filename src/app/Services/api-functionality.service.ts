@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ApiFunctionalityService {
-  public baseURL = "https://node-lungisa.mobiloitte.com/api/v1/" // stagging
+
+  public baseURL = "https://finovac-node.onrender.com/api/v1/" // stagging
   // public baseURL = "  http://172.16.1.246:3028/api/v1/"
   // public baseURL = "http://172.16.11.134:3028/api/v1/" 
 
