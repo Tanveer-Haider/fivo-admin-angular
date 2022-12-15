@@ -24,19 +24,24 @@ export class EditSliderImageComponent implements OnInit {
 
   ngOnInit(): void {
     this.bannerForm=new FormGroup({
-      'sliderTitle':new FormControl('', Validators.required)
+      'sliderTitle':new FormControl('', Validators.required),
+      'sliderNumber':new FormControl('', Validators.required),
+      'sliderDescription':new FormControl('', Validators.required),
     })
     // this.getSliderImage()
   }
 
 
   getSliderImage(){
-    let url = `admin/viewBanner/${this.banner_id}`
+    let url = `slider/viewSlider?_id=${this.banner_id}`
       this.commonService.showSpinner()
       this.apiService.getApi(url,1).subscribe((res)=>{
         if(res.responseCode==200){
           this.bannerForm.patchValue({
-            'sliderTitle':res.result.bannerName
+            'sliderTitle':res.result.title,
+            'sliderDescription':res.result.description,
+            'sliderNumber':res.result.slideNumber,
+
           })
           this.productImage = res.result.bannerImage[0]
           this.commonService.hideSpinner()
@@ -106,7 +111,9 @@ export class EditSliderImageComponent implements OnInit {
     let data = {
       '_id':this.banner_id,
       'bannerName':this.bannerForm.value.sliderTitle,
-      'bannerImage':[this.productImage]
+      'bannerImage':[this.productImage],
+      'sliderNumber':new FormControl('', Validators.required),
+      'sliderDescription':new FormControl('', Validators.required),
     }
     if(this.productImage){
       this.commonService.showSpinner()

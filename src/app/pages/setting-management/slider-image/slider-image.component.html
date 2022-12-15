@@ -91,7 +91,7 @@
                                         <th scope="col" *ngIf="listArray.length>0"><input type="checkbox" name="" [(ngModel)]="selectAll" (input)="addMultipleId($event)"></th>
 
                                         <th scope="col">Screen Image</th>
-                                        <th scope="col">Screen Name</th>
+                                        <th scope="col">Screen Title</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Actions</th>
                                     </tr>
@@ -108,7 +108,7 @@
                                                 <img [src]="item?.bannerImage" class="img-fluid" alt="Responsive image">
                                             </div>
                                         </td>
-                                        <td>{{item?.bannerName}}</td>
+                                        <td>{{item?.title}}</td>
                                         <td>{{item?.status | titlecase}}</td>
                                         <td class="d-flex">
                                             <!-- <label class="switch">

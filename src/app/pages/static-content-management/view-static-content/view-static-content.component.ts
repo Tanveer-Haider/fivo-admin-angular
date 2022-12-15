@@ -25,7 +25,7 @@ title:any
   }
 
   viewStaticContent(){
-    let url = `static/viewStaticContent?type=${this.pageName}`
+    let url = `slider/viewStatic?_id=${this.pageName}`
     this.commonService.showSpinner()
     this.apiService.getApi(url,1).subscribe(res=>{
       if(res.responseCode==200){

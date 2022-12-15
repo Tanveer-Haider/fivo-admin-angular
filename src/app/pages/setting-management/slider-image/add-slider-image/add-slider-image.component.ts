@@ -20,7 +20,9 @@ export class AddSliderImageComponent implements OnInit {
 
   ngOnInit(): void {
     this.bannerForm=new FormGroup({
-      'sliderTitle':new FormControl('', Validators.required)
+      'sliderTitle':new FormControl('', Validators.required),
+      'sliderNumber':new FormControl('', Validators.required),
+      'sliderDescription':new FormControl('', Validators.required),
     })
   }
   imageChangedEvent: any = '';
@@ -76,10 +78,12 @@ export class AddSliderImageComponent implements OnInit {
 
 
   addSliderImage(){
-    let url = `admin/addBanner`
+    let url = `slider/addSliders`
     if(this.croppedImage){
       let data = {
-        "bannerName": this.bannerForm.value.sliderTitle,
+        "title": this.bannerForm.value.sliderTitle,
+        "description": this.bannerForm.value.sliderDescription,
+        "slideNumber": this.bannerForm.value.sliderNumber,
         "bannerImage": [this.croppedImage]
       }
       this.commonService.showSpinner()

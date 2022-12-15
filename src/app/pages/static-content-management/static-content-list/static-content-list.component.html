@@ -91,17 +91,17 @@
                                         <td scope="row">{{i+1}}</td>
 
 
-                                        <td>{{item.type | split}}</td>
+                                        <td>{{item.title}}</td>
                                         <!-- <td>{{item.description}}</td> -->
                                         <td class="d-flex">
-                                            <button class="btn btn-success " title="View" (click)="navigateToViewStaticContent(item?.type)">
+                                            <button class="btn btn-success " title="View" (click)="navigateToViewStaticContent(item?._id)">
                                                 View
                                             </button>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td scope="row">4</td>
+                                        <td scope="row">{{listArray?.length + 1}}</td>
                                         <td>Contact us</td>
                                         <td class="d-flex">
                                             <button class="btn btn-success " title="View" routerLink="/static-content/view-contact-us" >

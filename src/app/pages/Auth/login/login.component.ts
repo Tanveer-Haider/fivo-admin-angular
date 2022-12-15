@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    let apiReqUrl = "admin/adminlogin"
+    let apiReqUrl = "admin/login"
 
 
     

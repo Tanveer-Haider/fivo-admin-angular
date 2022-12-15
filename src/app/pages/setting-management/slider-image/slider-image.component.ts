@@ -17,7 +17,7 @@ export class SliderImageComponent implements OnInit {
   currentPage = 1
   action : any = 0
   deleteServiceId : any = []
-  listArray : any = [{bannerName : 'First Iamge', status : 'ACTIVE',bannerImage : 'assets/images/avatar-3.jpg' }]
+  listArray : any = []
   bannerId:any
   AgentHeader:any = [
     {"id":1,"name":"All","backgroundColor":"bg-green","icon":"fa fa-bars"},
@@ -28,16 +28,16 @@ export class SliderImageComponent implements OnInit {
     
    }
   ngOnInit(): void {
-    // this.getBannerList()
+    this.getBannerList()
   }
 
 
 getBannerList(){
-  let url = `admin/listBanner`
+  let url = `slider/listSliders`
   this.commonService.showSpinner()
-  this.apiService.getApi(url,1).subscribe((res)=>{
+  this.apiService.postApi(url,{},1).subscribe((res)=>{
     if(res.responseCode==200){
-      this.listArray = res.result
+      this.listArray = res.result.docs
       this.total= res.result.total
       this.commonService.hideSpinner()
     }
@@ -106,9 +106,9 @@ openBulkDeleteModal(){
 
   // delete product
   deleteService(){
-    let url = `admin/deleteManyBanner`
+    let url = `slider/deleteSlider?_id=${this.deleteServiceId}`
     let data = {
-        "bannerId": this.deleteServiceId
+        
     }
     this.commonService.showSpinner()
     this.apiService.deleteApi(url,data,1).subscribe(res=>{

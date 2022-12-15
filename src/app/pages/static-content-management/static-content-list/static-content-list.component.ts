@@ -36,9 +36,9 @@ export class StaticContentListComponent implements OnInit {
   getStaticContentList(){
     let url =`static/listStaticContent`
     this.commonService.showSpinner()
-    this.apiService.getApi(url,1).subscribe(res=>{
+    this.apiService.postApi(url,{},1).subscribe(res=>{
       if(res.responseCode==200){
-        this.listArray = res.result
+        this.listArray = res.result.docs
         this.commonService.hideSpinner()
         // this.commonService.successToast(res.responseMessage)
       }

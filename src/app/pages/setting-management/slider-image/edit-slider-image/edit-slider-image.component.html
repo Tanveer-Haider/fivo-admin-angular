@@ -53,7 +53,16 @@
                     <div class="card-body">
                         <form action="" [formGroup]="bannerForm">
                             <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Slider Number</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
 
+                                        <span class="col-md-5">
+                                       <input type="number" step="1" name="" class="form-control form-control_custom"  placeholder="Slider Title" formControlName="sliderNumber">
+                                    </span>
+                                    </div>
+                                </div>
                                 <!-- banner name -->
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="row mt-1">
@@ -67,7 +76,17 @@
                                     </div>
                                 </div>
                                 <!-- upload image -->
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row mt-1">
+                                        <label class="col-md-4 text-bold">Slider Description</label>
+                                        <span class="d-sm-none d-xsm-none d-md-block" style="width: 10px;">:</span>
 
+                                        <span class="col-md-5">
+                                            <textarea class="form-control form-control_custom"  placeholder="Slider Description" formControlName="sliderDescription"></textarea>
+                                       
+                                    </span>
+                                    </div>
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="row  mt-1">
                                         <label class="col-md-4 text-bold">Upload Image</label>
